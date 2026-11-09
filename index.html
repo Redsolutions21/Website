@@ -435,47 +435,75 @@ btn.addEventListener('click',()=>setLang(document.documentElement.lang==='ar'?'e
 let _ar=false;try{_ar=localStorage.getItem('rs_lang')==='ar'}catch(e){}
 if(_ar)setLang('ar');else redify();
 
-/* AI core: a red globe (wireframe, slowly turning) inside blue rings, orbits and particles */
+/* AI core: a red globe where blue keeps trying to take over from the centre, inside blue rings, orbits and particles */
 (function(){
  const c=document.getElementById('core'),x=c.getContext('2d'),W=c.width,C=W/2;
  const still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  const RED='#AF3736',RED2='#D9524F',B='#1F5BD6',B2='#7DA2EE',b=a=>`rgba(31,91,214,${a})`,r=a=>`rgba(175,55,54,${a})`;
  const rings=[{r:.27,w:3,seg:[[0,.62],[.74,.92]],sp:.3},{r:.315,w:1.2,dash:1,sp:-.15},{r:.355,w:5,seg:[[.05,.2],[.33,.4],[.55,.78]],sp:.1},{r:.40,w:1,ticks:96,sp:-.04},{r:.445,w:2,seg:[[.1,.3],[.6,.7]],sp:.07}];
  const stars=Array.from({length:70},(_,i)=>({a:Math.random()*6.283,d:.2+Math.random()*.29,s:.6+Math.random()*1.8,p:Math.random()*6.283}));
- const orbits=[{tilt:.35,rot:.5,rx:.43,ry:.12,sp:.5},{tilt:-.6,rot:-.3,rx:.41,ry:.15,sp:-.38},{tilt:1.2,rot:.2,rx:.38,ry:.1,sp:.62}];
+ const orbits=[{tilt:.35,rot:.5,rx:.46,ry:.14,sp:.5},{tilt:-.6,rot:-.3,rx:.45,ry:.17,sp:-.38},{tilt:1.2,rot:.2,rx:.43,ry:.12,sp:.62}];
+ /* Red globe (wireframe, slowly turning). Blue keeps trying to spread from its centre, strains, then the red pushes it back. Slow electricity. */
+ let bolts=[],nextBolt=0;
+ function jag(x1,y1,x2,y2,d,out){if(d<4){out.push([x2,y2]);return}const mx=(x1+x2)/2+(Math.random()-.5)*d,my=(y1+y2)/2+(Math.random()-.5)*d;jag(x1,y1,mx,my,d/2,out);jag(mx,my,x2,y2,d/2,out)}
+ function makeBolts(R,reach){bolts=[];const n=2+Math.floor(Math.random()*2);
+  for(let k=0;k<n;k++){const a=Math.random()*6.283,r1=W*(.3+Math.random()*.13);const p=[[C+Math.cos(a)*R*.97,C+Math.sin(a)*R*.97]];jag(p[0][0],p[0][1],C+Math.cos(a+(Math.random()-.5)*.6)*r1,C+Math.sin(a+(Math.random()-.5)*.6)*r1,W*.06,p);bolts.push({p,w:2+Math.random()*2,born:performance.now()})}
+  for(let k=0;k<3;k++){const a=Math.random()*6.283,rr=R*reach*(0.8+Math.random()*.4);const p=[[C,C]];jag(C,C,C+Math.cos(a)*rr,C+Math.sin(a)*rr,W*.035,p);bolts.push({p,w:1.4,inner:1,born:performance.now()})}}
  function globe(t){
-  const R=W*.165, spin=still?0:t/1000*.35, tilt=.42;
-  // red glow
-  let g=x.createRadialGradient(C,C,R*.2,C,C,R*1.9);g.addColorStop(0,r(.35));g.addColorStop(.55,r(.12));g.addColorStop(1,r(0));x.fillStyle=g;x.beginPath();x.arc(C,C,R*1.9,0,7);x.fill();
+  const R=W*.205, ts=t/1000, spin=still?0:ts*.35, tilt=.42;
+  // quicksand: the blue slowly oozes out from the centre to the edges, then sinks slowly back in (one smooth 9 s cycle, no resets)
+  const per=14, ph=still?.5:(ts%per)/per;
+  const flow=.5-.5*Math.cos(ph*6.283);           // 0 -> 1 -> 0, smooth
+  const reach=.08+1.25*flow, push=0, beat=0, strain=flow>.85;
+  // red glow (stronger when the red pushes back)
+  const Rb=R*(1+.035*beat);let g=x.createRadialGradient(C,C,R*.2,C,C,R*1.9);g.addColorStop(0,r(.30+.15*push));g.addColorStop(.3,b(.22*beat));g.addColorStop(.55,r(.12));g.addColorStop(1,r(0));x.fillStyle=g;x.beginPath();x.arc(C,C,R*1.9,0,7);x.fill();
   // sphere body
-  g=x.createRadialGradient(C-R*.35,C-R*.4,R*.05,C,C,R);g.addColorStop(0,'#F3B1AE');g.addColorStop(.35,RED2);g.addColorStop(1,RED);x.fillStyle=g;x.beginPath();x.arc(C,C,R,0,7);x.fill();
-  x.save();x.beginPath();x.arc(C,C,R,0,7);x.clip();x.lineWidth=1.6;
-  // latitude lines
+  g=x.createRadialGradient(C-R*.35,C-R*.4,R*.05,C,C,R);g.addColorStop(0,'#F3B1AE');g.addColorStop(.35,RED2);g.addColorStop(1,RED);x.fillStyle=g;x.beginPath();x.arc(C,C,Rb,0,7);x.fill();
+  x.save();x.beginPath();x.arc(C,C,Rb,0,7);x.clip();
+  // blue spreading like an infection: an uneven front with finger-like tendrils reaching outward
+  const tend=(th,k)=>{const f1=Math.max(0,Math.sin(th*6+ts*.25+k)),f2=Math.max(0,Math.sin(th*11-ts*.18+k*2.1)),f3=Math.max(0,Math.sin(th*4+ts*.12+1.3));
+   return .26*f1**3+.16*f2**4+.12*f3**2+.05*Math.sin(th*17+ts*.6)};
+  for(let k=0;k<3;k++){const base=R*reach*(1-k*.17);if(base<2)continue;
+   const gb=x.createRadialGradient(C,C,0,C,C,base*1.35);gb.addColorStop(0,'rgba(31,91,214,.96)');gb.addColorStop(.62,'rgba(38,98,232,.9)');gb.addColorStop(.85,'rgba(60,120,245,.55)');gb.addColorStop(1,'rgba(77,139,255,0)');
+   x.fillStyle=gb;x.beginPath();
+   for(let i=0;i<=240;i++){const th=i/240*6.283,w=still?.08:tend(th,k);const rr=base*(.9+w);const px=C+Math.cos(th)*rr,py=C+Math.sin(th)*rr;i?x.lineTo(px,py):x.moveTo(px,py)}
+   x.closePath();x.fill()}
+  // spores: small blue patches appearing just ahead of the front
+  if(!still&&reach>.2){for(let k=0;k<14;k++){const th=k*.4488+Math.sin(ts*.1+k)*.2,lead=R*reach*(1.05+.25*((k*7)%5)/5+tend(th,0)*.6);const life=.5+.5*Math.sin(ts*.7+k*1.9);if(life<.2)continue;
+   const sx=C+Math.cos(th)*lead,sy=C+Math.sin(th)*lead,sr=R*(.035+.03*life);const gs=x.createRadialGradient(sx,sy,0,sx,sy,sr);gs.addColorStop(0,`rgba(38,98,232,${.8*life})`);gs.addColorStop(1,'rgba(77,139,255,0)');x.fillStyle=gs;x.beginPath();x.arc(sx,sy,sr,0,7);x.fill()}}
+  // swirling grains inside the blue
+  if(!still){x.fillStyle='rgba(190,212,255,.55)';for(let k=0;k<40;k++){const a=k*2.4+ts*(.08+(k%5)*.03),d=((k*37)%100)/100*R*reach*.95;x.beginPath();x.arc(C+Math.cos(a)*d,C+Math.sin(a)*d,1.4,0,7);x.fill()}}
+  // red pushing back
+  if(push>0){x.strokeStyle=r(.45*push);x.lineWidth=R*.18;x.beginPath();x.arc(C,C,R*.98,0,6.283);x.stroke()}
+  x.lineWidth=1.6;
   for(let k=-4;k<=4;k++){const la=k/5*1.45,y=Math.sin(la)*R,rr=Math.cos(la)*R;
    x.strokeStyle=`rgba(255,240,238,${k===0?.55:.28})`;x.beginPath();x.ellipse(C,C+y*Math.cos(tilt),rr,rr*Math.sin(tilt),0,0,6.283);x.stroke()}
-  // longitude lines (rotating)
   for(let k=0;k<12;k++){const lo=k/12*Math.PI+spin,sx=Math.cos(lo);
    x.strokeStyle=`rgba(255,240,238,${.12+.25*Math.abs(Math.sin(lo))})`;x.beginPath();x.ellipse(C,C,Math.abs(sx)*R,R,0,0,6.283);x.stroke()}
-  // city lights on the globe
   for(let k=0;k<26;k++){const lo=k*2.39+spin,la=Math.sin(k*1.7)*1.2,z=Math.cos(lo)*Math.cos(la);if(z<0)continue;
    const px=C+Math.sin(lo)*Math.cos(la)*R,py=C-Math.sin(la)*R*.92;x.fillStyle=`rgba(255,255,255,${.35+.6*z})`;x.beginPath();x.arc(px,py,1.6+2*z,0,7);x.fill()}
   x.restore();
-  // rim highlight
-  x.strokeStyle='rgba(255,220,218,.55)';x.lineWidth=2;x.beginPath();x.arc(C,C,R,0,7);x.stroke();
+  x.strokeStyle=`rgba(${beat>.5?'190,210,255':'255,220,218'},.6)`;x.lineWidth=2+2*beat;x.beginPath();x.arc(C,C,Rb,0,7);x.stroke();
+  // slow electricity: new bolts every 0.5 to 1.2 s (a little faster while the blue strains), each one fades out
+  const now=performance.now();
+  if(still){if(!bolts.length)makeBolts(R,reach)}else if(t>nextBolt){makeBolts(R,Math.max(.3,reach));nextBolt=t+(strain?800:1200)+Math.random()*800}
+  bolts.forEach(bo=>{const age=still?0:(now-bo.born)/700,al=Math.max(0,1-age)*(still?1:.75+.25*Math.sin(now/60));if(al<=0)return;x.lineJoin='round';x.lineCap='round';
+   x.strokeStyle=`rgba(77,139,255,${.55*al})`;x.lineWidth=bo.w*3.5;x.shadowColor='#2F6BFF';x.shadowBlur=22;x.beginPath();bo.p.forEach(([px,py],i)=>i?x.lineTo(px,py):x.moveTo(px,py));x.stroke();
+   x.shadowBlur=0;x.strokeStyle=`rgba(${bo.inner?'210,226,255':'235,243,255'},${.95*al})`;x.lineWidth=bo.w*.9;x.beginPath();bo.p.forEach(([px,py],i)=>i?x.lineTo(px,py):x.moveTo(px,py));x.stroke()});
   // label
-  x.fillStyle='#FFFFFF';x.textAlign='center';x.font='900 '+Math.round(W*.05)+'px Lato, Arial, sans-serif';x.fillText('RED',C,C+W*.012);
-  x.font='700 '+Math.round(W*.016)+'px Lato, Arial, sans-serif';x.fillStyle='rgba(255,240,238,.9)';x.fillText('A I   C O R E',C,C+W*.045);
+  x.fillStyle='#FFFFFF';x.textAlign='center';x.font='900 '+Math.round(W*.1)+'px Lato, Arial, sans-serif';x.fillText('RED',C,C+W*.02);
+  x.font='700 '+Math.round(W*.02)+'px Lato, Arial, sans-serif';x.fillStyle='rgba(255,255,255,.95)';x.fillText('E A G L E   E Y E',C,C+W*.068);
  }
  function f(t){x.clearRect(0,0,W,W);
   // particles
-  stars.forEach(s=>{const a=s.a+(still?0:t/1000*.02*(s.d>.35?1:-1)),tw=still?.6:.35+.45*(1+Math.sin(t/700+s.p))/2;x.fillStyle=b(tw);x.beginPath();x.arc(C+Math.cos(a)*s.d*W,C+Math.sin(a)*s.d*W*.98,s.s,0,7);x.fill()});
+  stars.forEach(s=>{const a=s.a+(still?0:t/1000*.02*(s.d>.35?1:-1)),tw=still?.6:.35+.45*(1+Math.sin(t/700+s.p))/2;x.fillStyle=b(Math.min(1,tw*1.3));x.beginPath();x.arc(C+Math.cos(a)*s.d*W,C+Math.sin(a)*s.d*W*.98,s.s,0,7);x.fill()});
   // tilted orbits behind
-  orbits.forEach((o,i)=>{x.save();x.translate(C,C);x.rotate(o.tilt);x.strokeStyle=b(.32);x.lineWidth=1.6;x.setLineDash(i===1?[4,10]:[]);x.beginPath();x.ellipse(0,0,o.rx*W,o.ry*W,0,Math.PI,6.283);x.stroke();x.setLineDash([]);x.restore()});
+  orbits.forEach((o,i)=>{x.save();x.translate(C,C);x.rotate(o.tilt);x.strokeStyle=b(.6);x.lineWidth=2.6;x.setLineDash(i===1?[8,10]:[]);x.beginPath();x.ellipse(0,0,o.rx*W,o.ry*W,0,Math.PI,6.283);x.stroke();x.setLineDash([]);x.restore()});
   globe(t);
   // orbits in front + travelling dots
-  orbits.forEach((o,i)=>{x.save();x.translate(C,C);x.rotate(o.tilt);x.strokeStyle=b(.55);x.lineWidth=1.6;x.setLineDash(i===1?[4,10]:[]);x.beginPath();x.ellipse(0,0,o.rx*W,o.ry*W,0,0,Math.PI);x.stroke();x.setLineDash([]);
-   const a=(still?i*2:t/1000*o.sp)+i*2;x.fillStyle=B;x.beginPath();x.arc(Math.cos(a)*o.rx*W,Math.sin(a)*o.ry*W,6,0,7);x.fill();
-   x.fillStyle=b(.25);x.beginPath();x.arc(Math.cos(a)*o.rx*W,Math.sin(a)*o.ry*W,14,0,7);x.fill();x.restore()});
+  orbits.forEach((o,i)=>{x.save();x.translate(C,C);x.rotate(o.tilt);x.strokeStyle=b(.9);x.lineWidth=3;x.setLineDash(i===1?[8,10]:[]);x.beginPath();x.ellipse(0,0,o.rx*W,o.ry*W,0,0,Math.PI);x.stroke();x.setLineDash([]);
+   const a=(still?i*2:t/1000*o.sp)+i*2;x.fillStyle=B;x.beginPath();x.arc(Math.cos(a)*o.rx*W,Math.sin(a)*o.ry*W,9,0,7);x.fill();
+   x.fillStyle=b(.3);x.beginPath();x.arc(Math.cos(a)*o.rx*W,Math.sin(a)*o.ry*W,20,0,7);x.fill();x.restore()});
   // blue rings
   rings.forEach((rg,i)=>{const rr=rg.r*W,rot=still?i:t/1000*rg.sp;x.save();x.translate(C,C);x.rotate(rot);x.strokeStyle=b(i%2?.38:.8);x.lineWidth=rg.w*2;x.lineCap='round';
    if(rg.seg)rg.seg.forEach(([a,bb])=>{x.beginPath();x.arc(0,0,rr,a*6.283,bb*6.283);x.stroke()});

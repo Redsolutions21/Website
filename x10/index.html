@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X10 Institute for Private Training</title>
+<meta name="description" content="X10 Institute for Private Training in Kuwait. Hands-on AI training for professionals and teams, in Arabic and English.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* X10 brand: navy gradient #20396F to #5B7991, red #ED1C24 highlight boxes, Almarai, Arabic first. Light page by choice, deep navy bands for weight. */
+  --navy:#20396F; --steel:#5B7991; --red:#ED1C24; --ink:#14213D; --mute:#5A6478; --bg:#EEF2F7; --tile:#E2E8F0; --card:#F8FAFD; --line:#D3DBE6;
+  --ar:'Almarai','Geeza Pro',Tahoma,sans-serif; --en:'Lato','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ar);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
+html[lang="en"] body{font-family:var(--en);line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+@media (max-width:420px){.wrap{padding:0 16px}}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.mark{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font-family:var(--en);font-weight:900;letter-spacing:.02em;border-radius:6px;padding:2px 10px;font-size:20px;line-height:1.4}
+
+.nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:15px}
+.nav nav{display:flex;align-items:center;gap:22px;font-size:14px}
+.nav nav a{text-decoration:none;opacity:.8}.nav nav a:hover{opacity:1}
+.lang{border:0;background:var(--tile);color:var(--ink);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+@media (max-width:720px){.nav nav .nl{display:none}}
+
+.hero{background:linear-gradient(140deg,var(--navy),var(--steel));color:#fff;border-radius:0 0 36px 36px;padding:84px 0 76px;text-align:center}
+.hero{background:radial-gradient(120% 90% at 70% 40%,#26468A 0%,#14264F 55%,#0B1733 100%) !important;padding:64px 0 60px !important}
+.herogrid{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;text-align:start}
+.herogrid h1,.herogrid .sub{margin-inline:0}
+.herogrid h1{font-size:clamp(34px,4.4vw,54px);max-width:none}
+.herogrid .cta{justify-content:flex-start}
+.fx{position:relative;aspect-ratio:1/1;width:100%;max-width:520px;justify-self:center}
+.fx canvas{position:absolute;inset:0;width:100%;height:100%}
+@media (max-width:860px){.herogrid{grid-template-columns:1fr;text-align:center}.herogrid .cta{justify-content:center}.herogrid h1,.herogrid .sub{margin-inline:auto}.fx{max-width:420px;aspect-ratio:1/.85;order:-1}}
+.hero .eyebrow{display:inline-block;background:var(--red);border-radius:6px;padding:2px 12px;font-weight:700;font-size:14px;margin:0 0 18px}
+h1{font-weight:800;font-size:clamp(36px,6vw,68px);line-height:1.25;margin:0 auto;max-width:16ch;text-wrap:balance}
+html[lang="en"] h1{font-weight:900;letter-spacing:-.03em;line-height:1.05;max-width:15ch}
+.sub{font-size:clamp(18px,2.2vw,22px);opacity:.88;max-width:40ch;margin:20px auto 0;text-wrap:balance}
+.cta{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 24px;margin-top:32px;align-items:center}
+.btn{display:inline-block;background:#fff;color:var(--navy);text-decoration:none;border-radius:999px;padding:12px 24px;font-weight:700}
+.btn:hover{background:#F2F5FA}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:#C9151C}
+.more{color:#fff;text-decoration:none;font-weight:700}.more:hover{text-decoration:underline}
+
+.band{padding:88px 0}
+.alt{background:var(--tile)}
+h2{font-weight:800;font-size:clamp(30px,4.6vw,48px);line-height:1.3;margin:0 auto;text-align:center;max-width:18ch;text-wrap:balance}
+html[lang="en"] h2{font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.lede{text-align:center;color:var(--mute);font-size:20px;max-width:44ch;margin:16px auto 0;text-wrap:balance}
+
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+.area{background:var(--card);border-radius:22px;padding:28px 26px;position:relative}
+.alt .area{background:var(--card)}
+.area .n{display:inline-block;background:var(--red);color:#fff;font-family:var(--en);font-weight:900;border-radius:5px;padding:0 8px;font-size:14px;margin-bottom:14px}
+.area h3{margin:0 0 6px;font-size:21px;font-weight:800}
+.area p{margin:0;color:var(--mute);font-size:16px}
+@media (max-width:860px){.areas{grid-template-columns:1fr}}
+
+.who{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.w{border-radius:26px;padding:36px 32px}
+.w.dark{background:linear-gradient(150deg,var(--navy),var(--steel));color:#fff}
+.w.dark p{color:rgba(255,255,255,.85)}
+.w.light{background:var(--card)}
+.w h3{margin:0 0 10px;font-size:26px;font-weight:800}
+.w p{margin:0 0 10px;color:var(--mute)}
+.w ul{margin:10px 0 0;padding-inline-start:20px}
+@media (max-width:820px){.who{grid-template-columns:1fr}}
+
+.soon{margin:48px auto 0;max-width:720px;background:var(--card);border-radius:26px;padding:34px 32px;text-align:center}
+.soon .tag{display:inline-block;background:var(--red);color:#fff;border-radius:6px;padding:2px 12px;font-weight:700;font-size:13px}
+.soon h3{margin:14px 0 6px;font-size:26px;font-weight:800}
+.soon p{margin:0 auto;color:var(--mute);max-width:46ch}
+
+.trainer{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;margin-top:20px}
+.trainer .box{background:var(--card);border-radius:26px;padding:34px 32px}
+.trainer ul{padding-inline-start:20px;margin:10px 0 18px}
+@media (max-width:820px){.trainer{grid-template-columns:1fr}}
+
+.contact{background:linear-gradient(140deg,var(--navy),var(--steel));color:#fff;text-align:center}
+.contact h2{color:#fff}.contact .lede{color:rgba(255,255,255,.85)}
+.rows{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.chip{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);border-radius:18px;padding:14px 24px;min-width:200px}
+.chip b{font-size:16px}.chip small{opacity:.75;font-size:13px}
+.progs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:40px}
+.prog{background:var(--card);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:8px}
+.prog .tag{align-self:flex-start;background:var(--red);color:#fff;border-radius:6px;padding:2px 10px;font-weight:700;font-size:13px}
+.prog h3{margin:4px 0 0;font-size:21px;font-weight:800}
+.prog .meta{color:var(--mute);font-size:15px}
+.prog .price{font-size:24px;font-weight:800;margin-top:auto}
+.prog .btn{background:var(--navy);color:#fff;text-align:center}
+.reg{max-width:720px;margin:34px auto 0;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);border-radius:24px;padding:24px;text-align:start;display:grid;gap:12px}
+.reg label{display:grid;gap:4px;font-size:14px;font-weight:700}
+.reg input,.reg select,.reg textarea{font:inherit;font-weight:400;font-size:16px;color:var(--ink);background:#fff;border:0;border-radius:12px;padding:11px 12px;width:100%}
+.reg .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.reg .two{grid-template-columns:1fr}}
+.reg .btn{justify-self:start;border:0;cursor:pointer;font:inherit;font-weight:700}
+.hint{margin:0;font-size:13px;opacity:.8}
+a.chip{text-decoration:none;color:inherit}
+footer{padding:22px 0 40px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+footer a{color:var(--navy)}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">X10</span><span data-i="bname">X10 للتدريب الأهلي</span></a>
+    <nav aria-label="Main">
+      <a class="nl" href="#areas" data-i="n1">مجالات التدريب</a>
+      <a class="nl" href="#programs" data-i="n5">البرامج</a>
+      <a class="nl" href="#who" data-i="n2">لمن نقدم</a>
+      <a class="nl" href="#trainers" data-i="n3">انضم كمدرب</a>
+      <a class="nl" href="#contact" data-i="n4">تواصل معنا</a>
+      <button class="lang" id="langBtn" type="button" lang="en">English</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap herogrid"><div class="herotext">
+      <p class="eyebrow" data-i="eyebrow">تدريب الذكاء الاصطناعي في الكويت</p>
+      <h1 data-i="h1">إنتاجية <span class="ltr">X10</span>.<br>بنفس الفريق.</h1>
+      <p class="sub" data-i="sub">دورات عملية في الذكاء الاصطناعي للفرق والأفراد: أدوات حقيقية، وتطبيق مباشر على مهامك اليومية، بالعربية والإنجليزية.</p>
+      <div class="cta">
+        <a class="btn" href="#contact" data-i="c1">سجّل اهتمامك</a>
+        <a class="more" href="#areas" data-i="c2">اطّلع على مجالات التدريب</a>
+      </div>
+      </div>
+      <div class="fx"><canvas id="chipfx" aria-hidden="true"></canvas></div>
+    </div>
+  </section>
+
+  <section class="band" id="areas">
+    <div class="wrap">
+      <h2 data-i="a_h">الي نركز عليه</h2>
+      <p class="lede" data-i="a_p">نعلّمك كيف تستخدم الذكاء الاصطناعي في عملك الحقيقي، لا كيف تحفظ مصطلحاته.</p>
+      <div class="areas">
+        <div class="area"><span class="n ltr">01</span><h3 data-i="a1h">أساسيات الذكاء الاصطناعي للعمل</h3><p data-i="a1p">ما الذي يستطيع فعله وما لا يستطيع، وكيف تكتب طلبات واضحة تعطيك نتائج دقيقة.</p></div>
+        <div class="area"><span class="n ltr">02</span><h3 data-i="a2h">الذكاء الاصطناعي في المهام اليومية</h3><p data-i="a2p">الكتابة والتلخيص والبحث وتحليل البيانات وإعداد العروض، بأدوات تستخدمها فوراً.</p></div>
+        <div class="area"><span class="n ltr">03</span><h3 data-i="a3h">الذكاء الاصطناعي في المالية والتقارير</h3><p data-i="a3p">تسريع التقارير والتسويات وقراءة الأرقام، مع الحفاظ على الدقة.</p></div>
+        <div class="area"><span class="n ltr">04</span><h3 data-i="a4h">استخدام آمن ومسؤول</h3><p data-i="a4p">حماية بيانات شركتك، ومراجعة النتائج قبل اعتمادها، ووضع قواعد واضحة لفريقك.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="programs">
+    <div class="wrap">
+      <h2 data-i="p_h">مستقبل العمل، نعلّمه اليوم.</h2>
+      <p class="lede" data-i="p_p">البرامج القادمة: دورات حضورية وأونلاين، بمواعيد وأسعار واضحة.</p>
+      <div class="progs" id="progs"></div>
+    </div>
+  </section>
+
+  <section class="band" id="who">
+    <div class="wrap">
+      <h2 data-i="w_h">من الفضول إلى الإتقان.</h2>
+      <p class="lede" data-i="w_p">تدريب للشركات والأفراد.</p>
+      <div class="who">
+        <div class="w dark"><h3 data-i="w1h">للشركات</h3><p data-i="w1p">برامج داخلية تساعد فريقك على استخدام الذكاء الاصطناعي في عمله، تُصمَّم حسب احتياجات شركتك.</p>
+          <ul><li data-i="w1a">مواعيد تناسب فريقك</li><li data-i="w1b">أمثلة من قطاع عملك</li><li data-i="w1c">بالعربية والإنجليزية</li></ul></div>
+        <div class="w light"><h3 data-i="w2h">للأفراد</h3><p data-i="w2p">دورات لمن يريد أن يتعلم الذكاء الاصطناعي من الصفر، أو يرفع مستواه فيه.</p>
+          <ul><li data-i="w2a">مجموعات صغيرة</li><li data-i="w2b">تطبيق عملي في كل جلسة</li><li data-i="w2c">لا تحتاج خلفية تقنية</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="trainers">
+    <div class="wrap">
+      <h2 data-i="t_h">خبير في مجالك؟ درّب معنا.</h2>
+      <div class="trainer">
+        <div><p class="lede" style="text-align:start;margin:16px 0 0" data-i="t_p">نبحث عن مدربين يستخدمون أدوات الذكاء الاصطناعي في عملهم كل يوم، ويحبون نقل خبرتهم بطريقة عملية وواضحة.</p></div>
+        <div class="box">
+          <ul><li data-i="t1">خبرة عملية في أدوات الذكاء الاصطناعي</li><li data-i="t2">قدرة على التدريب بالعربية، والإنجليزية ميزة</li><li data-i="t3">شغف بالتطبيق العملي، لا بالمحاضرات الطويلة</li></ul>
+          <a class="btn red" href="#contact" data-i="t_b">أرسل نبذة عنك</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <h2 data-i="c_h">لنبقَ على تواصل</h2>
+      <p class="lede" data-i="c_p">لتسجيل اهتمامك بالدورات القادمة أو للانضمام كمدرب، تواصل معنا.</p>
+      <form class="reg" id="reg" novalidate>
+        <div class="two">
+          <label><span data-i="f_name">الاسم</span><input id="r_name" autocomplete="name" required></label>
+          <label><span data-i="f_mob">رقم الهاتف</span><input id="r_mob" type="tel" inputmode="tel" autocomplete="tel" class="ltr" required></label>
+        </div>
+        <div class="two">
+          <label><span data-i="f_mail">البريد الإلكتروني</span><input id="r_mail" type="email" autocomplete="email" class="ltr"></label>
+          <label><span data-i="f_who">أنا</span><select id="r_who"><option value="Individual" data-i="o_ind">فرد</option><option value="Company" data-i="o_co">شركة</option><option value="Trainer" data-i="o_tr">مدرب أرغب بالانضمام</option></select></label>
+        </div>
+        <label><span data-i="f_int">مهتم بـ</span><select id="r_int"><option value="AI basics for work" data-i="a1h">أساسيات الذكاء الاصطناعي للعمل</option><option value="AI for everyday tasks" data-i="a2h">الذكاء الاصطناعي في المهام اليومية</option><option value="AI for finance and reporting" data-i="a3h">الذكاء الاصطناعي في المالية والتقارير</option><option value="Safe, responsible use" data-i="a4h">استخدام آمن ومسؤول</option><option value="Not sure yet" data-i="o_ns">لم أحدد بعد</option></select></label>
+        <label><span data-i="f_msg">رسالة (اختياري)</span><textarea id="r_msg" rows="3"></textarea></label>
+        <button class="btn red" type="submit" data-i="f_send">أرسل</button>
+        <p class="hint" id="r_hint" data-i="f_hint">سيُفتح البريد لديك برسالة جاهزة، فقط اضغط إرسال.</p>
+      </form>
+      <div class="rows">
+        <a class="chip" href="mailto:hello@solutionsbyred.com?subject=X10"><b class="ltr">hello@solutionsbyred.com</b><small data-i="k1">البريد الإلكتروني</small></a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a></span></div></footer>
+
+<script>
+const EN={
+ bname:"X10 Institute for Private Training",n1:"Training areas",n2:"Who it's for",n3:"Train with us",n4:"Contact",
+ eyebrow:"AI training in Kuwait",
+ h1:"Ten times the output.<br>Same team.",
+ sub:"Hands-on AI courses for teams and individuals: real tools, applied straight to your daily work, in Arabic and English.",
+ c1:"Register your interest",c2:"See our training areas",
+ a_h:"What we focus on",a_p:"We teach you how to use AI in your real work, not how to memorise its jargon.",
+ a1h:"AI basics for work",a1p:"What it can and can't do, and how to write clear requests that give you accurate results.",
+ a2h:"AI for everyday tasks",a2p:"Writing, summarising, research, data analysis and presentations, with tools you can use right away.",
+ a3h:"AI for finance and reporting",a3p:"Faster reports, reconciliations and number-reading, while keeping the accuracy.",a4h:"Safe, responsible use",a4p:"Protecting your company's data, checking results before you rely on them, and clear rules for your team.",
+ w_h:"From curious to capable.",w_p:"Training for companies and individuals.",
+ w1h:"For companies",w1p:"In-house programmes that help your team use AI in its work, shaped around your company's needs.",
+ w1a:"Timings that suit your team",w1b:"Examples from your sector",w1c:"In Arabic and English",
+ w2h:"For individuals",w2p:"Courses for anyone who wants to learn AI from scratch, or take their skills further.",
+ w2a:"Small groups",w2b:"Hands-on practice every session",w2c:"No technical background needed",
+ sn_t:"Coming soon",sn_h:"New programmes are on the way",sn_p:"We're working on our first AI programmes now. Register your interest and you'll be the first to know when booking opens.",
+ t_h:"An expert in your field? Train with us.",t_p:"We're looking for trainers who use AI tools in their work every day, and who love sharing what they know in a clear, practical way.",
+ t1:"Hands-on experience with AI tools",t2:"Able to teach in Arabic; English is a plus",t3:"A passion for practice, not long lectures",t_b:"Send us your profile",
+ c_h:"Let's stay in touch",c_p:"To register interest in upcoming courses or to join as a trainer, get in touch.",
+ k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",
+ p_h:"The future of work, taught today.",p_p:"Upcoming programmes: in-person and online courses, with clear dates and prices.",
+ f_name:"Name",f_mob:"Mobile",f_mail:"Email",f_who:"I am",o_ind:"An individual",o_co:"A company",o_tr:"A trainer who'd like to join",
+ f_int:"Interested in",o_ns:"Not sure yet",f_msg:"Message (optional)",f_send:"Send",f_hint:"Your email app will open with the message ready. Just tap send.",
+ ftp:"Part of Red Solutions Consulting.",
+ ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website"
+};
+/* PROGRAMMES: add one object per course when it is confirmed.
+   {ar:{t,meta},en:{t,meta},price:"KWD 120",mode_ar,mode_en,pay:"https://…payment link…"} */
+const PROGRAMS=[];
+function renderProgs(){const en=document.documentElement.lang==='en',el=document.getElementById('progs');
+ if(!PROGRAMS.length){el.innerHTML=`<div class="prog" style="grid-column:1/-1;text-align:center;align-items:center"><span class="tag">${en?'Coming soon':'قريباً'}</span><h3>${en?'New programmes are on the way':'البرامج الجديدة في الطريق'}</h3><p class="meta" style="max-width:46ch">${en?"We're preparing our first AI programmes now. Register your interest below and you'll be the first to know when booking opens.":'نعمل حالياً على أول برامجنا في الذكاء الاصطناعي. سجّل اهتمامك أدناه وسنخبرك أولاً عند فتح التسجيل.'}</p><a class="btn" href="#contact">${en?'Register your interest':'سجّل اهتمامك'}</a></div>`;return}
+ el.innerHTML=PROGRAMS.map(p=>{const L=en?p.en:p.ar;return `<div class="prog"><span class="tag">${en?p.mode_en:p.mode_ar}</span><h3>${L.t}</h3><div class="meta">${L.meta}</div><div class="price ltr">${p.price}</div><a class="btn" href="${p.pay||'#contact'}">${p.pay?(en?'Book and pay':'احجز وادفع'):(en?'Register your interest':'سجّل اهتمامك')}</a></div>`}).join('')}
+const AR={};document.querySelectorAll('[data-i]').forEach(el=>AR[el.dataset.i]=el.innerHTML);
+const btn=document.getElementById('langBtn');
+function setLang(l){const en=l==='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';
+ document.querySelectorAll('[data-i]').forEach(el=>{const k=el.dataset.i;el.innerHTML=(en?EN[k]:AR[k])??AR[k]});
+ btn.textContent=en?'العربية':'English';renderProgs&&typeof renderProgs==='function'&&document.getElementById('progs')&&renderProgs();btn.lang=en?'ar':'en';try{localStorage.setItem('x10_lang',l)}catch(e){}}
+btn.addEventListener('click',()=>setLang(document.documentElement.lang==='en'?'ar':'en'));
+try{if(localStorage.getItem('x10_lang')==='en')setLang('en')}catch(e){}
+renderProgs();
+document.getElementById('reg').addEventListener('submit',e=>{e.preventDefault();
+ const v=id=>document.getElementById(id).value.trim(), en=document.documentElement.lang==='en';
+ if(!v('r_name')||!v('r_mob')){document.getElementById('r_hint').textContent=en?'Please add your name and mobile.':'يرجى إدخال الاسم ورقم الهاتف.';return}
+ const body=`Name: ${v('r_name')}\nMobile: ${v('r_mob')}\nEmail: ${v('r_mail')}\nI am: ${v('r_who')}\nInterested in: ${v('r_int')}\nMessage: ${v('r_msg')}`;
+ location.href='mailto:hello@solutionsbyred.com?subject='+encodeURIComponent('X10 interest: '+v('r_name'))+'&body='+encodeURIComponent(body)});
+</script>
+<script>
+/* X10 hero: an AI chip sending current through circuit traces; knowledge hops from chip to chip */
+(()=>{const cv=document.getElementById('chipfx');if(!cv)return;const x=cv.getContext('2d');
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W,H,DPR,nodes=[],links=[],pulses=[],last=0,nextSpawn=0;
+const RED='237,28,36',WHITE='255,255,255',BLUE='120,170,255';
+function layout(){const r=cv.getBoundingClientRect();DPR=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*DPR;cv.height=H*DPR;x.setTransform(DPR,0,0,DPR,0,0);
+ const S=Math.min(W,H);const m={x:W/2,y:H/2};
+ const pts=[[-.38,-.34],[.38,-.36],[-.42,.05],[.44,.04],[-.3,.38],[.32,.38]];
+ nodes=[{x:m.x,y:m.y,s:S*.2,main:true,charge:1,label:'AI'}].concat(pts.map(([a,b],i)=>({x:m.x+a*W*.95,y:m.y+b*H*.95,s:S*.105,charge:0,label:['LLM','DATA','GPT','VISION','AGENT','CODE'][i]})));
+ // clamp inside
+ nodes.forEach(n=>{n.x=Math.max(n.s*.7,Math.min(W-n.s*.7,n.x));n.y=Math.max(n.s*.7,Math.min(H-n.s*.7,n.y))});
+ links=[];const add=(a,b,mid)=>{const A=nodes[a],B=nodes[b];const p=[];
+   // leave A from the side facing B, Manhattan route
+   const horiz=Math.abs(B.x-A.x)>Math.abs(B.y-A.y);
+   if(horiz){const sx=A.x+Math.sign(B.x-A.x)*A.s/2,ex=B.x-Math.sign(B.x-A.x)*B.s/2,mx=sx+(ex-sx)*(mid??.5);p.push([sx,A.y],[mx,A.y],[mx,B.y],[ex,B.y])}
+   else{const sy=A.y+Math.sign(B.y-A.y)*A.s/2,ey=B.y-Math.sign(B.y-A.y)*B.s/2,my=sy+(ey-sy)*(mid??.5);p.push([A.x,sy],[A.x,my],[B.x,my],[B.x,ey])}
+   let L=0;const seg=[];for(let i=1;i<p.length;i++){const d=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);seg.push(d);L+=d}
+   links.push({a,b,p,seg,L})};
+ for(let i=1;i<=6;i++){add(0,i,.35);add(0,i,.65)}
+ [[1,2],[2,5],[5,6],[6,4],[4,3],[3,1],[1,4],[2,3]].forEach(([a,b])=>add(a,b,.5));
+ // bias: second parallel trace offset
+ links.forEach((l,k)=>{if(k%2&&l.a===0){const o=l.p[0][0]===l.p[1][0]?[6,0]:[0,6];l.p=l.p.map(([u,v])=>[u+o[0],v+o[1]])}});
+}
+function at(l,d){let s=0;for(let i=0;i<l.seg.length;i++){if(d<=s+l.seg[i]){const t=(d-s)/l.seg[i],A=l.p[i],B=l.p[i+1];return[A[0]+(B[0]-A[0])*t,A[1]+(B[1]-A[1])*t]}s+=l.seg[i]}return l.p[l.p.length-1]}
+function spawn(from,t){const opts=links.map((l,i)=>[l,i]).filter(([l])=>l.a===from||l.b===from);if(!opts.length)return;const[l]=opts[Math.random()*opts.length|0];
+ pulses.push({l,rev:l.b===from,d:0,v:(from===0?.32:.24)*Math.max(W,H)/1000,born:t,from})}
+function chip(n,t){const s=n.s,h=s/2,glow=n.main?.65+.35*Math.sin(t/500):n.charge;
+ // pins
+ x.strokeStyle=`rgba(${WHITE},${.25+.5*glow})`;x.lineWidth=Math.max(1.2,s*.03);const pins=n.main?7:4;
+ for(let k=0;k<pins;k++){const o=-h+s*(k+1)/(pins+1);const pl=s*.12;
+  x.beginPath();x.moveTo(n.x+o,n.y-h);x.lineTo(n.x+o,n.y-h-pl);x.moveTo(n.x+o,n.y+h);x.lineTo(n.x+o,n.y+h+pl);x.moveTo(n.x-h,n.y+o);x.lineTo(n.x-h-pl,n.y+o);x.moveTo(n.x+h,n.y+o);x.lineTo(n.x+h+pl,n.y+o);x.stroke()}
+ // halo
+ if(glow>.02){const g=x.createRadialGradient(n.x,n.y,s*.2,n.x,n.y,s*1.3);g.addColorStop(0,`rgba(${RED},${.45*glow})`);g.addColorStop(1,`rgba(${RED},0)`);x.fillStyle=g;x.beginPath();x.arc(n.x,n.y,s*1.3,0,7);x.fill()}
+ // body
+ const r=s*.12;x.beginPath();x.roundRect(n.x-h,n.y-h,s,s,r);x.fillStyle='#0E1C3D';x.fill();x.lineWidth=Math.max(1.5,s*.035);x.strokeStyle=`rgba(${glow>.1?RED:BLUE},${.5+.5*glow})`;x.stroke();
+ // die
+ const d=s*.56;x.beginPath();x.roundRect(n.x-d/2,n.y-d/2,d,d,r*.6);x.fillStyle=`rgba(${RED},${.12+.55*glow})`;x.fill();
+ // die lines
+ x.strokeStyle=`rgba(${WHITE},${.12+.35*glow})`;x.lineWidth=1;for(let k=1;k<4;k++){const q=n.y-d/2+d*k/4;x.beginPath();x.moveTo(n.x-d/2+3,q);x.lineTo(n.x+d/2-3,q);x.stroke()}
+ // label
+ x.fillStyle=`rgba(${WHITE},${n.main?1:.55+.45*glow})`;x.font=`800 ${n.main?s*.26:s*.2}px Lato,Arial,sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(n.label,n.x,n.y+1)}
+function frame(t){const dt=last?Math.min(50,t-last):16;last=t;x.clearRect(0,0,W,H);
+ // board dots
+ x.fillStyle='rgba(255,255,255,.06)';for(let i=12;i<W;i+=24)for(let j=12;j<H;j+=24)x.fillRect(i,j,1.5,1.5);
+ // traces
+ links.forEach(l=>{x.beginPath();l.p.forEach(([u,v],i)=>i?x.lineTo(u,v):x.moveTo(u,v));x.strokeStyle=l.a===0?'rgba(150,180,235,.32)':'rgba(150,180,235,.18)';x.lineWidth=l.a===0?2:1.5;x.lineJoin='round';x.stroke();
+  // vias at corners
+  x.fillStyle='rgba(150,180,235,.35)';l.p.slice(1,-1).forEach(([u,v])=>{x.beginPath();x.arc(u,v,2.2,0,7);x.fill()})});
+ if(!still){if(t>nextSpawn){spawn(0,t);nextSpawn=t+380+Math.random()*320}
+  pulses.forEach(p=>{p.d+=p.v*dt});
+  pulses=pulses.filter(p=>{if(p.d>=p.l.L){const to=p.rev?p.l.a:p.l.b;const n=nodes[to];n.charge=1;
+     if(to!==0&&Math.random()<.75)setTimeout(()=>spawn(to,performance.now()),180+Math.random()*260);return false}return true});
+  // draw pulses with trails
+  pulses.forEach(p=>{const L=p.l.L,trail=Math.min(70,L*.3);for(let k=14;k>=0;k--){const dd=p.d-trail*k/14;if(dd<0)continue;const pos=at(p.l,p.rev?L-dd:dd);const a=1-k/14;
+    x.fillStyle=`rgba(${k<2?WHITE:RED},${a*.95})`;x.beginPath();x.arc(pos[0],pos[1],(k<2?3.4:2.8)*(.6+a*.6),0,7);x.fill()}
+   const head=at(p.l,p.rev?L-p.d:p.d);const g=x.createRadialGradient(head[0],head[1],0,head[0],head[1],14);g.addColorStop(0,`rgba(${RED},.7)`);g.addColorStop(1,`rgba(${RED},0)`);x.fillStyle=g;x.beginPath();x.arc(head[0],head[1],14,0,7);x.fill()});
+  nodes.forEach(n=>{if(!n.main)n.charge=Math.max(0,n.charge-dt/1400)})}
+ else nodes.forEach(n=>n.charge=.5);
+ nodes.slice(1).forEach(n=>chip(n,t));chip(nodes[0],t);
+ if(!still)requestAnimationFrame(frame)}
+layout();addEventListener('resize',()=>{layout();if(still)frame(0)});requestAnimationFrame(frame);
+})();
+
+</script>
+</body>
+</html>

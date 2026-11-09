@@ -214,7 +214,8 @@ footer a{color:var(--navy)}
         <p class="hint" id="r_hint" data-i="f_hint">سيُفتح البريد لديك برسالة جاهزة، فقط اضغط إرسال.</p>
       </form>
       <div class="rows">
-        <a class="chip" href="mailto:hello@solutionsbyred.com?subject=X10"><b class="ltr">hello@solutionsbyred.com</b><small data-i="k1">البريد الإلكتروني</small></a>
+        <a class="chip" href="mailto:x10@solutionsbyred.com?subject=X10"><b class="ltr">x10@solutionsbyred.com</b><small data-i="k1">البريد الإلكتروني</small></a>
+        <a class="chip" href="https://instagram.com/x10academy.ai" target="_blank" rel="noopener"><b class="ltr">@x10academy.ai</b><small data-i="k3">إنستغرام</small></a>
       </div>
     </div>
   </section>
@@ -266,7 +267,7 @@ document.getElementById('reg').addEventListener('submit',e=>{e.preventDefault();
  const v=id=>document.getElementById(id).value.trim(), en=document.documentElement.lang==='en';
  if(!v('r_name')||!v('r_mob')){document.getElementById('r_hint').textContent=en?'Please add your name and mobile.':'يرجى إدخال الاسم ورقم الهاتف.';return}
  const body=`Name: ${v('r_name')}\nMobile: ${v('r_mob')}\nEmail: ${v('r_mail')}\nI am: ${v('r_who')}\nInterested in: ${v('r_int')}\nMessage: ${v('r_msg')}`;
- location.href='mailto:hello@solutionsbyred.com?subject='+encodeURIComponent('X10 interest: '+v('r_name'))+'&body='+encodeURIComponent(body)});
+ location.href='mailto:x10@solutionsbyred.com?subject='+encodeURIComponent('X10 interest: '+v('r_name'))+'&body='+encodeURIComponent(body)});
 </script>
 <script>
 /* X10 hero: an AI chip sending current through circuit traces; knowledge hops from chip to chip */

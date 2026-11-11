@@ -107,6 +107,56 @@ html[lang="en"] h2{font-weight:900;letter-spacing:-.02em;line-height:1.1}
 .reg .btn{justify-self:start;border:0;cursor:pointer;font:inherit;font-weight:700}
 .hint{margin:0;font-size:13px;opacity:.8}
 a.chip{text-decoration:none;color:inherit}
+.filt{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:28px}
+.filt button{font:inherit;font-size:14px;border:0;border-radius:999px;padding:7px 16px;background:var(--card);color:var(--ink);cursor:pointer}
+.filt button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.prog .tags{display:flex;flex-wrap:wrap;gap:6px}
+.prog .tags span{background:var(--tile);border-radius:6px;padding:1px 9px;font-size:13px;font-weight:700;color:var(--navy)}
+.prog .tags span.m{background:var(--red);color:#fff}
+.prog .s{margin:0;color:var(--ink);font-size:16px}
+.prog .row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px}
+.prog .price small{font-size:13px;font-weight:400;color:var(--mute);display:block}
+.prog .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prog .acts .ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy);border:0;font:inherit;font-weight:700;cursor:pointer;border-radius:999px;padding:10px 12px}
+.prog .acts .btn{padding:10px 12px;font-size:15px}
+.corp{margin-top:18px;background:linear-gradient(150deg,var(--navy),var(--steel));color:#fff;border-radius:22px;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.corp h3{margin:0 0 4px;font-size:21px;font-weight:800}.corp p{margin:0;opacity:.88;max-width:52ch}
+.prog.live{box-shadow:0 0 0 2px var(--red)}
+.was{color:var(--mute);font-weight:400;font-size:.72em;text-decoration:line-through}.offb{display:inline-block;background:var(--red);color:#fff;border-radius:6px;padding:0 7px;font-size:.55em;font-weight:800;vertical-align:middle}.facts .offb{font-size:.7em}.facts .was{font-size:.8em}
+.prog .btn.red{background:var(--red);border:0;font:inherit;font-weight:700;cursor:pointer;border-radius:999px}
+.cv{margin:-26px -26px 6px;border-radius:22px 22px 0 0;overflow:hidden}.cv img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#14264F}.cv figcaption{font-size:12.5px;color:var(--mute);padding:6px 26px 0}
+.prog .free{text-align:center;font-weight:700;color:var(--navy);font-size:15px;text-decoration:none}.prog .free:hover{text-decoration:underline}
+.plans{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:auto 1fr auto;column-gap:12px;align-items:start;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;position:relative}
+.opt input{grid-row:1/3;margin-top:7px;accent-color:var(--navy)}
+.opt b{font-size:17px}.opt span{grid-column:2;color:var(--mute);font-size:14px}.opt em{grid-row:1/3;grid-column:3;font-style:normal;font-weight:800;font-size:19px;white-space:nowrap}
+.opt.on{border-color:var(--navy);background:#fff}
+.opt .badge{position:absolute;top:-11px;inset-inline-end:14px;background:var(--red);color:#fff;border-radius:6px;padding:0 9px;font-size:12px;font-weight:700}
+div.opt{grid-template-columns:1fr auto}div.opt span{grid-column:1}div.opt em{grid-column:2}
+.bump{display:flex;gap:12px;align-items:flex-start;background:#FFF8E1;border:2px dashed #E0A800;border-radius:16px;padding:14px 16px;cursor:pointer;font-size:14px;color:var(--ink)}
+.bump input{width:20px;height:20px;margin-top:3px;accent-color:var(--red);flex:none}
+.bump b{display:block;font-size:16px;color:#9A3B00}
+dialog#cd{border:0;border-radius:24px;padding:0;max-width:720px;width:calc(100% - 32px);max-height:88vh;color:var(--ink);background:var(--bg)}
+dialog#cd::backdrop{background:rgba(11,23,51,.55)}
+#cd .hd{background:linear-gradient(140deg,var(--navy),var(--steel));color:#fff;padding:26px 28px 22px;position:relative}
+#cd .hd h3{margin:8px 0 4px;font-size:26px;font-weight:800;line-height:1.3}
+#cd .hd p{margin:0;opacity:.9}
+#cd .x{position:absolute;inset-inline-end:14px;top:14px;border:0;background:rgba(255,255,255,.16);color:#fff;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
+#cd .bd{padding:22px 28px 26px;display:grid;gap:18px}
+#cd .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#cd .facts div{background:var(--card);border-radius:14px;padding:10px 12px;font-size:13px;color:var(--mute)}
+#cd .facts b{display:block;color:var(--ink);font-size:16px}
+@media (max-width:600px){#cd .facts{grid-template-columns:1fr 1fr}#cd .hd,#cd .bd{padding-inline:18px}}
+#cd h4{margin:0 0 8px;font-size:17px}
+#cd .mods{display:grid;gap:8px;counter-reset:m}
+#cd .mod{background:var(--card);border-radius:14px;padding:12px 14px}
+#cd .mod b{display:block;margin-bottom:2px}
+#cd .mod b::before{counter-increment:m;content:counter(m);display:inline-block;background:var(--red);color:#fff;border-radius:5px;padding:0 7px;margin-inline-end:8px;font-family:var(--en);font-size:13px}
+#cd .mod ul,#cd .out{margin:0;padding-inline-start:20px;color:var(--mute);font-size:15px}
+#cd .inc{font-size:14px;color:var(--mute);margin:0}
+#cd .go{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px}
+#cd .go .price{font-size:26px;font-weight:800}
+
 footer{padding:22px 0 40px;font-size:13px;color:var(--mute)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 footer a{color:var(--navy)}
@@ -128,6 +178,7 @@ footer a{color:var(--navy)}
       <a class="nl" href="#who" data-i="n2">لمن نقدم</a>
       <a class="nl" href="#trainers" data-i="n3">انضم كمدرب</a>
       <a class="nl" href="#contact" data-i="n4">تواصل معنا</a>
+      <a href="account.html" data-i="n6" style="font-weight:700;opacity:1">حسابي</a>
       <button class="lang" id="langBtn" type="button" lang="en">English</button>
     </nav>
   </div>
@@ -163,9 +214,11 @@ footer a{color:var(--navy)}
 
   <section class="band alt" id="programs">
     <div class="wrap">
-      <h2 data-i="p_h">مستقبل العمل، نعلّمه اليوم.</h2>
-      <p class="lede" data-i="p_p">البرامج القادمة: دورات حضورية وأونلاين، بمواعيد وأسعار واضحة.</p>
+      <h2 data-i="p_h">دورات الذكاء الاصطناعي أونلاين. اشترِ وابدأ فوراً.</h2>
+      <p class="lede" data-i="p_p">دورات ذاتية بالعربي والإنجليزي، تتعلمها بالسرعة اللي تناسبك ومن أي جهاز. بدون حضور، ومع شهادة إتمام.</p>
+      <div class="filt" id="filt"></div>
       <div class="progs" id="progs"></div>
+      <div class="corp"><div><h3 data-i="cp_h">لشركتك: أي دورة داخل مقر عملك</h3><p data-i="cp_p">نقدّم أي دورة لفريقك بأمثلة من قطاعك وبمواعيد تناسبكم. السعر حسب عدد المتدربين.</p></div><a class="btn red" href="#contact" data-i="cp_b" onclick="pick('','Company')">اطلب عرض سعر</a></div>
     </div>
   </section>
 
@@ -208,21 +261,23 @@ footer a{color:var(--navy)}
           <label><span data-i="f_mail">البريد الإلكتروني</span><input id="r_mail" type="email" autocomplete="email" class="ltr"></label>
           <label><span data-i="f_who">أنا</span><select id="r_who"><option value="Individual" data-i="o_ind">فرد</option><option value="Company" data-i="o_co">شركة</option><option value="Trainer" data-i="o_tr">مدرب أرغب بالانضمام</option></select></label>
         </div>
-        <label><span data-i="f_int">مهتم بـ</span><select id="r_int"><option value="AI basics for work" data-i="a1h">أساسيات الذكاء الاصطناعي للعمل</option><option value="AI for everyday tasks" data-i="a2h">الذكاء الاصطناعي في المهام اليومية</option><option value="AI for finance and reporting" data-i="a3h">الذكاء الاصطناعي في المالية والتقارير</option><option value="Safe, responsible use" data-i="a4h">استخدام آمن ومسؤول</option><option value="Not sure yet" data-i="o_ns">لم أحدد بعد</option></select></label>
+        <label><span data-i="f_int">مهتم بـ</span><select id="r_int"></select></select></label>
         <label><span data-i="f_msg">رسالة (اختياري)</span><textarea id="r_msg" rows="3"></textarea></label>
         <button class="btn red" type="submit" data-i="f_send">أرسل</button>
         <p class="hint" id="r_hint" data-i="f_hint">سيُفتح البريد لديك برسالة جاهزة، فقط اضغط إرسال.</p>
       </form>
       <div class="rows">
         <a class="chip" href="mailto:x10@solutionsbyred.com?subject=X10"><b class="ltr">x10@solutionsbyred.com</b><small data-i="k1">البريد الإلكتروني</small></a>
-        <a class="chip" href="https://wa.me/12083790066" target="_blank" rel="noopener"><b class="ltr">+1 208 379 0066</b><small>واتساب · WhatsApp</small></a>
+        <a class="chip" href="https://wa.me/96598985006" target="_blank" rel="noopener"><b class="ltr">+965 9898 5006</b><small>واتساب · WhatsApp</small></a>
         <a class="chip" href="https://instagram.com/x10academy.ai" target="_blank" rel="noopener"><b class="ltr">@x10academy.ai</b><small data-i="k3">إنستغرام</small></a>
       </div>
     </div>
   </section>
 </main>
-<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a></span></div></footer>
+<dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
+<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور: Pexels.</span></span></div></footer>
 
+<script src="auth.js"></script>
 <script>
 const EN={
  bname:"X10 Institute for Private Training",n1:"Training areas",n2:"Who it's for",n3:"Train with us",n4:"Contact",
@@ -243,19 +298,231 @@ const EN={
  t_h:"An expert in your field? Train with us.",t_p:"We're looking for trainers who use AI tools in their work every day, and who love sharing what they know in a clear, practical way.",
  t1:"Hands-on experience with AI tools",t2:"Able to teach in Arabic; English is a plus",t3:"A passion for practice, not long lectures",t_b:"Send us your profile",
  c_h:"Let's stay in touch",c_p:"To register interest in upcoming courses or to join as a trainer, get in touch.",
- k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",
- p_h:"The future of work, taught today.",p_p:"Upcoming programmes: in-person and online courses, with clear dates and prices.",
+ k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",n6:"My account",
+ p_h:"AI courses online. Buy and start right away.",p_p:"Self-paced courses in Arabic and English, on any device, at your own pace. Nothing to attend, and a certificate at the end.",
  f_name:"Name",f_mob:"Mobile",f_mail:"Email",f_who:"I am",o_ind:"An individual",o_co:"A company",o_tr:"A trainer who'd like to join",
  f_int:"Interested in",o_ns:"Not sure yet",f_msg:"Message (optional)",f_send:"Send",f_hint:"Your email app will open with the message ready. Just tap send.",
  ftp:"Part of Red Solutions Consulting.",
- ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website"
+ ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website",ftc:"Photos: Pexels.",cp_h:"For your company: any course at your office",cp_p:"We deliver any course to your team, with examples from your sector and timings that suit you. Priced by number of trainees.",cp_b:"Request a quote"
 };
-/* PROGRAMMES: add one object per course when it is confirmed.
-   {ar:{t,meta},en:{t,meta},price:"KWD 120",mode_ar,mode_en,pay:"https://…payment link…"} */
-const PROGRAMS=[];
-function renderProgs(){const en=document.documentElement.lang==='en',el=document.getElementById('progs');
- if(!PROGRAMS.length){el.innerHTML=`<div class="prog" style="grid-column:1/-1;text-align:center;align-items:center"><span class="tag">${en?'Coming soon':'قريباً'}</span><h3>${en?'New programmes are on the way':'البرامج الجديدة في الطريق'}</h3><p class="meta" style="max-width:46ch">${en?"We're preparing our first AI programmes now. Register your interest below and you'll be the first to know when booking opens.":'نعمل حالياً على أول برامجنا في الذكاء الاصطناعي. سجّل اهتمامك أدناه وسنخبرك أولاً عند فتح التسجيل.'}</p><a class="btn" href="#contact">${en?'Register your interest':'سجّل اهتمامك'}</a></div>`;return}
- el.innerHTML=PROGRAMS.map(p=>{const L=en?p.en:p.ar;return `<div class="prog"><span class="tag">${en?p.mode_en:p.mode_ar}</span><h3>${L.t}</h3><div class="meta">${L.meta}</div><div class="price ltr">${p.price}</div><a class="btn" href="${p.pay||'#contact'}">${p.pay?(en?'Book and pay':'احجز وادفع'):(en?'Register your interest':'سجّل اهتمامك')}</a></div>`}).join('')}
+/* X10 AI courses. Prices in KWD per person (public courses). In-house company delivery quoted separately. */
+const COURSES=[
+{id:"essentials",price:95,hrs:8,lvl:1,mode:"both",
+ ar:{t:"أساسيات الذكاء الاصطناعي للعمل",s:"ابدأ من الصفر واخرج وأنت تستخدم الذكاء الاصطناعي في شغلك كل يوم.",len:"يومان · 8 ساعات",for:"الموظفين وأصحاب الأعمال بدون أي خلفية تقنية",
+  mods:[["كيف يفكر الذكاء الاصطناعي",["ما هو النموذج اللغوي وكيف يعمل","ما يستطيعه وما لا يستطيعه","مقارنة ChatGPT وClaude وGemini وCopilot"]],
+        ["أول طلب صحيح",["هيكل الطلب الواضح: الدور والمهمة والسياق والشكل","تحسين الإجابة خطوة بخطوة","10 قوالب جاهزة للعمل اليومي"]],
+        ["تطبيق على مهامك",["كتابة الإيميلات والردود بالعربي والإنجليزي","تلخيص الملفات والاجتماعات","البحث والتحقق من المعلومة"]],
+        ["الاستخدام الآمن",["ما الذي لا تضعه في الذكاء الاصطناعي","مراجعة النتائج قبل اعتمادها","خطتك الشخصية لأول 30 يوم"]]],
+  out:["توفير ساعات أسبوعياً في الكتابة والتلخيص","مكتبة طلبات جاهزة لعملك","استخدام آمن يحمي بيانات شركتك"]},
+ en:{t:"AI Essentials for Work",s:"Start from zero and leave using AI in your job every day.",len:"2 days · 8 hours",for:"Employees and business owners, no technical background",
+  mods:[["How AI thinks",["What a language model is and how it works","What it can and can't do","ChatGPT, Claude, Gemini and Copilot compared"]],
+        ["Your first good prompt",["Prompt structure: role, task, context, format","Improving answers step by step","10 ready templates for daily work"]],
+        ["Apply it to your tasks",["Emails and replies in Arabic and English","Summarising files and meetings","Research and fact-checking"]],
+        ["Safe use",["What never to put into AI","Checking results before you rely on them","Your personal 30-day plan"]]],
+  out:["Save hours every week on writing and summarising","A prompt library for your own job","Safe use that protects company data"]}},
+
+{id:"prompt",price:120,hrs:9,lvl:2,mode:"online",
+ ar:{t:"احتراف كتابة الأوامر",s:"الفرق بين نتيجة عادية ونتيجة ممتازة هو طريقة الطلب.",len:"3 جلسات · 9 ساعات",for:"من يستخدم الذكاء الاصطناعي ويريد نتائج أدق وأسرع",
+  mods:[["أساسيات متقدمة",["التفكير خطوة بخطوة","إعطاء أمثلة للنموذج","التحكم في الطول والنبرة والشكل"]],
+        ["طلبات للمهام المعقدة",["تقسيم المهمة الكبيرة","سلاسل الطلبات","المراجعة الذاتية والتصحيح"]],
+        ["العمل بالملفات والبيانات",["الطلبات على PDF وExcel","استخراج الجداول والأرقام","مقارنة المستندات"]],
+        ["مكتبتك الخاصة",["بناء قوالب قابلة لإعادة الاستخدام","تعليمات مخصصة دائمة","مشروع تطبيقي على عملك"]]],
+  out:["نتائج أدق من أول محاولة","قوالب جاهزة لفريقك","طريقة ثابتة لأي مهمة جديدة"]},
+ en:{t:"Prompt Engineering Masterclass",s:"The gap between an average answer and a great one is how you ask.",len:"3 sessions · 9 hours",for:"Anyone already using AI who wants sharper, faster results",
+  mods:[["Advanced basics",["Step-by-step reasoning","Giving the model examples","Controlling length, tone and format"]],
+        ["Prompts for complex work",["Breaking big tasks down","Prompt chains","Self-review and correction"]],
+        ["Working with files and data",["Prompting on PDFs and Excel","Extracting tables and figures","Comparing documents"]],
+        ["Your own library",["Reusable templates","Standing custom instructions","A project on your own work"]]],
+  out:["Better results on the first try","Ready templates for your team","A repeatable method for any new task"]}},
+
+{id:"office",price:135,hrs:9,lvl:1,mode:"both",
+ ar:{t:"الذكاء الاصطناعي للإنتاجية المكتبية",s:"Word وExcel وPowerPoint والإيميل، أسرع بعشر مرات.",len:"3 جلسات · 9 ساعات",for:"الإداريين والسكرتارية ومدراء المكاتب وفرق الدعم",
+  mods:[["الإيميل والمراسلات",["ردود احترافية في دقيقة","كتب رسمية بالعربي","ترتيب البريد المزدحم"]],
+        ["Excel بدون تعقيد",["كتابة المعادلات بالذكاء الاصطناعي","تنظيف الجداول","ملخص البيانات في رسم بياني"]],
+        ["العروض والتقارير",["من فكرة إلى عرض تقديمي","تقارير شهرية جاهزة","محاضر الاجتماعات ومتابعتها"]],
+        ["تنظيم يومك",["قوائم المهام والأولويات","جدولة ومتابعة","أتمتة بسيطة للمهام المتكررة"]]],
+  out:["تقارير وعروض في نصف الوقت","معادلات Excel بدون حفظ","يوم عمل أكثر تنظيماً"]},
+ en:{t:"AI for Office Productivity",s:"Word, Excel, PowerPoint and email, ten times faster.",len:"3 sessions · 9 hours",for:"Admin, PAs, office managers and support teams",
+  mods:[["Email and correspondence",["Professional replies in a minute","Formal Arabic letters","Taming a crowded inbox"]],
+        ["Excel without the pain",["Formulas written by AI","Cleaning tables","Turning data into a chart"]],
+        ["Presentations and reports",["From idea to slide deck","Ready monthly reports","Meeting minutes and follow-ups"]],
+        ["Organising your day",["Task lists and priorities","Scheduling and follow-up","Simple automation for repeat tasks"]]],
+  out:["Reports and decks in half the time","Excel formulas without memorising","A better-organised working day"]}},
+
+{id:"finance",price:180,hrs:12,lvl:2,mode:"both",
+ ar:{t:"الذكاء الاصطناعي للمالية والمحاسبة",s:"تقارير وتسويات وتحليل أرقام أسرع، بنفس الدقة.",len:"3 أيام · 12 ساعة",for:"المحاسبين والمدققين وفرق المالية",
+  mods:[["أساسيات للماليين",["أين يفيد وأين يخطئ في الأرقام","حماية البيانات المالية","أدوات مناسبة للمالية"]],
+        ["التقارير والتحليل",["قراءة القوائم المالية وتحليلها","مقارنة الفترات وشرح الفروقات","تعليقات الإدارة على الأرقام"]],
+        ["العمليات اليومية",["تسويات البنك والحسابات","تصنيف القيود والمصروفات","تدقيق الفواتير"]],
+        ["Excel المالي والامتثال",["نماذج وتوقعات","تجهيز البيانات للإفصاح الإلكتروني","مشروع على بيانات حقيقية"]]],
+  out:["إقفال شهري أسرع","تحليل أوضح للإدارة","طريقة عمل تحافظ على الدقة"]},
+ en:{t:"AI for Finance and Accounting",s:"Faster reports, reconciliations and analysis, with the same accuracy.",len:"3 days · 12 hours",for:"Accountants, auditors and finance teams",
+  mods:[["Basics for finance people",["Where it helps and where it gets numbers wrong","Protecting financial data","The right tools for finance"]],
+        ["Reporting and analysis",["Reading and analysing financial statements","Period comparisons and variance notes","Management commentary"]],
+        ["Daily operations",["Bank and account reconciliations","Classifying entries and expenses","Checking invoices"]],
+        ["Finance Excel and compliance",["Models and forecasts","Preparing data for electronic filing","A project on real data"]]],
+  out:["A faster month-end close","Clearer analysis for management","A workflow that keeps accuracy"]}},
+
+{id:"marketing",price:150,hrs:9,lvl:1,mode:"both",
+ ar:{t:"الذكاء الاصطناعي للتسويق وصناعة المحتوى",s:"خطة محتوى شهر كامل وإعلانات ونصوص بالعربي والإنجليزي.",len:"3 جلسات · 9 ساعات",for:"المسوقين وأصحاب المشاريع وصنّاع المحتوى",
+  mods:[["الاستراتيجية",["فهم الجمهور والمنافسين","هوية الصوت للعلامة","خطة محتوى 30 يوم"]],
+        ["الكتابة",["كابشن إنستغرام وتيك توك","نصوص إعلانية تبيع","محتوى بلهجة كويتية طبيعية"]],
+        ["الصور والفيديو",["تصاميم وصور للمنشورات","سكربت ريلز","تحويل منشور واحد إلى 10"]],
+        ["القياس والتحسين",["قراءة نتائج الحملات","اختبار نسختين","تقويم محتوى جاهز للنشر"]]],
+  out:["شهر محتوى جاهز","إعلانات أوضح وأقوى","وقت أقل لكل منشور"]},
+ en:{t:"AI for Marketing and Content",s:"A full month of content, ads and copy in Arabic and English.",len:"3 sessions · 9 hours",for:"Marketers, business owners and content creators",
+  mods:[["Strategy",["Understanding audience and competitors","Brand voice","A 30-day content plan"]],
+        ["Writing",["Instagram and TikTok captions","Ad copy that sells","Natural Kuwaiti-dialect content"]],
+        ["Images and video",["Post visuals and designs","Reel scripts","Turning one post into ten"]],
+        ["Measure and improve",["Reading campaign results","A/B testing","A ready-to-post calendar"]]],
+  out:["A month of content ready","Clearer, stronger ads","Less time per post"]}},
+
+{id:"creative",price:160,hrs:9,lvl:1,mode:"inperson",
+ ar:{t:"استوديو الإبداع بالذكاء الاصطناعي",s:"صور وفيديو وصوت احترافي بدون استوديو.",len:"3 جلسات · 9 ساعات",for:"المصممين والمسوقين وأصحاب المشاريع الصغيرة",
+  mods:[["الصور",["كتابة وصف الصورة بدقة","صور منتجات وإعلانات","تعديل الصور والخلفيات"]],
+        ["الفيديو",["فيديو قصير من نص أو صورة","ريلز وإعلانات","المونتاج السريع"]],
+        ["الصوت",["تعليق صوتي بالعربي والإنجليزي","الحقوق والموافقات","الموسيقى والمؤثرات"]],
+        ["مشروعك",["حملة كاملة لمنتج واحد","الحقوق والاستخدام التجاري","ملف أعمال تطبيقي"]]],
+  out:["محتوى بصري بتكلفة أقل","حملة كاملة من صنعك","فهم واضح للحقوق"]},
+ en:{t:"AI Creative Studio",s:"Professional images, video and voice without a studio.",len:"3 sessions · 9 hours",for:"Designers, marketers and small business owners",
+  mods:[["Images",["Writing precise image prompts","Product and ad visuals","Editing images and backgrounds"]],
+        ["Video",["Short video from text or an image","Reels and ads","Fast editing"]],
+        ["Voice",["Arabic and English voice-over","Rights and consent","Music and sound effects"]],
+        ["Your project",["A full campaign for one product","Rights and commercial use","A practical portfolio piece"]]],
+  out:["Visual content at lower cost","A complete campaign you made","A clear grasp of usage rights"]}},
+
+{id:"data",price:175,hrs:12,lvl:2,mode:"both",
+ ar:{t:"تحليل البيانات بالذكاء الاصطناعي",s:"من جدول Excel إلى قرار واضح، بدون برمجة.",len:"3 أيام · 12 ساعة",for:"المدراء والمحللين وفرق المبيعات والعمليات",
+  mods:[["تجهيز البيانات",["تنظيف الملفات ودمجها","اكتشاف الأخطاء","أسئلة صحيحة للبيانات"]],
+        ["التحليل",["الاتجاهات والمقارنات","التوقعات البسيطة","اكتشاف الفرص والمشاكل"]],
+        ["العرض",["رسوم بيانية واضحة","لوحة متابعة بسيطة","ملخص للإدارة في صفحة"]],
+        ["مشروع تطبيقي",["تحليل بياناتك الحقيقية","التحقق من النتائج","عرض النتائج للفريق"]]],
+  out:["تحليل في دقائق بدل أيام","تقارير بصرية واضحة","قرارات مبنية على أرقام"]},
+ en:{t:"Data Analysis with AI",s:"From an Excel sheet to a clear decision, no coding.",len:"3 days · 12 hours",for:"Managers, analysts, sales and operations teams",
+  mods:[["Preparing data",["Cleaning and merging files","Spotting errors","Asking data the right questions"]],
+        ["Analysis",["Trends and comparisons","Simple forecasts","Finding opportunities and problems"]],
+        ["Presenting",["Clear charts","A simple dashboard","A one-page management summary"]],
+        ["Applied project",["Analysing your own data","Checking the results","Presenting findings to the team"]]],
+  out:["Analysis in minutes, not days","Clear visual reports","Decisions backed by numbers"]}},
+
+{id:"agents",price:220,hrs:12,lvl:3,mode:"both",
+ ar:{t:"وكلاء الذكاء الاصطناعي والأتمتة بدون برمجة",s:"ابنِ مساعداً ذكياً يشتغل عنك: يرد ويرتب ويتابع.",len:"4 جلسات · 12 ساعة",for:"أصحاب الأعمال والمدراء ومن أنهى الأساسيات",
+  mods:[["المساعد المخصص",["بناء مساعد بتعليماتك وملفاتك","Custom GPTs ومشاريع Claude","اختبار وتحسين"]],
+        ["الأتمتة",["ربط الإيميل والجداول والنماذج","أدوات بدون برمجة مثل n8n وZapier","سير عمل يشتغل تلقائياً"]],
+        ["وكيل واتساب وخدمة العملاء",["رد آلي على الاستفسارات","تحويل للموظف عند الحاجة","قواعد وحدود واضحة"]],
+        ["مشروع التخرج",["أتمتة مهمة حقيقية من عملك","الأمان والصلاحيات","قياس الوقت الموفّر"]]],
+  out:["مساعد ذكي يعمل لك","ساعات أسبوعية موفّرة","أتمتة جاهزة للتشغيل"]},
+ en:{t:"AI Agents and No-Code Automation",s:"Build an assistant that works for you: replies, organises, follows up.",len:"4 sessions · 12 hours",for:"Business owners, managers and Essentials graduates",
+  mods:[["Your custom assistant",["An assistant built on your instructions and files","Custom GPTs and Claude Projects","Testing and improving"]],
+        ["Automation",["Connecting email, sheets and forms","No-code tools like n8n and Zapier","Workflows that run on their own"]],
+        ["WhatsApp and customer service agents",["Auto-replies to enquiries","Handing over to a person when needed","Clear rules and limits"]],
+        ["Capstone",["Automate a real task from your work","Security and permissions","Measuring time saved"]]],
+  out:["An AI assistant working for you","Hours saved every week","An automation ready to run"]}},
+
+{id:"leaders",price:250,hrs:5,lvl:2,mode:"inperson",
+ ar:{t:"الذكاء الاصطناعي للقيادات",s:"كيف تقود شركتك نحو الذكاء الاصطناعي بخطة واضحة وعائد ملموس.",len:"يوم تنفيذي · 5 ساعات",for:"الرؤساء التنفيذيين والمدراء العامين ومدراء الإدارات",
+  mods:[["الصورة الكبيرة",["ما الذي تغيّر في 2026","أمثلة من الخليج والعالم","الفرص والمخاطر"]],
+        ["أين نبدأ",["اختيار أول 3 استخدامات","حساب العائد والتكلفة","الشراء أو البناء"]],
+        ["الناس والسياسات",["تدريب الفريق وإدارة التغيير","سياسة استخدام داخلية","حوكمة البيانات"]],
+        ["خطة 90 يوم",["خارطة طريق لشركتك","مؤشرات القياس","جلسة أسئلة مفتوحة"]]],
+  out:["خطة 90 يوم لشركتك","أولويات واضحة للاستثمار","سياسة استخدام جاهزة"]},
+ en:{t:"AI for Leaders",s:"Lead your company into AI with a clear plan and real returns.",len:"Executive day · 5 hours",for:"CEOs, general managers and heads of department",
+  mods:[["The big picture",["What changed in 2026","Examples from the Gulf and beyond","Opportunities and risks"]],
+        ["Where to start",["Choosing your first 3 use cases","Working out cost and return","Buy or build"]],
+        ["People and policy",["Training teams and managing change","An internal usage policy","Data governance"]],
+        ["Your 90-day plan",["A roadmap for your company","Measures of success","Open Q&A"]]],
+  out:["A 90-day plan for your company","Clear investment priorities","A usage policy ready to adopt"]}},
+
+{id:"safe",price:90,hrs:4,lvl:1,mode:"both",
+ ar:{t:"الاستخدام الآمن والمسؤول للذكاء الاصطناعي",s:"استخدم الذكاء الاصطناعي بثقة بدون ما تعرّض بيانات شركتك للخطر.",len:"ورشة · 4 ساعات",for:"جميع الموظفين، ومسؤولي الموارد البشرية وتقنية المعلومات والامتثال",
+  mods:[["المخاطر الحقيقية",["تسريب البيانات","المعلومات الخاطئة","التزييف والاحتيال"]],
+        ["القواعد",["ما يسمح وما لا يسمح","البيانات الحساسة","حقوق الملكية"]],
+        ["المراجعة",["التحقق من النتائج","التوثيق والمسؤولية","حالات عملية"]],
+        ["سياسة شركتك",["نموذج سياسة جاهز","قائمة تحقق للفرق","اختبار قصير وشهادة"]]],
+  out:["فريق يعرف الحدود","نموذج سياسة جاهز","مخاطر أقل على الشركة"]},
+ en:{t:"Safe and Responsible AI",s:"Use AI with confidence without putting company data at risk.",len:"Workshop · 4 hours",for:"All staff, plus HR, IT and compliance leads",
+  mods:[["The real risks",["Data leaks","Wrong information","Deepfakes and fraud"]],
+        ["The rules",["What's allowed and what isn't","Sensitive data","Intellectual property"]],
+        ["Checking",["Verifying results","Records and accountability","Practical cases"]],
+        ["Your company policy",["A ready policy template","A team checklist","Short quiz and certificate"]]],
+  out:["A team that knows the limits","A ready policy template","Lower risk for the company"]}}
+];
+
+const LV={1:["مبتدئ","Beginner"],2:["متوسط","Intermediate"],3:["متقدم","Advanced"]};
+/* ONLINE SELF-PACED: price (KWD), ready = full content built and deliverable */
+const ONLINE={essentials:{p:49,was:79,ready:true,ar:"12 درساً · حوالي 3 ساعات",en:"12 lessons · about 3 hours"},prompt:{p:59,was:99},office:{p:59,was:99},finance:{p:89,was:149},marketing:{p:69,was:115},creative:{p:75,was:125},data:{p:89,was:149},agents:{p:119,was:199},leaders:{p:149,was:249},safe:{p:39,was:65}};
+const off=o=>Math.round(100*(1-o.p/o.was));
+const pr=o=>`<s class="was ltr">${kd(o.was)}</s> <span class="ltr">${kd(o.p)}</span> <span class="offb ltr">-${off(o)}%</span>`;
+const BUMP={p:12,was:19,ar:"أضف «مكتبة الطلبات»: 50 طلباً جاهزاً للعمل بالعربي والإنجليزي، تصلك فوراً مع الدورة.",en:"Add the Prompt Library: 50 ready work prompts in Arabic and English, delivered instantly with your course."};
+const ALL={p:349,was:796};
+/* UPayments payment links: paste each link here when ready. Key = what the customer buys. */
+const PAY={"essentials":"","essentials+lib":"","all":"","all+lib":"","grad-all":"","lib":""};
+const WA="96598985006";
+/* Course photos (Pexels, free licence) and what each one shows */
+const PH={essentials:['Using an AI assistant on a laptop for everyday work','استخدام مساعد ذكاء اصطناعي على اللابتوب في العمل اليومي'],
+prompt:['Typing a prompt into an AI chat tool','كتابة طلب في أداة محادثة ذكاء اصطناعي'],
+office:['Office work: files, documents and a laptop','عمل مكتبي: ملفات ومستندات ولابتوب'],
+finance:['Accounting work: statements, a calculator and figures','عمل محاسبي: كشوفات وآلة حاسبة وأرقام'],
+marketing:['Planning a social media strategy','تخطيط استراتيجية لوسائل التواصل'],
+creative:['Editing video at a creative workstation','مونتاج فيديو في محطة عمل إبداعية'],
+data:['A dashboard of charts on a laptop','لوحة رسوم بيانية على لابتوب'],
+agents:['A robot hand reaching a human hand: AI working alongside people','يد روبوت تمتد ليد إنسان: الذكاء الاصطناعي يعمل مع الناس'],
+leaders:['A leader presenting a plan to the team','قائد يعرض خطة على فريقه'],
+safe:['A padlock in hand: keeping data protected','قفل في اليد: حماية البيانات']};
+function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
+let FILT='all';
+const isEn=()=>document.documentElement.lang==='en';
+const T=(ar,en)=>isEn()?en:ar;
+const kd=n=>isEn()?`KWD ${n}`:`${n} د.ك`;
+function renderFilt(){const f=[['all','الكل','All'],['ready','متاحة الآن','Available now'],['1',LV[1][0],LV[1][1]],['2',LV[2][0],LV[2][1]],['3',LV[3][0],LV[3][1]]];
+ document.getElementById('filt').innerHTML=f.map(([k,a,e])=>`<button type="button" aria-pressed="${FILT===k}" onclick="FILT='${k}';renderProgs()">${T(a,e)}</button>`).join('')}
+function renderProgs(){renderFilt();const el=document.getElementById('progs');
+ const list=COURSES.filter(c=>FILT==='all'||(FILT==='ready'?ONLINE[c.id].ready:String(c.lvl)===FILT)).sort((x,y)=>(ONLINE[y.id].ready?1:0)-(ONLINE[x.id].ready?1:0));
+ el.innerHTML=list.map(c=>{const L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
+  return `<article class="prog${O.ready?' live':''}">${cover(c.id)}<div class="tags"><span class="m">${O.ready?T('متاحة الآن','Available now'):T('قريباً','Coming soon')}</span><span>${T('أونلاين · بالسرعة اللي تناسبك','Online · self-paced')}</span><span>${LV[c.lvl][i]}</span></div><h3>${L.t}</h3><p class="s">${L.s}</p><div class="meta">${O.ready?(isEn()?O.en:O.ar):T('4 وحدات · شهادة إتمام','4 modules · certificate')}</div>
+  <div class="row"><div class="price">${pr(O)}<small>${T('سعر الإطلاق','Launch price')}</small></div></div>
+  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready?`<a class="free" href="preview/">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
+ const sel=document.getElementById('r_int'),cur=sel.value;
+ sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (all 10 courses)">${T('الوصول الكامل لجميع الدورات','All-Access, all 10 courses')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
+ if(cur)sel.value=cur}
+function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (all 10 courses)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
+function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
+ document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
+ <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${T('سعر الإطلاق','Launch price')}<b>${pr(O)}</b></div></div>
+ <div><h4>${T('لمن هذه الدورة','Who it is for')}</h4><p class="inc" style="color:var(--ink)">${L.for}</p></div>
+ <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
+ <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+ <p class="inc">${T('يشمل: دروس قصيرة مع أمثلة وطلبات جاهزة للنسخ، تمارين على عملك، اختبار بعد كل وحدة، وشهادة إتمام من معهد X10. لا تحتاج تحضر أي جلسة.','Includes: short lessons with examples and copy-ready prompts, exercises on your own work, a quiz after each module and an X10 certificate. No sessions to attend.')}</p>
+ <div class="go"><div class="price">${pr(O)}</div>${O.ready?`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`:`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
+ const d=document.getElementById('cd');if(!d.open)d.showModal()}
+/* ---------- checkout: order bump + upsell ---------- */
+let CO={id:null,plan:'one',bump:false,grad:false};
+function buy(id,opts){opts=opts||{};
+ if(!X10Auth.user){location.href='account.html#buy-essentials';return}
+ CO=Object.assign({id,plan:'one',bump:false,grad:false,lib:false},opts);
+ if(X10Auth.owns('all')||(X10Auth.owns('essentials')&&CO.plan==='one'&&!CO.grad&&!CO.lib)){location.href='account.html';return}
+ if(X10Auth.owns('essentials')&&CO.plan==='all')CO.grad=true;
+ renderCO();const d=document.getElementById('cd');if(!d.open)d.showModal()}
+function coKey(){if(CO.lib)return 'lib';if(CO.grad)return 'grad-all';return (CO.plan==='all'?'all':CO.id)+(CO.bump?'+lib':'')}
+function coTotal(){if(CO.lib)return BUMP.p;const base=CO.grad?ALL.p-ONLINE.essentials.p:(CO.plan==='all'?ALL.p:ONLINE[CO.id].p);return base+(CO.bump&&!CO.grad?BUMP.p:0)}
+function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one=ONLINE[CO.id].p,link=PAY[coKey()];
+ const sum=ALL.was;
+ document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><span class="mark" style="font-size:13px">${T('إتمام الطلب','Checkout')}</span><h3 id="cd_t">${CO.lib?T('مكتبة الطلبات','Prompt Library'):CO.grad?T('ترقية الخريجين: الوصول الكامل','Graduate upgrade: All-Access'):L.t}</h3><p>${T('أونلاين بالكامل. تبدأ فور الدفع، بدون أي حضور.','Fully online. Start right after payment, nothing to attend.')}</p></div>
+ <div class="bd">
+ ${CO.lib?`<div class="opt on"><b>${T('مكتبة الطلبات','Prompt Library')}</b><span>${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي.','50 ready work prompts in Arabic and English.')}</span><em class="ltr">${kd(BUMP.p)}</em></div>`:CO.grad?`<div class="opt on"><b>${T('الوصول الكامل لجميع الدورات العشر','All-Access to all 10 courses')}</b><span>${T('خصمنا لك سعر الدورة التي أكملتها (49 د.ك).','We have credited the course you completed (KWD 49).')}</span><em class="ltr">${kd(ALL.p-ONLINE.essentials.p)}</em></div>`:`
+ <div class="plans" role="radiogroup" aria-label="${T('اختر الباقة','Choose your plan')}">
+  <label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="plan" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><b>${L.t}</b><span>${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span><em><s class="was ltr">${kd(ONLINE[CO.id].was)}</s> <span class="ltr">${kd(one)}</span></em></label>
+  <label class="opt up ${CO.plan==='all'?'on':''}"><input type="radio" name="plan" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><span class="badge">${T('الأوفر','Best value')}</span><b>${T('الوصول الكامل: الدورات العشر','All-Access: all 10 courses')}</b><span>${T(`قيمتها ${sum} د.ك. تبدأ بهذه الدورة اليوم، وتفتح لك كل دورة جديدة يوم إطلاقها بدون دفع إضافي.`,`Worth KWD ${sum}. Start with this course today; every other course unlocks for you the day it launches, at no extra cost.`)}</span><em><s class="was ltr">${kd(ALL.was)}</s> <span class="ltr">${kd(ALL.p)}</span></em></label>
+ </div>
+ ${X10Auth.owns('lib')?'':`<label class="bump"><input type="checkbox" ${CO.bump?'checked':''} onchange="CO.bump=this.checked;renderCO()"><span><b>${T('نعم، أضفها لطلبي','Yes, add it to my order')} <s class="was ltr">${kd(BUMP.was)}</s> <span class="ltr">+${kd(BUMP.p)}</span></b>${isEn()?BUMP.en:BUMP.ar}</span></label>`}`}
+ <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="price ltr">${kd(coTotal())}</div></div>
+ ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:`<a class="btn red" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(orderText())}">${T('أكمل الطلب عبر واتساب','Complete order on WhatsApp')}</a>`}</div>
+ ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تصلك روابط الدورة فوراً.','Secure payment by UPayments: KNET or card. Your course links arrive right after payment.'):T('الدفع الإلكتروني يفتح قريباً. أرسل طلبك عبر واتساب ونرسل لك رابط الدفع.','Online payment opens soon. Send your order on WhatsApp and we will send you the payment link.')}</p>
+ </div>`}
+function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':CO.grad?'Graduate upgrade to All-Access':(CO.plan==='all'?'All-Access (all 10 courses)':c.en.t)}${CO.bump&&!CO.grad&&!CO.lib?' + Prompt Library':''}. Total: KWD ${coTotal()}`}
+function hashOffer(){const h=location.hash;if(h==='#offer-all')buy('essentials',{grad:true});if(h==='#buy-essentials')buy('essentials');if(h==='#buy-all')buy('essentials',{plan:'all'});if(h==='#buy-lib')buy('essentials',{lib:true})}
+addEventListener('hashchange',hashOffer);
+document.getElementById('cd').addEventListener('click',e=>{if(e.target.id==='cd')e.target.close()});
 const AR={};document.querySelectorAll('[data-i]').forEach(el=>AR[el.dataset.i]=el.innerHTML);
 const btn=document.getElementById('langBtn');
 function setLang(l){const en=l==='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';
@@ -263,7 +530,7 @@ function setLang(l){const en=l==='en';document.documentElement.lang=en?'en':'ar'
  btn.textContent=en?'العربية':'English';renderProgs&&typeof renderProgs==='function'&&document.getElementById('progs')&&renderProgs();btn.lang=en?'ar':'en';try{localStorage.setItem('x10_lang',l)}catch(e){}}
 btn.addEventListener('click',()=>setLang(document.documentElement.lang==='en'?'ar':'en'));
 try{if(localStorage.getItem('x10_lang')==='en')setLang('en')}catch(e){}
-renderProgs();
+renderProgs();X10Auth.load().then(()=>{renderProgs();hashOffer()},()=>{});
 document.getElementById('reg').addEventListener('submit',e=>{e.preventDefault();
  const v=id=>document.getElementById(id).value.trim(), en=document.documentElement.lang==='en';
  if(!v('r_name')||!v('r_mob')){document.getElementById('r_hint').textContent=en?'Please add your name and mobile.':'يرجى إدخال الاسم ورقم الهاتف.';return}

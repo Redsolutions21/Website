@@ -110,8 +110,26 @@ async function newPw(e){e.preventDefault();const m=document.getElementById('msg'
  RECOVERY=false;try{history.replaceState(null,'',location.pathname)}catch(e){}render()}
 async function forgot(){const m=document.getElementById('msg'),email=(document.getElementById('email').value||'').trim();m.style.color='';
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent=T('اكتب بريدك الإلكتروني أولاً، ثم اضغط «نسيت كلمة المرور».','Enter your email first, then press "Forgot your password?".');return}
- await X10Auth.resetPassword(email);m.style.color='#1E8E5A';m.textContent=T('إذا كان هذا البريد مسجّلاً، فسيصلك رابط لتغيير كلمة المرور.','If this email is registered, you will receive a link to change your password.')}
-function render(){chrome();const rec=RECOVERY&&X10Auth.user;document.getElementById('v').innerHTML=rec?vNewPw():X10Auth.user?vDash():vAuth();
+ const r=await X10Auth.resetPassword(email);if(r.error&&/rate|seconds|many/i.test(r.error)){m.textContent=T('طلبت رمزاً قبل قليل. انتظر دقيقة ثم حاول مرة ثانية.','You asked for a code a moment ago. Wait a minute and try again.');return}
+ RESET=email;render()}
+let RESET='';
+function vCode(){return `<div class="split"><div class="card"><span class="tag">${T('حسابي','My account')}</span><h1>${T('غيّر كلمة المرور','Change your password')}</h1>
+ <p style="color:var(--mute);margin:0 0 10px">${T('إذا كان هذا البريد مسجّلاً، فقد أرسلنا إليه رمزاً من أرقام. اكتبه هنا في هذه الصفحة، ثم اختر كلمة مرور جديدة.','If this email is registered, we sent it a number code. Type it here on this page, then choose a new password.')}</p>
+ <p dir="ltr" style="margin:0 0 12px;font-weight:600">${esc(RESET)}</p>
+ <form id="cf" novalidate><label>${T('الرمز من البريد','Code from the email')}<input id="code" inputmode="numeric" autocomplete="one-time-code" enterkeyhint="next" dir="ltr" maxlength="12" required></label>
+ <label>${T('كلمة المرور الجديدة','New password')}<input id="cpw" type="password" autocomplete="new-password" minlength="8" required></label>
+ <button class="btn red w" type="submit">${T('احفظ وادخل','Save and log in')}</button>
+ <button type="button" onclick="RESET='';render()" style="background:none;border:0;padding:0;margin:10px 0 0;color:var(--mute);text-decoration:underline;cursor:pointer;font:inherit;font-size:14px">${T('رجوع','Back')}</button>
+ <div class="msg" id="msg" role="alert"></div></form>
+ <p style="color:var(--mute);font-size:13px;margin:12px 0 0">${T('لم يصلك؟ انظر في مجلد الرسائل غير المرغوبة، أو ارجع واطلب رمزاً جديداً بعد دقيقة.','Nothing yet? Check your spam folder, or go back and ask for a new code after a minute.')}</p></div></div>`}
+async function codeSubmit(e){e.preventDefault();const m=document.getElementById('msg'),code=document.getElementById('code').value.replace(/\D/g,''),pw=document.getElementById('cpw').value;m.style.color='';m.textContent='';
+ if(code.length<6){m.textContent=T('اكتب الرمز كاملاً كما وصلك.','Type the full code from the email.');return}
+ if(pw.length<8){m.textContent=T('كلمة المرور 8 أحرف على الأقل.','Password must be at least 8 characters.');return}
+ let r=await X10Auth.verifyCode(RESET,code);if(r.error){m.textContent=T('الرمز غير صحيح أو انتهت صلاحيته. ارجع واطلب رمزاً جديداً.','The code is wrong or has expired. Go back and ask for a new one.');return}
+ r=await X10Auth.setPassword(pw);if(r.error){m.textContent=T('تعذّر حفظ كلمة المرور. حاول مرة ثانية.','Could not save the password. Please try again.');return}
+ RESET='';if(next()){location.href='./#'+next();return}await X10Auth.pullProgress();render()}
+function render(){chrome();const rec=RECOVERY&&X10Auth.user;document.getElementById('v').innerHTML=rec?vNewPw():X10Auth.user?vDash():RESET?vCode():vAuth();
+ const cf=document.getElementById('cf');if(cf){cf.addEventListener('submit',codeSubmit);cf.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='code'){e.preventDefault();document.getElementById('cpw').focus()}});setTimeout(()=>document.getElementById('code').focus(),50)}
  const f=document.getElementById('f');if(f){f.addEventListener('submit',submit);f.addEventListener('keydown',e=>{if(e.target.tagName!=='INPUT'||e.altKey||e.ctrlKey||e.metaKey)return;const ins=[...f.querySelectorAll('input')],i=ins.indexOf(e.target);if(e.key==='Tab'&&!e.shiftKey&&i<ins.length-1){e.preventDefault();ins[i+1].focus()}else if(e.key==='Tab'&&e.shiftKey&&i>0){e.preventDefault();ins[i-1].focus()}else if(e.key==='Enter'&&i<ins.length-1){e.preventDefault();ins[i+1].focus()}})}const nf=document.getElementById('nf');if(nf)nf.addEventListener('submit',newPw)}
 async function submit(e){e.preventDefault();const g=id=>{const el=document.getElementById(id);return el?el.value.trim():''},m=document.getElementById('msg');m.textContent='';
  const email=g('email'),pw=document.getElementById('pw').value;

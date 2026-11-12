@@ -13,7 +13,7 @@
  if(en){document.documentElement.lang='en';document.documentElement.dir='ltr'}
  m.textContent=T('جارٍ فتح الدورة…','Opening your course…');
  const id=new URLSearchParams(location.search).get('c')||'';
- if(!/^[a-z]{2,20}$/.test(id))return home();
+ if(!/^[a-z][a-z0-9]{1,19}$/.test(id))return home();
  try{
   await X10Auth.load();
   if(!X10Auth.user||!X10Auth.owns(id))return home();

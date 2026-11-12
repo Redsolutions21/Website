@@ -154,5 +154,41 @@ const X10_CATALOG=[
   "free": ""
  }
 ];
+const X10_JUNIORS=[
+ {
+  "id": "kids7",
+  "path": "learn/c/?c=kids7",
+  "key": "x10_kids7_v1",
+  "ar": "مستكشفو الذكاء الاصطناعي",
+  "en": "AI Explorers",
+  "band_ar": "من 7 إلى 9 سنوات",
+  "band_en": "Ages 7 to 9",
+  "p": 19,
+  "was": 49
+ },
+ {
+  "id": "kids10",
+  "path": "learn/c/?c=kids10",
+  "key": "x10_kids10_v1",
+  "ar": "صنّاع الذكاء الاصطناعي",
+  "en": "AI Makers",
+  "band_ar": "من 10 إلى 12 سنة",
+  "band_en": "Ages 10 to 12",
+  "p": 25,
+  "was": 59
+ },
+ {
+  "id": "kids13",
+  "path": "learn/c/?c=kids13",
+  "key": "x10_kids13_v1",
+  "ar": "الذكاء الاصطناعي للمراهقين: ذاكر، أبدع، وكن آمناً",
+  "en": "AI for Teens: Study, Create, Stay Safe",
+  "band_ar": "من 13 إلى 16 سنة",
+  "band_en": "Ages 13 to 16",
+  "p": 29,
+  "was": 69
+ }
+];
+const X10_JR_BUNDLE={"p": 59, "was": 177};
 const x10Course=id=>X10_CATALOG.find(c=>c.id===id);
 const x10kd=(n,en)=>{const s=Number.isInteger(Number(n))?String(Number(n)):Number(n).toFixed(3);return en?`KWD ${s}`:`${s} د.ك`};

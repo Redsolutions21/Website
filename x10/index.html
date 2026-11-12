@@ -167,6 +167,9 @@ footer a{color:var(--navy)}
 .nav .logo{height:30px;width:auto;display:block}
 .nav .lang{background:rgba(255,255,255,.14);color:#fff}
 @media (max-width:420px){.nav .brand span{font-size:13px}}
+/* AI Juniors banner */
+.jrb{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:22px;padding:22px 24px;border-radius:20px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#E99A12,#2FA88E 55%,#3E50C4)}
+.jrb h3{margin:6px 0 4px;font-size:22px;color:#fff}.jrb p{margin:0;opacity:.95;font-size:16px;max-width:640px}.jrb .jrt{display:inline-block;background:rgba(0,0,0,.2);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
 </style></head>
 <body>
 <header class="nav">
@@ -175,6 +178,7 @@ footer a{color:var(--navy)}
     <nav aria-label="Main">
       <a class="nl" href="#areas" data-i="n1">مجالات التدريب</a>
       <a class="nl" href="#programs" data-i="n5">البرامج</a>
+      <a class="nl" href="juniors.html" data-i="n7">للأطفال</a>
       <a class="nl" href="#who" data-i="n2">لمن نقدم</a>
       <a class="nl" href="#trainers" data-i="n3">انضم كمدرب</a>
       <a class="nl" href="#contact" data-i="n4">تواصل معنا</a>
@@ -218,6 +222,7 @@ footer a{color:var(--navy)}
       <p class="lede" data-i="p_p">دورات ذاتية بالعربي والإنجليزي، تتعلمها بالسرعة اللي تناسبك ومن أي جهاز. بدون حضور، ومع شهادة إتمام.</p>
       <div class="filt" id="filt"></div>
       <div class="progs" id="progs"></div>
+      <a class="jrb" href="juniors.html"><div><span class="jrt" data-i="jr_t">جديد · AI Juniors</span><h3 data-i="jr_h">دورات الذكاء الاصطناعي لأطفالك، بالطريقة الآمنة</h3><p data-i="jr_p">3 دورات أونلاين قصيرة للأعمار من 7 إلى 9، ومن 10 إلى 12، ومن 13 إلى 16: يفهم الذكاء الاصطناعي، ويبدع به، ويبقى آمناً. ومن هم دون 13 سنة يستخدمونه على حساب أحد الوالدين فقط.</p></div><span class="btn red" data-i="jr_b">تعرّف على AI Juniors</span></a>
       <div class="corp"><div><h3 data-i="cp_h">لشركتك: أي دورة داخل مقر عملك</h3><p data-i="cp_p">نقدّم أي دورة لفريقك بأمثلة من قطاعك وبمواعيد تناسبكم. السعر حسب عدد المتدربين.</p></div><a class="btn red" href="#contact" data-i="cp_b" onclick="pick('','Company')">اطلب عرض سعر</a></div>
     </div>
   </section>
@@ -298,7 +303,7 @@ const EN={
  t_h:"An expert in your field? Train with us.",t_p:"We're looking for trainers who use AI tools in their work every day, and who love sharing what they know in a clear, practical way.",
  t1:"Hands-on experience with AI tools",t2:"Able to teach in Arabic; English is a plus",t3:"A passion for practice, not long lectures",t_b:"Send us your profile",
  c_h:"Let's stay in touch",c_p:"To register interest in upcoming courses or to join as a trainer, get in touch.",
- k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",n6:"My account",
+ k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",n6:"My account",n7:"For kids",jr_t:"New · AI Juniors",jr_h:"AI courses for your children, the safe way",jr_p:"3 short online courses for ages 7 to 9, 10 to 12 and 13 to 16: understand AI, create with it and stay safe. Under-13s use AI only on a parent's account.",jr_b:"See AI Juniors",
  p_h:"AI courses online. Buy and start right away.",p_p:"Self-paced courses in Arabic and English, on any device, at your own pace. Nothing to attend, and a certificate at the end.",
  f_name:"Name",f_mob:"Mobile",f_mail:"Email",f_who:"I am",o_ind:"An individual",o_co:"A company",o_tr:"A trainer who'd like to join",
  f_int:"Interested in",o_ns:"Not sure yet",f_msg:"Message (optional)",f_send:"Send",f_hint:"Your email app will open with the message ready. Just tap send.",

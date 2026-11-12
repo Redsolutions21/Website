@@ -56,7 +56,8 @@ const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const CAT=X10_CATALOG,SALE=CAT.filter(c=>!c.review),ALLLIVE=SALE.every(c=>c.live);
 const paid=()=>Math.min(X10_ALL.p,SALE.filter(c=>c.live&&X10Auth.owned.includes(c.id)).reduce((a,c)=>a+c.p,0));
 let RECOVERY=/type=recovery/.test(location.hash);
-const next=()=>/^#buy-[a-z]+$/.test(location.hash)?location.hash.slice(1):'';
+const next=()=>/^#buy-[a-z0-9]+$/.test(location.hash)?location.hash.slice(1):'';
+const nextUrl=()=>(/^buy-(kids|juniors)/.test(next())?'juniors.html#':'./#')+next();
 function chrome(){document.documentElement.lang=en()?'en':'ar';document.documentElement.dir=en()?'ltr':'rtl';document.title=T('X10 · حسابي','X10 · My account');
  document.getElementById('lb').textContent=en()?'العربية':'English';document.getElementById('hn').textContent=T('معهد X10','X10 Institute');
  const o=document.getElementById('outBtn');o.hidden=!X10Auth.user;o.textContent=T('تسجيل الخروج','Log out')}
@@ -86,6 +87,8 @@ function courseCard(c){const p=prog(c);
  return `<div class="it"><div class="itx"><h3>${en()?c.en:c.ar}</h3><small>${LVL[c.lv][en()?1:0]} · ${en()?c.men:c.mar} · ${T('12 درساً · 4 اختبارات · شهادة','12 lessons · 4 quizzes · certificate')}</small>${tag}<div class="pb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${p}%"></i></div><small>${p===100?T('مكتملة','Completed'):p?T(`أنجزت ${p}٪`,`${p}% done`):T('لم تبدأ بعد','Not started')}</small></div><a class="btn ${p===100?'':'red'}" href="${c.path}">${p===100?T('راجع الدورة','Review the course'):p?T('أكمل الدورة','Continue the course'):T('ابدأ الدورة','Start the course')}</a></div>`}
 function vDash(){const u=X10Auth.user,all=X10Auth.owns('all'),lib=X10Auth.owns('lib'),st=staff(),E=x10Course('essentials'),cr=paid();
  let mine=CAT.filter(canOpen).map(courseCard).join('');
+ const JRS=(typeof X10_JUNIORS!=='undefined'?X10_JUNIORS:[]).filter(c=>X10Auth.owns(c.id));
+ mine+=JRS.map(c=>{const p=prog(c);return `<div class="it"><div class="itx"><h3>${en()?c.en:c.ar}</h3><small>AI Juniors · ${en()?c.band_en:c.band_ar} · ${T('12 درساً · 4 اختبارات · شهادة','12 lessons · 4 quizzes · certificate')}</small><div class="pb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${p}%"></i></div><small>${p===100?T('مكتملة','Completed'):p?T(`أنجزت ${p}٪`,`${p}% done`):T('لم تبدأ بعد','Not started')}</small></div><a class="btn ${p===100?'':'red'}" href="${c.path}">${p===100?T('راجع الدورة','Review the course'):p?T('أكمل الدورة','Continue the course'):T('ابدأ الدورة','Start the course')}</a></div>`}).join('');
  if(lib)mine+=`<div class="it"><div><h3>${T('مكتبة الطلبات','Prompt Library')}</h3><small>${T('50 طلباً جاهزاً للعمل','50 ready prompts for work')}</small></div><a class="btn" href="${X10_LIB.path}">${T('افتح المكتبة','Open the library')}</a></div>`;
  const F=SALE.find(c=>c.live&&c.p===0);
  if(!mine)mine=`<div class="it"><div><h3>${T('لا توجد دورات بعد','No courses yet')}</h3><small>${F?T('ابدأ بدورتنا الكاملة المجانية، أو تصفّح كل الدورات.','Start with our free full course, or browse all the courses.'):T('تصفّح الدورات واختر ما يناسبك.','Browse the courses and pick what suits you.')}</small></div><span style="display:flex;gap:8px;flex-wrap:wrap">${F?`<a class="btn red" href="./#buy-${F.id}">${T('ابدأ الدورة المجانية','Start the free course')}</a>`:''}<a class="btn ghost" href="./#programs">${T('تصفّح الدورات','Browse the courses')}</a></span></div>`;
@@ -100,7 +103,7 @@ function vDash(){const u=X10Auth.user,all=X10Auth.owns('all'),lib=X10Auth.owns('
  return `${X10Auth.REAL?'':`<div class="demo">${T('وضع تجريبي للمعاينة: الحساب والمشتريات تُحفظ على هذا المتصفح فقط.','Preview demo mode: account and purchases are kept in this browser only.')}${st?' '+T('هذا حساب المراجعة: يفتح كل الدورات، ومنها ما يحتاج إلى مراجعة قبل البيع.','This is the review account: it opens every course, including the one still under review.'):''}</div>`}
  <span class="tag">${T('حسابي','My account')}</span><h1>${T('أهلاً','Welcome')}${u.name?T('، ',', ')+esc(u.name):''}</h1><p style="color:var(--mute);margin:0" dir="ltr">${esc(u.email)}</p>
  <div class="split" style="margin-top:18px"><div class="card"><h2>${T('دوراتي','My courses')}</h2>${mine}${st?'':soon}</div>
- <div>${ups||`<div class="card dark"><h2>${T('حسابك كامل','You have everything')}</h2><p>${st?T('كل الدورات مفتوحة لك للمراجعة.','Every course is open to you for review.'):ALLLIVE?T('كل الدورات العشر ومكتبة الطلبات مفتوحة لك.','All 10 courses and the Prompt Library are open to you.'):T('سنبلغك عند إطلاق كل دورة جديدة.','We will tell you when each new course launches.')}</p></div>`}</div></div>`}
+ <div>${(typeof X10_JUNIORS!=='undefined'&&!X10Auth.owns('juniors'))?`<div class="up" style="background:#fff;border:1px solid var(--line)"><span class="tag">AI Juniors</span><h3 style="margin-top:8px">${T('دورات الذكاء الاصطناعي لأطفالك','AI courses for your children')}</h3><p style="color:var(--mute)">${T('3 دورات آمنة للأعمار من 7 إلى 16، بالعربية والإنجليزية.','3 safe courses for ages 7 to 16, in Arabic and English.')}</p><a class="btn" href="juniors.html">${T('تعرّف عليها','See the courses')}</a></div>`:''}${ups||`<div class="card dark"><h2>${T('حسابك كامل','You have everything')}</h2><p>${st?T('كل الدورات مفتوحة لك للمراجعة.','Every course is open to you for review.'):ALLLIVE?T('كل الدورات العشر ومكتبة الطلبات مفتوحة لك.','All 10 courses and the Prompt Library are open to you.'):T('سنبلغك عند إطلاق كل دورة جديدة.','We will tell you when each new course launches.')}</p></div>`}</div></div>`}
 function vNewPw(){return `<div class="split"><div class="card"><span class="tag">${T('حسابي','My account')}</span><h1>${T('اختر كلمة مرور جديدة','Choose a new password')}</h1>
  <form id="nf" novalidate><label>${T('كلمة المرور الجديدة','New password')}<input id="npw" type="password" autocomplete="new-password" minlength="8" required></label>
  <button class="btn red w" type="submit">${T('احفظ كلمة المرور','Save password')}</button><div class="msg" id="msg" role="alert"></div></form></div></div>`}
@@ -125,7 +128,7 @@ function vVerify(){return `<div class="split"><div class="card"><span class="tag
 async function verifySubmit(e){e.preventDefault();const m=document.getElementById('msg'),code=document.getElementById('vcode').value.replace(/\D/g,'');m.style.color='';m.textContent='';
  if(code.length<6){m.textContent=T('اكتب الرمز كاملاً كما وصلك.','Type the full code from the email.');return}
  const r=await X10Auth.confirmCode(VERIFY,code);if(r.error){m.textContent=T('الرمز غير صحيح أو انتهت صلاحيته. اطلب رمزاً جديداً.','The code is wrong or has expired. Send a new one.');return}
- VERIFY='';if(next()){location.href='./#'+next();return}await X10Auth.pullProgress();render()}
+ VERIFY='';if(next()){location.href=nextUrl();return}await X10Auth.pullProgress();render()}
 async function resend(){const m=document.getElementById('msg'),b=document.getElementById('rsBtn');const r=await X10Auth.resendSignup(VERIFY);
  if(r.error){m.style.color='';m.textContent=/rate|seconds|many/i.test(r.error)?T('انتظر دقيقة ثم اطلبه مرة ثانية.','Wait a minute, then ask again.'):T('تعذّر الإرسال. حاول بعد قليل.','Could not send. Try again shortly.');return}
  m.style.color='#1E8E5A';m.textContent=T('أرسلنا رمزاً جديداً.','We sent a new code.');if(b){b.disabled=true;setTimeout(()=>{b.disabled=false},60000)}}
@@ -143,7 +146,7 @@ async function codeSubmit(e){e.preventDefault();const m=document.getElementById(
  if(pw.length<8){m.textContent=T('كلمة المرور 8 أحرف على الأقل.','Password must be at least 8 characters.');return}
  let r=await X10Auth.verifyCode(RESET,code);if(r.error){m.textContent=T('الرمز غير صحيح أو انتهت صلاحيته. ارجع واطلب رمزاً جديداً.','The code is wrong or has expired. Go back and ask for a new one.');return}
  r=await X10Auth.setPassword(pw);if(r.error){m.textContent=T('تعذّر حفظ كلمة المرور. حاول مرة ثانية.','Could not save the password. Please try again.');return}
- RESET='';if(next()){location.href='./#'+next();return}await X10Auth.pullProgress();render()}
+ RESET='';if(next()){location.href=nextUrl();return}await X10Auth.pullProgress();render()}
 function render(){chrome();const rec=RECOVERY&&X10Auth.user;document.getElementById('v').innerHTML=rec?vNewPw():X10Auth.user?vDash():VERIFY?vVerify():RESET?vCode():vAuth();
  const vf=document.getElementById('vf');if(vf){vf.addEventListener('submit',verifySubmit);setTimeout(()=>document.getElementById('vcode').focus(),50)}
  const cf=document.getElementById('cf');if(cf){cf.addEventListener('submit',codeSubmit);cf.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='code'){e.preventDefault();document.getElementById('cpw').focus()}});setTimeout(()=>document.getElementById('code').focus(),50)}
@@ -158,7 +161,7 @@ async function submit(e){e.preventDefault();const g=id=>{const el=document.getEl
  if(r.error==='unconfirmed'){VERIFY=email;await X10Auth.resendSignup(email);render();return}
  if(r.error){m.textContent=r.error==='exists'?T('هذا البريد مسجّل. اختر «عندي حساب».','This email is already registered. Choose "I have an account".'):r.error==='nouser'||r.error==='bad'?T('البريد أو كلمة المرور غير صحيحة.','Email or password is incorrect.'):T('تعذّر إتمام العملية. حاول مرة ثانية.','Something went wrong. Please try again.');return}
  if(r.confirm){VERIFY=email;render();return}
- if(next()){location.href='./#'+next();return}
+ if(next()){location.href=nextUrl();return}
  await X10Auth.pullProgress();render()}
 document.getElementById('lb').onclick=()=>{L=en()?'ar':'en';try{localStorage.setItem('x10_lang',L)}catch(e){}render()};
 document.getElementById('outBtn').onclick=async()=>{await X10Auth.signOut();render()};

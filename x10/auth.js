@@ -49,6 +49,8 @@ const X10Auth=(()=>{
  function merge(l,r){if(!l)return r;if(!r)return l;const o=Object.assign({},r,l);o.done=Object.assign({},r.done||{},l.done||{});o.notes=Object.assign({},r.notes||{},l.notes||{});o.quiz=Object.assign({},r.quiz||{});for(const k in (l.quiz||{}))o.quiz[k]=Math.max(o.quiz[k]||0,l.quiz[k]||0);return o}
  async function pullProgress(){if(!REAL||!cache.user)return;try{const c=await client();const {data}=await c.from('progress').select('course,data');for(const r of data||[]){let l=null;try{l=JSON.parse(localStorage.getItem(r.course)||'null')}catch(e){}localStorage.setItem(r.course,JSON.stringify(merge(l,r.data)))}}catch(e){}}
  let pt=null;function pushProgress(key){if(!REAL||!cache.user)return;clearTimeout(pt);pt=setTimeout(async()=>{try{const c=await client();const {data:{user}}=await c.auth.getUser();if(!user)return;await c.from('progress').upsert({user_id:user.id,course:key,data:JSON.parse(localStorage.getItem(key)||'{}'),updated_at:new Date().toISOString()})}catch(e){}},1500)}
- const owns=i=>cache.owned.includes(i)||(i!=='lib'&&cache.owned.includes('all'));
+ /* All-Access opens the 10 adult courses; the AI Juniors bundle opens the 3 kids courses. The server applies the same rule. */
+ const JR=['kids7','kids10','kids13'];
+ const owns=i=>cache.owned.includes(i)||(JR.includes(i)?cache.owned.includes('juniors'):(i!=='lib'&&i!=='juniors'&&cache.owned.includes('all')));
  return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

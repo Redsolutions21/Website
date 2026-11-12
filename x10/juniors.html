@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>X10 · AI Juniors</title>
+<meta name="description" content="AI courses for children aged 7 to 16, in Arabic and English: understand AI, create with it and stay safe.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ar:'Almarai','Geeza Pro',Tahoma,sans-serif;--en:'Lato','Helvetica Neue',Arial,sans-serif;--bg:#EEF2F7;--card:#F8FAFD;--ink:#14213D;--line:#D3DBE6;--mute:#5A6478;--navy:#20396F;--red:#ED1C24;--steel:#5B7991;--tile:#E2E8F0;
+ --k1:#F6B53C;--k2:#2FA88E;--k3:#5B6FE0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ar);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
+html[lang=en] body{font-family:var(--en)}
+a{color:var(--navy)}.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.draft{background:#FFF4CC;color:#6B4E00;text-align:center;font-weight:700;font-size:14px;padding:8px 16px}
+header.nav{background:var(--navy);color:#fff}header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800}.brand img{height:34px;width:auto}
+.lang{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;padding:8px 16px;font:inherit;font-size:14px;cursor:pointer}
+.hero{background:linear-gradient(160deg,var(--navy),#14244A);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.tag{display:inline-block;background:var(--red);color:#fff;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700}
+h1{font-size:clamp(32px,6vw,54px);line-height:1.15;margin:14px 0 12px;font-weight:800}
+.hero p{font-size:19px;opacity:.92;margin:0 0 22px;max-width:560px}
+.btn{display:inline-block;background:#fff;color:var(--navy);text-decoration:none;border-radius:999px;padding:12px 24px;font-weight:700;border:0;font:inherit;font-weight:700;cursor:pointer}
+.btn.red{background:var(--red);color:#fff}.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.ages{display:grid;gap:12px}
+.age{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px 16px}
+.age svg{flex:0 0 48px}.age b{display:block;font-size:17px}.age small{opacity:.8;font-size:14px}
+section{padding:56px 0}h2{font-size:clamp(26px,4vw,36px);line-height:1.25;margin:0 0 8px}.lead{color:var(--mute);margin:0 0 28px;max-width:700px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.w{background:#fff;border-radius:20px;padding:22px}.w h3{margin:10px 0 6px;font-size:19px}.w p{margin:0;color:var(--mute);font-size:16px}
+.ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--tile)}
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.c{background:#fff;border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.c .top{padding:22px 22px 18px;color:#fff;position:relative}.c .top .band{font-weight:800;font-size:14px;background:rgba(0,0,0,.18);border-radius:999px;padding:3px 12px;display:inline-block}
+.c .top h3{margin:12px 0 2px;font-size:23px;line-height:1.3}.c .top svg{position:absolute;inset-inline-end:16px;top:16px;opacity:.95}
+.c1 .top{background:linear-gradient(150deg,#E99A12,var(--k1))}.c2 .top{background:linear-gradient(150deg,#1F8C75,var(--k2))}.c3 .top{background:linear-gradient(150deg,#3E50C4,var(--k3))}
+.c .bd{padding:18px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.c .bd p{margin:0;color:var(--mute);font-size:16px}
+.c ul{margin:0;padding-inline-start:20px;font-size:15px}.c li{margin:2px 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px}.meta span{background:var(--tile);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:700;color:var(--navy)}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:auto;padding-top:6px}.price b{font-size:26px}.price s{color:var(--mute)}
+.lim{font-size:12px;color:#fff;background:var(--red);border-radius:6px;padding:1px 8px;font-weight:700}
+dialog{border:0;border-radius:22px;padding:0;width:min(520px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;color:var(--ink)}dialog::backdrop{background:rgba(14,22,45,.6)}
+.cd-h{background:var(--navy);color:#fff;padding:20px 22px;position:relative}.cd-h h3{margin:6px 0 0;font-size:22px;line-height:1.3}.cd-h .x{position:absolute;top:14px;inset-inline-end:14px;background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:50%;width:34px;height:34px;font-size:20px;cursor:pointer}
+.cd-b{padding:18px 22px 22px}.opt{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;cursor:pointer}.opt.on{border-color:var(--navy);background:#F4F7FC}.opt input{margin-top:6px}.opt b{display:block}.opt span{font-size:14px;color:var(--mute)}.opt em{font-style:normal;margin-inline-start:auto;white-space:nowrap;font-weight:700;text-align:end}.opt em s{color:var(--mute);font-weight:400;display:block;font-size:13px}
+.go{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:14px;margin-top:6px}.go .tot{font-size:26px;font-weight:800}
+.note{font-size:13px;color:var(--mute);margin:10px 0 0}.okmsg{background:#E8F6EE;border:1px solid #9ED3B4;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:15px}
+.c .act{display:flex;gap:8px;flex-wrap:wrap}.c .act .btn{background:var(--navy);color:#fff;padding:10px 18px;font-size:15px}.c .act .btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+.bundle{margin-top:18px;background:var(--navy);color:#fff;border-radius:22px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.bundle h3{margin:6px 0 2px;font-size:22px}.bundle p{margin:0;opacity:.85;font-size:16px}.bundle .price b{font-size:28px}.bundle .price s{color:rgba(255,255,255,.7)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.st{background:#fff;border-radius:18px;padding:18px}.st:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;margin-bottom:8px}
+.st b{display:block;margin-bottom:4px}.st span{color:var(--mute);font-size:15px}
+.safe{background:#fff;border-radius:22px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px}
+.safe div{display:flex;gap:10px;align-items:flex-start;font-size:16px}.safe svg{flex:0 0 22px;margin-top:4px}
+details{background:#fff;border-radius:16px;padding:14px 18px;margin-bottom:10px}summary{font-weight:700;cursor:pointer}details p{margin:8px 0 0;color:var(--mute)}
+footer{background:var(--navy);color:#fff;padding:28px 0;font-size:14px}footer a{color:#fff}
+@media (max-width:860px){.hero .wrap,.why,.courses,.safe{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.hero{padding:40px 0 44px}section{padding:40px 0}}
+@media (max-width:420px){.steps{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="nav"><div class="wrap"><a class="brand" href="./"><img src="logo.png" alt="X10"><span id="bn"></span></a><span style="display:flex;gap:8px;align-items:center"><a class="lang" id="acc" href="account.html" style="text-decoration:none"></a><button class="lang" id="lb" type="button"></button></span></div></header>
+<main id="v"></main>
+<footer><div class="wrap" id="ft"></div></footer>
+<dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
+<script src="catalog.js"></script>
+<script src="auth.js"></script>
+<script>
+let L='ar';try{const g=localStorage.getItem('x10_lang');if(g==='en'||g==='ar')L=g}catch(e){}
+const en=()=>L==='en',T=(a,b)=>en()?b:a,kd=n=>en()?'KWD '+n:n+' د.ك';
+/* Prices come from catalog.js (generated by build_store.py). */
+const C=[
+ {id:'kids7',cls:'c1',ic:'compass',
+  band:['من 7 إلى 9 سنوات','Ages 7 to 9'],t:['مستكشفو الذكاء الاصطناعي','AI Explorers'],
+  d:['يتعرّف طفلك على الذكاء الاصطناعي بالقصص والرسم والألعاب، وأنت بجانبه.','Your child discovers AI through stories, drawing and games, with you beside them.'],
+  pts:[['ما هو الذكاء الاصطناعي، وكيف يتعلّم من الأمثلة','What AI is, and how it learns from examples'],['يسأل أسئلة واضحة ويتحقق من الأجوبة','Asking clear questions and checking the answers'],['يكتب قصة ويصنع لعبة ألغاز للعائلة','Making a story and a riddle game for the family'],['الأشياء الخاصة تبقى خاصة','Private things stay private']],
+  mins:['حوالي ساعتين','About 2 hours'],with:['مع أحد الوالدين','With a parent']},
+ {id:'kids10',cls:'c2',ic:'gear',
+  band:['من 10 إلى 12 سنة','Ages 10 to 12'],t:['صنّاع الذكاء الاصطناعي','AI Makers'],
+  d:['يتعلّم كيف يعمل الذكاء الاصطناعي، ويكتب طلبات ذكية، ويصنع مشروعه الأول.','Learns how AI works, writes smart prompts and makes a first project.'],
+  pts:[['كيف يتعلّم الذكاء الاصطناعي، ولماذا يخطئ','How AI learns, and why it gets things wrong'],['يجعل الذكاء الاصطناعي معلّماً يشرح ويختبره، لا يحلّ عنه','Using AI as a tutor that explains and quizzes, not one that does the homework'],['قصة أو قصة مصوّرة أو مشروع مدرسي','A story, a comic script or a school project'],['الصور المزيفة، والخصوصية، والأمانة في المدرسة','Fake pictures, privacy and honesty at school']],
+  mins:['حوالي ساعتين ونصف','About 2.5 hours'],with:['وأحد الوالدين قريب','A parent nearby']},
+ {id:'kids13',cls:'c3',ic:'bulb',
+  band:['من 13 إلى 16 سنة','Ages 13 to 16'],t:['الذكاء الاصطناعي للمراهقين','AI for Teens'],
+  d:['ذاكر بذكاء، أبدع، وكن آمناً: استخدام ناضج ومسؤول للذكاء الاصطناعي.','Study smarter, create, stay safe: a mature, responsible way to use AI.'],
+  pts:[['كيف تعمل أدوات المحادثة، ونقاط قوتها وحدودها','How chatbots work, their strengths and limits'],['معلّم شخصي للمذاكرة، والتحقق من المصادر','A personal study tutor, and checking sources'],['مشروع إبداعي، وفكرة تطبيق أو لعبة، وعرض فكرة','A creative project, an app or game plan, and a pitch'],['الاحتيال والتزييف العميق والموافقة، والتوازن','Scams, deepfakes, consent and balance']],
+  mins:['حوالي 3 ساعات','About 3 hours'],with:['بإذن أحد الوالدين','With a parent\'s permission']}];
+C.forEach(c=>{const k=X10_JUNIORS.find(x=>x.id===c.id);c.p=k.p;c.was=k.was;c.path=k.path});
+const BUNDLE=X10_JR_BUNDLE;
+const ICON={
+ compass:c=>`<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="${c}" stroke-width="3"/><path d="M24 10l5 14-5 14-5-14z" fill="${c}"/><circle cx="24" cy="24" r="3" fill="#fff"/></svg>`,
+ gear:c=>`<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><g fill="${c}"><path d="M21 4h6l1 6 4 2 5-4 4 4-4 5 2 4 6 1v6l-6 1-2 4 4 5-4 4-5-4-4 2-1 6h-6l-1-6-4-2-5 4-4-4 4-5-2-4-6-1v-6l6-1 2-4-4-5 4-4 5 4 4-2z"/></g><circle cx="24" cy="24" r="7" fill="#fff"/></svg>`,
+ bulb:c=>`<svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5a14 14 0 0 0-8 25.5V36h16v-5.5A14 14 0 0 0 24 5z" fill="${c}"/><rect x="17" y="38" width="14" height="4" rx="2" fill="${c}"/><path d="M20 22l4 5 4-5" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+ shield:`<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="#20396F"/><path d="M8 12l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+ hand:`<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="3" fill="#ED1C24"/><path d="M7 9h10M7 13h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M9 21h6" stroke="#ED1C24" stroke-width="2" stroke-linecap="round"/></svg>`,
+ star:`<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.1l1.5-7L2 9.3l7-.8z" fill="#F6B53C"/></svg>`,
+ tick:`<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#2FA88E"/><path d="M6.5 11.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
+function card(c){const x=en()?1:0;return `<article class="c ${c.cls}" id="${c.id}"><div class="top">${ICON[c.ic]('#fff')}<span class="band">${c.band[x]}</span><h3>${c.t[x]}</h3></div>
+ <div class="bd"><p>${c.d[x]}</p><ul>${c.pts.map(p=>`<li>${p[x]}</li>`).join('')}</ul>
+ <div class="meta"><span>${T('12 درساً','12 lessons')}</span><span>${c.mins[x]}</span><span>${c.with[x]}</span><span>${T('شهادة باسم طفلك','Certificate in your child\'s name')}</span></div>
+ <div class="price"><b>${kd(c.p)}</b><s>${kd(c.was)}</s><span class="lim">${T('لفترة محدودة','Limited time only')}</span></div>
+ <div class="act">${X10Auth.owns(c.id)?`<a class="btn" href="${c.path}">${T('افتح الدورة','Open the course')}</a>`:`<button class="btn red" type="button" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`}</div></div></article>`}
+function render(){document.documentElement.lang=L;document.documentElement.dir=en()?'ltr':'rtl';
+ document.getElementById('lb').textContent=en()?'العربية':'English';document.getElementById('bn').textContent=T('معهد X10','X10 Institute');
+ document.getElementById('acc').textContent=X10Auth.user?T('دوراتي','My courses'):T('حسابي','My account');document.title=T('X10 · AI Juniors: الذكاء الاصطناعي للأطفال','X10 · AI Juniors: AI for kids');
+ document.getElementById('v').innerHTML=`
+ <div class="hero" id="top"><div class="wrap"><div><span class="tag">AI Juniors</span>
+  <h1>${T('الذكاء الاصطناعي لأطفالك، بالطريقة الآمنة','AI for your children, the safe way')}</h1>
+  <p>${T('3 دورات أونلاين قصيرة، لكل عمر دورته: يفهم طفلك الذكاء الاصطناعي، ويبدع به، ويعرف كيف يبقى آمناً. بالعربية والإنجليزية، وبالسرعة التي تناسب عائلتك.','3 short online courses, one for each age: your child understands AI, creates with it and learns to stay safe. In Arabic and English, at your family\'s pace.')}</p>
+  <div class="cta"><a class="btn red" href="#courses">${T('اختر دورة طفلك','Choose your child\'s course')}</a><a class="btn ghost" href="#safe">${T('كيف نحمي طفلك','How we keep your child safe')}</a></div></div>
+  <div class="ages">${C.map(c=>`<a class="age" href="#${c.id}" style="color:#fff;text-decoration:none">${ICON[c.ic](c.cls==='c1'?'#F6B53C':c.cls==='c2'?'#2FA88E':'#8C9BF0')}<div><b>${c.t[en()?1:0]}</b><small>${c.band[en()?1:0]}</small></div></a>`).join('')}</div></div></div>
+ <section><div class="wrap"><h2>${T('لماذا AI Juniors؟','Why AI Juniors?')}</h2><p class="lead">${T('أطفالنا يكبرون مع الذكاء الاصطناعي. الأفضل أن يتعلّموه منّا، بأمان، قبل أن يتعلّموه وحدهم.','Our children are growing up with AI. Better they learn it with us, safely, than alone.')}</p>
+  <div class="why"><div class="w"><div class="ic">${ICON.shield}</div><h3>${T('آمن من البداية','Safe from the start')}</h3><p>${T('الأطفال دون 13 سنة يستخدمون الذكاء الاصطناعي على حساب أحد الوالدين فقط، وهو بجانبهم أو قريب منهم، ويتعلّمون ألّا يشاركوا أي معلومة خاصة.','Under-13s use AI only on a parent\'s account, with the parent beside them or close by, and learn never to share private information.')}</p></div>
+  <div class="w"><div class="ic">${ICON.hand}</div><h3>${T('يتعلّم بيديه، لا بالشاشة فقط','Hands-on, not just screen time')}</h3><p>${T('رسم وتصنيف وتمثيل وكتابة في دفتر. كثير من الأنشطة لا يحتاج إلى شاشة أصلاً.','Drawing, sorting, acting it out and writing in a notebook. Many activities need no screen at all.')}</p></div>
+  <div class="w"><div class="ic">${ICON.star}</div><h3>${T('يبدع، لا ينسخ','Creates, does not copy')}</h3><p>${T('الذكاء الاصطناعي مساعد يشرح ويقترح، وطفلك هو صاحب الفكرة والعمل. ومع كل دورة شهادة باسمه.','AI is a helper that explains and suggests; your child owns the idea and the work. Each course ends with a certificate in their name.')}</p></div></div></div></section>
+ <section style="padding-top:0" id="courses"><div class="wrap"><h2>${T('3 دورات، لكل عمر دورته','3 courses, one for each age')}</h2><p class="lead">${T('12 درساً قصيراً في كل دورة، مع أنشطة واختبارات قصيرة ومشروع نهائي.','12 short lessons in each course, with activities, short quizzes and a final project.')}</p>
+  <div class="courses">${C.map(card).join('')}</div>
+  <div class="bundle"><div><span class="tag">${T('للعائلة','For families')}</span><h3>${T('الدورات الثلاث معاً','All 3 courses together')}</h3><p>${T('لإخوة في أعمار مختلفة، أو لطفل يكبر معها خطوة بخطوة.','For brothers and sisters of different ages, or one child growing with them step by step.')}</p></div>
+  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div class="price"><b>${kd(BUNDLE.p)}</b><s>${kd(BUNDLE.was)}</s></div>${X10Auth.owns('juniors')?`<a class="btn" href="account.html">${T('دوراتي','My courses')}</a>`:`<button class="btn red" type="button" onclick="buy('juniors')">${T('اشترِ الثلاث','Buy all 3')}</button>`}</div></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><h2>${T('كيف تعمل للوالدين','How it works for parents')}</h2><p class="lead">${T('كل شيء من حسابك أنت. لا يحتاج طفلك إلى حساب في أي أداة.','Everything runs from your own account. Your child does not need an account on any AI tool.')}</p>
+  <div class="steps"><div class="st"><b>${T('اختر الدورة','Choose the course')}</b><span>${T('حسب عمر طفلك، واشترها من حسابك في X10.','By your child\'s age, bought on your X10 account.')}</span></div>
+  <div class="st"><b>${T('اجلسا معاً','Sit together')}</b><span>${T('درس قصير في كل جلسة. للأعمار من 7 إلى 12، أنت بجانبه أو قريب منه.','One short lesson per sitting. For ages 7 to 12, you are beside them or close by.')}</span></div>
+  <div class="st"><b>${T('جرّبا وأبدعا','Try and create')}</b><span>${T('أنشطة على الورق، وطلبات جاهزة تكتبونها في أداة على حسابك.','Paper activities, and ready prompts you type into an AI tool on your account.')}</span></div>
+  <div class="st"><b>${T('احتفلا بالشهادة','Celebrate the certificate')}</b><span>${T('بعد الاختبارات القصيرة والمشروع النهائي، شهادة باسم طفلك.','After the short quizzes and the final project, a certificate in your child\'s name.')}</span></div></div></div></section>
+ <section style="padding-top:0" id="safe"><div class="wrap"><h2>${T('قواعد الأمان في كل دورة','The safety rules in every course')}</h2><p class="lead">${T('نعلّمها لطفلك من الدرس الأول، ونكرّرها حتى تصبح عادة.','We teach them from the first lesson and repeat them until they become habits.')}</p>
+  <div class="safe">${[
+   ['دون 13 سنة: على حساب أحد الوالدين فقط، وهو بجانبهم أو قريب منهم.','Under 13: only on a parent\'s account, with the parent beside them or close by.'],
+   ['من 13 سنة: حسب قواعد العمر في كل أداة، وبإذن أحد الوالدين.','From 13: within each tool\'s age rules, with a parent\'s permission.'],
+   ['لا اسم ولا مدرسة ولا عنوان ولا صور ولا كلمات مرور.','No name, school, address, photos or passwords.'],
+   ['الذكاء الاصطناعي أداة، وليس صديقاً ولا شخصاً.','AI is a tool, not a friend or a person.'],
+   ['إذا شعرت بشيء غريب أو مخيف، توقّف وأخبر شخصاً كبيراً تثق به.','If something feels strange or scary, stop and tell a grown-up you trust.'],
+   ['لا صور ولا أصوات لأشخاص حقيقيين.','No pictures or voices of real people.'],
+   ['الذكاء الاصطناعي يساعدك تتعلّم، ولا يحلّ واجبك عنك.','AI helps you learn; it does not do your homework.'],
+   ['تحقّق دائماً: الذكاء الاصطناعي قد يخطئ بثقة.','Always check: AI can be wrong and sound sure.']].map(r=>`<div>${ICON.tick}<span>${en()?r[1]:r[0]}</span></div>`).join('')}</div></div></section>
+ <section style="padding-top:0"><div class="wrap"><h2>${T('أسئلة الوالدين','Parents\' questions')}</h2>
+  ${[
+   ['هل يحتاج طفلي إلى حساب في أداة ذكاء اصطناعي؟','Does my child need an account on an AI tool?','لا. للأعمار من 7 إلى 12 تستخدمون أداة على حسابك أنت وأنت حاضر. للمراهقين، يتبعون قواعد العمر في كل أداة، بإذنك.','No. For ages 7 to 12 you use a tool on your own account while you are there. Teens follow each tool\'s age rules, with your permission.'],
+   ['أي أداة نستخدم؟','Which AI tool do we use?','أي أداة محادثة معروفة مثل ChatGPT أو Claude أو Gemini. الطلبات في الدورة تعمل مع أي منها.','Any well-known chat tool such as ChatGPT, Claude or Gemini. The prompts in the course work with any of them.'],
+   ['كم تستغرق الدورة؟','How long does a course take?','من ساعتين إلى 3 ساعات تقريباً، مقسّمة على 12 درساً قصيراً. معظم العائلات تأخذ درساً أو درسين في الجلسة.','About 2 to 3 hours, split into 12 short lessons. Most families do one or two lessons per sitting.'],
+   ['هل الدورات بالعربية؟','Are the courses in Arabic?','كل دورة بالعربية والإنجليزية، وتبدّل اللغة بضغطة زر في أي وقت.','Every course is in Arabic and English, and you can switch language at any time with one tap.'],
+   ['هل يستطيع طفلي الدراسة وحده؟','Can my child study alone?','دورة 7 إلى 9 تُدرس معك. في دورة 10 إلى 12 يقرأ طفلك وحده ويستخدم أداة الذكاء الاصطناعي على حسابك، وأنت قريب منه طوال الوقت. دورة المراهقين يدرسها وحده.','The 7 to 9 course is done with you. In the 10 to 12 course your child reads alone and uses the AI tool on your account, with you nearby the whole time. Teens study on their own.']].map(q=>`<details><summary>${en()?q[1]:q[0]}</summary><p>${en()?q[3]:q[2]}</p></details>`).join('')}</div></section>`;
+ document.getElementById('ft').innerHTML=`${T('معهد X10 للتدريب الأهلي، الكويت','X10 Institute for Private Training, Kuwait')} · <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a> · <a href="legal.html">${T('الشروط والسياسات','Terms and policies')}</a>`;
+ const d=document.getElementById('cd');if(d.open)renderCO()}
+/* checkout: one course, or the three together */
+let CO={id:null,plan:'one'};
+const cOf=id=>C.find(c=>c.id===id);
+function buy(id){if(!X10Auth.user){location.href='account.html#buy-'+id;return}
+ if(id==='juniors'){if(X10Auth.owns('juniors')){location.href='account.html';return}CO={id:'kids7',plan:'all',only:true}}
+ else{if(X10Auth.owns(id)){location.href=cOf(id).path;return}CO={id,plan:'one'}}
+ renderCO();const d=document.getElementById('cd');if(!d.open)d.showModal()}
+const coItem=()=>CO.plan==='all'?'juniors':CO.id,coTotal=()=>CO.plan==='all'?BUNDLE.p:cOf(CO.id).p;
+function renderCO(){const c=cOf(CO.id),x=en()?1:0;
+ const mail=`mailto:${X10_MAIL}?subject=${encodeURIComponent('X10 order')}&body=${encodeURIComponent('X10 order: '+(CO.plan==='all'?'AI Juniors, all 3 courses':c.t[1])+'. Total: '+kd(coTotal())+'. Account email: '+(X10Auth.user?X10Auth.user.email:''))}`;
+ document.getElementById('cd_in').innerHTML=`<div class="cd-h"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><span class="tag">${T('إتمام الطلب','Checkout')}</span><h3 id="cd_t">${CO.plan==='all'?T('AI Juniors: الدورات الثلاث','AI Juniors: all 3 courses'):c.t[x]}</h3></div>
+ <div class="cd-b" role="radiogroup" aria-label="${T('اختر','Choose')}">
+ ${CO.only?'':`<label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="pl" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><div><b>${c.t[x]}</b><span>${c.band[x]} · ${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span></div><em><s>${kd(c.was)}</s>${kd(c.p)}</em></label>`}
+ <label class="opt ${CO.plan==='all'?'on':''}"><input type="radio" name="pl" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><div><b>${T('الدورات الثلاث معاً','All 3 courses together')}</b><span>${T('للأعمار من 7 إلى 16، لكل أطفالك على حسابك.','Ages 7 to 16, for all your children on your account.')}</span></div><em><s>${kd(BUNDLE.was)}</s>${kd(BUNDLE.p)}</em></label>
+ <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="tot">${kd(coTotal())}</div></div>${X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('اطلب الآن','Request it now')}</button>`:`<a class="btn red" href="${mail}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`}</div>
+ <p class="note">${T('منتجات رقمية تُفتح فور الدفع، لذلك المبيعات نهائية. بإتمام الطلب توافق على','Digital products that open right after payment, so sales are final. By ordering you agree to the')} <a href="legal.html#refund" target="_blank" rel="noopener">${T('الشروط وسياسة الاسترداد','terms and refund policy')}</a>.</p>
+ <div id="ordMsg" role="status"></div>
+ <p class="note">${X10Auth.REAL?T('اضغط «اطلب الآن» ونرسل لك رابط الدفع على بريدك. تُفتح الدورة في حسابك بعد تأكيد الدفع.','Press "Request it now" and we will email you the payment link. The course opens in your account once payment is confirmed.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`)}</p></div>`}
+async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const r=await X10Auth.order([coItem()]);
+ if(r.error){b.disabled=false;m.innerHTML=`<p class="note">${T('تعذّر تسجيل الطلب. راسلنا على','We could not record the request. Write to us at')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;return}
+ b.hidden=true;m.innerHTML=`<div class="okmsg"><b>${T('وصلنا طلبك.','We have your request.')}</b> ${T('سنرسل رابط الدفع إلى بريدك','We will send the payment link to')} <span dir="ltr">${X10Auth.user.email}</span>${T('، وتُفتح الدورة في حسابك بعد تأكيد الدفع.','. The course opens in your account once payment is confirmed.')}</div>`}
+function hashBuy(){const h=location.hash.slice(1);if(/^buy-(kids7|kids10|kids13|juniors)$/.test(h))buy(h.slice(4))}
+addEventListener('hashchange',hashBuy);
+document.getElementById('cd').addEventListener('click',e=>{if(e.target.id==='cd')e.target.close()});
+document.getElementById('lb').onclick=()=>{L=en()?'ar':'en';try{localStorage.setItem('x10_lang',L)}catch(e){}render()};
+render();X10Auth.load().then(()=>{render();hashBuy()},()=>{render()});
+</script></body></html>

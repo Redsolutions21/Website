@@ -168,6 +168,9 @@ footer a{color:var(--navy)}
 .nav .lang{background:rgba(255,255,255,.14);color:#fff}
 @media (max-width:420px){.nav .brand span{font-size:13px}}
 /* AI Juniors banner */
+.frb{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:6px 0 22px;padding:22px 24px;border-radius:20px;color:#fff;background:linear-gradient(120deg,#20396F,#5B7991)}
+.frb h3{margin:6px 0 4px;font-size:22px;color:#fff}.frb p{margin:0;opacity:.95;font-size:16px;max-width:680px}.frb .frt{display:inline-block;background:#ED1C24;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
+.frb .fra{display:flex;gap:10px;flex-wrap:wrap}.frb .fra button{background:#fff;color:#20396F;border:0;border-radius:999px;padding:10px 16px;font-weight:700}
 .jrb{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:22px;padding:22px 24px;border-radius:20px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#E99A12,#2FA88E 55%,#3E50C4)}
 .jrb h3{margin:6px 0 4px;font-size:22px;color:#fff}.jrb p{margin:0;opacity:.95;font-size:16px;max-width:640px}.jrb .jrt{display:inline-block;background:rgba(0,0,0,.2);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700}
 </style></head>
@@ -220,6 +223,7 @@ footer a{color:var(--navy)}
     <div class="wrap">
       <h2 data-i="p_h">دورات الذكاء الاصطناعي أونلاين. اشترِ وابدأ فوراً.</h2>
       <p class="lede" data-i="p_p">دورات ذاتية بالعربي والإنجليزي، تتعلمها بالسرعة اللي تناسبك ومن أي جهاز. بدون حضور، ومع شهادة إتمام.</p>
+      <div class="frb"><div><span class="frt" data-i="fr_t">مجاناً بالكامل</span><h3 data-i="fr_h">ابدأ من الأساس مجاناً: دورتان كاملتان وشهادتان</h3><p data-i="fr_p">قبل أن تدفع لأي دورة، ابدأ بالأساس: ما هو الذكاء الاصطناعي، وكيف تستخدمه دون أن تعرّض بياناتك للخطر. لذلك جعلنا دورتي الأساس مجانيتين بالكامل، مع شهادة إتمام لكل دورة. يكفي حساب مجاني.</p></div><div class="fra"><button type="button" onclick="buy('essentials')" data-i="fr_b1">مقدمة في الذكاء الاصطناعي</button><button type="button" onclick="buy('safe')" data-i="fr_b2">الاستخدام الآمن والمسؤول</button></div></div>
       <div class="filt" id="filt"></div>
       <div class="progs" id="progs"></div>
       <a class="jrb" href="juniors.html"><div><span class="jrt" data-i="jr_t">جديد · AI Juniors</span><h3 data-i="jr_h">دورات الذكاء الاصطناعي لأطفالك، بالطريقة الآمنة</h3><p data-i="jr_p">3 دورات أونلاين قصيرة للأعمار من 7 إلى 9، ومن 10 إلى 12، ومن 13 إلى 16: يفهم الذكاء الاصطناعي، ويبدع به، ويبقى آمناً. ومن هم دون 13 سنة يستخدمونه على حساب أحد الوالدين فقط.</p></div><span class="btn red" data-i="jr_b">تعرّف على AI Juniors</span></a>
@@ -303,7 +307,7 @@ const EN={
  t_h:"An expert in your field? Train with us.",t_p:"We're looking for trainers who use AI tools in their work every day, and who love sharing what they know in a clear, practical way.",
  t1:"Hands-on experience with AI tools",t2:"Able to teach in Arabic; English is a plus",t3:"A passion for practice, not long lectures",t_b:"Send us your profile",
  c_h:"Let's stay in touch",c_p:"To register interest in upcoming courses or to join as a trainer, get in touch.",
- k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",n6:"My account",n7:"For kids",jr_t:"New · AI Juniors",jr_h:"AI courses for your children, the safe way",jr_p:"3 short online courses for ages 7 to 9, 10 to 12 and 13 to 16: understand AI, create with it and stay safe. Under-13s use AI only on a parent's account.",jr_b:"See AI Juniors",
+ k1:"Email",k2:"WhatsApp",k3:"Instagram",n5:"Programmes",n6:"My account",n7:"For kids",fr_t:"Free AI Foundations",fr_h:"Start with the foundations, free: 2 full courses, 2 certificates",fr_p:"Before you pay for any course, start with the basics: what AI is, and how to use it without putting your data at risk. That is why our two foundation courses are fully free, each with a certificate of completion. All you need is a free account.",fr_b1:"Introduction to AI",fr_b2:"Safe and Responsible AI",jr_t:"New · AI Juniors",jr_h:"AI courses for your children, the safe way",jr_p:"3 short online courses for ages 7 to 9, 10 to 12 and 13 to 16: understand AI, create with it and stay safe. Under-13s use AI only on a parent's account.",jr_b:"See AI Juniors",
  p_h:"AI courses online. Buy and start right away.",p_p:"Self-paced courses in Arabic and English, on any device, at your own pace. Nothing to attend, and a certificate at the end.",
  f_name:"Name",f_mob:"Mobile",f_mail:"Email",f_who:"I am",o_ind:"An individual",o_co:"A company",o_tr:"A trainer who'd like to join",
  f_int:"Interested in",o_ns:"Not sure yet",f_msg:"Message (optional)",f_send:"Send",f_hint:"Your email app will open with the message ready. Just tap send.",
@@ -311,15 +315,15 @@ const EN={
  ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website",ftc:"Images are illustrative, created with AI.",cp_h:"For your company: any course at your office",cp_p:"We deliver any course to your team, with examples from your sector and timings that suit you. Priced by number of trainees.",cp_b:"Request a quote"
 };
 /* X10 AI courses. Prices in KWD per person (public courses). In-house company delivery quoted separately. */
-const COURSES=[
+let COURSES=[
 {id:"essentials",price:95,hrs:8,lvl:1,mode:"both",
- ar:{t:"أساسيات الذكاء الاصطناعي للعمل",s:"ابدأ من الصفر واخرج وأنت تستخدم الذكاء الاصطناعي في شغلك كل يوم.",len:"يومان · 8 ساعات",for:"الموظفين وأصحاب الأعمال بدون أي خلفية تقنية",
+ ar:{t:"مقدمة في الذكاء الاصطناعي",s:"ابدأ من الصفر واخرج وأنت تستخدم الذكاء الاصطناعي في شغلك كل يوم.",len:"يومان · 8 ساعات",for:"الموظفين وأصحاب الأعمال بدون أي خلفية تقنية",
   mods:[["كيف يفكر الذكاء الاصطناعي",["ما هو النموذج اللغوي وكيف يعمل","ما يستطيعه وما لا يستطيعه","مقارنة ChatGPT وClaude وGemini وCopilot"]],
         ["أول طلب صحيح",["هيكل الطلب الواضح: الدور والمهمة والسياق والشكل","تحسين الإجابة خطوة بخطوة","10 قوالب جاهزة للعمل اليومي"]],
         ["تطبيق على مهامك",["كتابة الإيميلات والردود بالعربي والإنجليزي","تلخيص الملفات والاجتماعات","البحث والتحقق من المعلومة"]],
         ["الاستخدام الآمن",["ما الذي لا تضعه في الذكاء الاصطناعي","مراجعة النتائج قبل اعتمادها","خطتك الشخصية لأول 30 يوماً"]]],
   out:["توفير ساعات أسبوعياً في الكتابة والتلخيص","مكتبة طلبات جاهزة لعملك","استخدام آمن يحمي بيانات شركتك"]},
- en:{t:"AI Essentials for Work",s:"Start from zero and leave using AI in your job every day.",len:"2 days · 8 hours",for:"Employees and business owners, no technical background",
+ en:{t:"Introduction to AI",s:"Start from zero and leave using AI in your job every day.",len:"2 days · 8 hours",for:"Employees and business owners, no technical background",
   mods:[["How AI thinks",["What a language model is and how it works","What it can and can't do","ChatGPT, Claude, Gemini and Copilot compared"]],
         ["Your first good prompt",["Prompt structure: role, task, context, format","Improving answers step by step","10 ready templates for daily work"]],
         ["Apply it to your tasks",["Emails and replies in Arabic and English","Summarising files and meetings","Research and fact-checking"]],
@@ -456,6 +460,8 @@ const COURSES=[
 const LV={1:["مبتدئ","Beginner"],2:["متوسط","Intermediate"],3:["متقدم","Advanced"]};
 /* ONLINE SELF-PACED: price (KWD), ready = full content built and deliverable */
 const ONLINE=Object.fromEntries(X10_CATALOG.filter(c=>!c.review).map(c=>[c.id,{p:c.p,was:c.was,ready:!!c.live,free:c.free||'',ar:`12 درساً · ${c.mar} مع التطبيق`,en:`12 lessons · ${c.men.replace(/^About/,'about')} with practice`}]));
+/* only courses on sale are shown; free courses come first */
+COURSES=COURSES.filter(c=>ONLINE[c.id]).sort((x,y)=>(ONLINE[x.id].p===0?0:1)-(ONLINE[y.id].p===0?0:1));
 const off=o=>Math.round(100*(1-o.p/o.was));
 const pr=o=>o.p===0?`<s class="was ltr">${kd(o.was)}</s> <span>${T('مجاناً','Free')}</span>`:`<s class="was ltr">${kd(o.was)}</s> <span class="ltr">${kd(o.p)}</span> <span class="offb ltr">-${off(o)}%</span>`;
 const lim=o=>o.p===0?T('دورة كاملة مجاناً، بحساب مجاني','A full course, free with a free account'):T('لفترة محدودة','Limited time only');
@@ -493,9 +499,9 @@ function renderProgs(){renderFilt();const el=document.getElementById('progs');
   <div class="row"><div class="price">${pr(O)}<small>${lim(O)}</small></div></div>
   <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
  const sel=document.getElementById('r_int'),cur=sel.value;
- sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (all 10 courses)">${T('الوصول الكامل لجميع الدورات','All-Access, all 10 courses')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
+ sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (every course)">${T('الوصول الكامل لجميع الدورات','All-Access, every course')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
  if(cur)sel.value=cur}
-function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (all 10 courses)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
+function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (every course)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
 function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
  document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
  <div class="bd"><img src="photos/${c.id}.jpg?v=2" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
@@ -527,7 +533,7 @@ function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one
  ${CO.lib?`<div class="opt on"><b>${T('مكتبة الطلبات','Prompt Library')}</b><span>${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي.','50 ready work prompts in Arabic and English.')}</span><em class="ltr">${kd(BUMP.p)}</em></div>`:`
  <div class="plans" role="radiogroup" aria-label="${T('اختر الباقة','Choose your plan')}">
   ${own?'':`<label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="plan" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><b>${L.t}</b><span>${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span><em><s class="was ltr">${kd(ONLINE[CO.id].was)}</s> <span class="ltr">${kd(one)}</span></em></label>`}
-  <label class="opt up ${CO.plan==='all'?'on':''}"><input type="radio" name="plan" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><span class="badge">${T('الأوفر','Best value')}</span><b>${T('الوصول الكامل: الدورات العشر','All-Access: all 10 courses')}</b><span>${ALLLIVE?T(`قيمتها ${kd(ALL.was)}. الدورات العشر كلها تفتح لك فور الدفع.`,`Worth ${kd(ALL.was)}. All 10 courses open for you right after payment.`):T(`قيمتها ${kd(ALL.was)}. تبدأ بهذه الدورة اليوم، وتفتح لك كل دورة جديدة يوم إطلاقها بدون دفع إضافي.`,`Worth ${kd(ALL.was)}. Start with this course today; every other course unlocks for you the day it launches, at no extra cost.`)}${cr?' '+T(`خصمنا لك ما دفعته في دوراتك: ${kd(cr)}.`,`We have credited what you paid for your courses: ${kd(cr)}.`):''}</span><em><s class="was ltr">${kd(ALL.was)}</s> <span class="ltr">${kd(allPrice())}</span></em></label>
+  <label class="opt up ${CO.plan==='all'?'on':''}"><input type="radio" name="plan" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><span class="badge">${T('الأوفر','Best value')}</span><b>${T('الوصول الكامل: جميع الدورات','All-Access: every course')}</b><span>${ALLLIVE?T(`قيمتها ${kd(ALL.was)}. جميع دورات الكبار تفتح لك فور الدفع (دورات AI Juniors تُشترى منفصلة).`,`Worth ${kd(ALL.was)}. Every adult course opens for you right after payment (AI Juniors is sold separately).`):T(`قيمتها ${kd(ALL.was)}. تبدأ بهذه الدورة اليوم، وتفتح لك كل دورة جديدة يوم إطلاقها بدون دفع إضافي.`,`Worth ${kd(ALL.was)}. Start with this course today; every other course unlocks for you the day it launches, at no extra cost.`)}${cr?' '+T(`خصمنا لك ما دفعته في دوراتك: ${kd(cr)}.`,`We have credited what you paid for your courses: ${kd(cr)}.`):''}</span><em><s class="was ltr">${kd(ALL.was)}</s> <span class="ltr">${kd(allPrice())}</span></em></label>
  </div>
  ${X10Auth.owns('lib')?'':`<label class="bump"><input type="checkbox" ${CO.bump?'checked':''} onchange="CO.bump=this.checked;renderCO()"><span><b>${T('نعم، أضفها لطلبي','Yes, add it to my order')} <s class="was ltr">${kd(BUMP.was)}</s> <span class="ltr">+${kd(BUMP.p)}</span></b>${isEn()?BUMP.en:BUMP.ar}</span></label>`}`}
  <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="price ltr">${kd(coTotal())}</div></div>
@@ -537,7 +543,7 @@ function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one
 async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const r=await X10Auth.order(coKey().split('+'));
  if(r.error){b.disabled=false;m.innerHTML=`<p class="inc">${T('تعذّر تسجيل الطلب. راسلنا على','We could not record the request. Write to us at')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;return}
  b.hidden=true;m.innerHTML=`<p class="inc" style="background:#E8F6EE;border:1px solid #9ED3B4;border-radius:10px;padding:8px 12px;color:#14213D"><b>${T('وصلنا طلبك.','We have your request.')}</b> ${T('سنرسل رابط الدفع إلى بريدك','We will send the payment link to')} <span dir="ltr">${X10Auth.user.email}</span>${T('، ويفتح مشتراك في حسابك بعد تأكيد الدفع.','. Your purchase opens in your account once payment is confirmed.')}</p>`}
-function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':(CO.plan==='all'?(credit()?'Upgrade to All-Access':'All-Access (all 10 courses)'):c.en.t)}${CO.bump&&!CO.lib?' + Prompt Library':''}. Total: ${kd(coTotal())}. Account email: ${X10Auth.user?X10Auth.user.email:''}`}
+function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':(CO.plan==='all'?(credit()?'Upgrade to All-Access':'All-Access (every course)'):c.en.t)}${CO.bump&&!CO.lib?' + Prompt Library':''}. Total: ${kd(coTotal())}. Account email: ${X10Auth.user?X10Auth.user.email:''}`}
 function hashOffer(){const h=location.hash.slice(1);if(!/^(buy-|offer-)/.test(h))return;
  const mine=X10_CATALOG.find(c=>c.live&&!c.review&&X10Auth.owned.includes(c.id)),first=(mine||X10_CATALOG.find(c=>c.live)||{id:'essentials'}).id;
  if(h==='offer-all'||h==='buy-all')return buy(first,{plan:'all'});

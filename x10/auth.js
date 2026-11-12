@@ -28,8 +28,10 @@ const X10Auth=(()=>{
  async function signOut(){if(!REAL){const d=rd();d.cur=null;wr(d)}else{const c=await client();await c.auth.signOut()}cache={user:null,owned:[]}}
  /* demo only: in real mode purchases are written by the payment webhook, never by the browser */
  function demoGrant(items){if(REAL)return;const d=rd();const u=d.cur&&d.users[d.cur];if(!u)return;u.owned=[...new Set([...(u.owned||[]),...items])];wr(d);cache.owned=u.owned}
- /* real mode only: paid course pages come from a private bucket that only owners can read */
- async function course(id){if(!REAL)return null;const c=await client();const {data,error}=await c.storage.from('courses').download(id+'.html');if(error||!data)return null;return await data.text()}
+ /* real mode only: paid pages are on the site encrypted; Supabase gives the key only to an account that owns the product */
+ async function course(id){if(!REAL)return null;const c=await client();const {data,error}=await c.from('my_course_keys').select('key').eq('slug',id).maybeSingle();if(error||!data||!data.key)return null;
+  const r=await fetch(new URL('d/'+id+'.txt',location.href));if(!r.ok)return null;const b=s=>Uint8Array.from(atob(s),x=>x.charCodeAt(0)),raw=b((await r.text()).trim());
+  const k=await crypto.subtle.importKey('raw',b(data.key),'AES-GCM',false,['decrypt']);return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:raw.slice(0,12)},k,raw.slice(12)))}
  async function resetPassword(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resetPasswordForEmail(email.trim().toLowerCase(),{redirectTo:location.origin+location.pathname});return error?{error:error.message}:{}}
  async function setPassword(password){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.updateUser({password});return error?{error:error.message}:{}}
  const owns=i=>cache.owned.includes(i)||(i!=='lib'&&cache.owned.includes('all'));

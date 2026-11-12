@@ -34,6 +34,14 @@ const X10Auth=(()=>{
   const k=await crypto.subtle.importKey('raw',b(data.key),'AES-GCM',false,['decrypt']);return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:raw.slice(0,12)},k,raw.slice(12)))}
  async function resetPassword(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resetPasswordForEmail(email.trim().toLowerCase(),{redirectTo:location.origin+location.pathname});return error?{error:error.message}:{}}
  async function setPassword(password){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.updateUser({password});return error?{error:error.message}:{}}
+ /* a course priced at zero can be claimed by any signed-in account; the server checks the price */
+ async function claimFree(id){if(!REAL){demoGrant([id]);return {}}const c=await client();const {error}=await c.rpc('claim_free',{p_slug:id});if(error)return {error:error.message};await load();return {}}
+ /* records an order request; the server works out the amount. Payment is confirmed separately */
+ async function order(items){if(!REAL)return {ref:'demo'};const c=await client();const {data,error}=await c.rpc('request_order',{p_slugs:items});return error?{error:error.message}:{ref:data}}
+ /* progress follows the account: the browser copy and the account copy are merged, never overwritten */
+ function merge(l,r){if(!l)return r;if(!r)return l;const o=Object.assign({},r,l);o.done=Object.assign({},r.done||{},l.done||{});o.notes=Object.assign({},r.notes||{},l.notes||{});o.quiz=Object.assign({},r.quiz||{});for(const k in (l.quiz||{}))o.quiz[k]=Math.max(o.quiz[k]||0,l.quiz[k]||0);return o}
+ async function pullProgress(){if(!REAL||!cache.user)return;try{const c=await client();const {data}=await c.from('progress').select('course,data');for(const r of data||[]){let l=null;try{l=JSON.parse(localStorage.getItem(r.course)||'null')}catch(e){}localStorage.setItem(r.course,JSON.stringify(merge(l,r.data)))}}catch(e){}}
+ let pt=null;function pushProgress(key){if(!REAL||!cache.user)return;clearTimeout(pt);pt=setTimeout(async()=>{try{const c=await client();const {data:{user}}=await c.auth.getUser();if(!user)return;await c.from('progress').upsert({user_id:user.id,course:key,data:JSON.parse(localStorage.getItem(key)||'{}'),updated_at:new Date().toISOString()})}catch(e){}},1500)}
  const owns=i=>cache.owned.includes(i)||(i!=='lib'&&cache.owned.includes('all'));
- return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,setPassword,get user(){return cache.user},get owned(){return cache.owned}}
+ return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,setPassword,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

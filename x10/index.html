@@ -274,7 +274,7 @@ footer a{color:var(--navy)}
   </section>
 </main>
 <dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
-<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور: Pexels.</span></span></div></footer>
+<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور توضيحية مولّدة بالذكاء الاصطناعي.</span></span></div></footer>
 
 <script src="auth.js"></script>
 <script src="catalog.js"></script>
@@ -303,7 +303,7 @@ const EN={
  f_name:"Name",f_mob:"Mobile",f_mail:"Email",f_who:"I am",o_ind:"An individual",o_co:"A company",o_tr:"A trainer who'd like to join",
  f_int:"Interested in",o_ns:"Not sure yet",f_msg:"Message (optional)",f_send:"Send",f_hint:"Your email app will open with the message ready. Just tap send.",
  ftp:"Part of Red Solutions Consulting.",
- ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website",ftc:"Photos: Pexels.",cp_h:"For your company: any course at your office",cp_p:"We deliver any course to your team, with examples from your sector and timings that suit you. Priced by number of trainees.",cp_b:"Request a quote"
+ ft:"© 2026 X10 Institute for Private Training. Kuwait.",ftl:"Visit the website",ftc:"Images are illustrative, created with AI.",cp_h:"For your company: any course at your office",cp_p:"We deliver any course to your team, with examples from your sector and timings that suit you. Priced by number of trainees.",cp_b:"Request a quote"
 };
 /* X10 AI courses. Prices in KWD per person (public courses). In-house company delivery quoted separately. */
 const COURSES=[
@@ -452,7 +452,9 @@ const LV={1:["مبتدئ","Beginner"],2:["متوسط","Intermediate"],3:["متق
 /* ONLINE SELF-PACED: price (KWD), ready = full content built and deliverable */
 const ONLINE=Object.fromEntries(X10_CATALOG.filter(c=>!c.review).map(c=>[c.id,{p:c.p,was:c.was,ready:!!c.live,free:c.free||'',ar:`12 درساً · ${c.mar} مع التطبيق`,en:`12 lessons · ${c.men.replace(/^About/,'about')} with practice`}]));
 const off=o=>Math.round(100*(1-o.p/o.was));
-const pr=o=>`<s class="was ltr">${kd(o.was)}</s> <span class="ltr">${kd(o.p)}</span> <span class="offb ltr">-${off(o)}%</span>`;
+const pr=o=>o.p===0?`<s class="was ltr">${kd(o.was)}</s> <span>${T('مجاناً','Free')}</span>`:`<s class="was ltr">${kd(o.was)}</s> <span class="ltr">${kd(o.p)}</span> <span class="offb ltr">-${off(o)}%</span>`;
+const lim=o=>o.p===0?T('دورة كاملة مجاناً، بحساب مجاني','A full course, free with a free account'):T('لفترة محدودة','Limited time only');
+const bl=o=>o.p===0?T('ابدأ مجاناً','Start free'):T('اشترِ الآن','Buy now');
 const BUMP={p:X10_LIB.p,was:X10_LIB.was,ar:"أضف «مكتبة الطلبات»: 50 طلباً جاهزاً للعمل بالعربي والإنجليزي، تصلك فوراً مع الدورة.",en:"Add the Prompt Library: 50 ready work prompts in Arabic and English, delivered instantly with your course."};
 const ALL=X10_ALL;
 const ALLLIVE=X10_CATALOG.filter(c=>!c.review).every(c=>c.live);
@@ -461,17 +463,17 @@ const credit=()=>Math.min(ALL.p,X10_CATALOG.filter(c=>c.live&&!c.review&&X10Auth
 /* UPayments payment links: paste each link here when ready. Key = what the customer buys:
    "<course id>", "<course id>+lib", "all", "all+lib", "lib". Empty = the order goes by email. */
 const PAY={"essentials":"","essentials+lib":"","all":"","all+lib":"","lib":""};
-/* Course photos (Pexels, free licence) and what each one shows */
-const PH={essentials:['Using an AI assistant on a laptop for everyday work','استخدام مساعد ذكاء اصطناعي على اللابتوب في العمل اليومي'],
-prompt:['Typing a prompt into an AI chat tool','كتابة طلب في أداة محادثة ذكاء اصطناعي'],
-office:['Office work: files, documents and a laptop','عمل مكتبي: ملفات ومستندات ولابتوب'],
-finance:['Accounting work: statements, a calculator and figures','عمل محاسبي: كشوفات وآلة حاسبة وأرقام'],
-marketing:['Planning a social media strategy','تخطيط استراتيجية لوسائل التواصل'],
-creative:['Editing video at a creative workstation','مونتاج فيديو في محطة عمل إبداعية'],
-data:['A dashboard of charts on a laptop','لوحة رسوم بيانية على لابتوب'],
-agents:['A robot hand reaching a human hand: AI working alongside people','يد روبوت تمتد ليد إنسان: الذكاء الاصطناعي يعمل مع الناس'],
-leaders:['A leader presenting a plan to the team','قائد يعرض خطة على فريقه'],
-safe:['A padlock in hand: keeping data protected','قفل في اليد: حماية البيانات']};
+/* Course images (illustrative, created with AI: the people shown are not real) and what each one shows */
+const PH={essentials:['An employee using an AI assistant on his laptop','موظف يستخدم مساعد ذكاء اصطناعي على اللابتوب'],
+prompt:['Typing a request into an AI chat tool','كتابة طلب في أداة محادثة ذكاء اصطناعي'],
+office:['Office work on a laptop: a spreadsheet and a slide','عمل مكتبي على اللابتوب: جدول وشريحة عرض'],
+finance:['Financial charts and a spreadsheet on an iPad and a laptop','رسوم مالية وجدول على آيباد ولابتوب'],
+marketing:['Planning a month of content at the desk','تخطيط محتوى شهر كامل على المكتب'],
+creative:['Editing a video at a creative workstation','مونتاج فيديو في محطة عمل إبداعية'],
+data:['A data dashboard on an iPad','لوحة بيانات على آيباد'],
+agents:['An automation workflow on a laptop screen','سير عمل مؤتمت على شاشة لابتوب'],
+leaders:['A manager presenting a plan to the team','مدير يعرض خطة على فريقه'],
+safe:['Reviewing a usage policy, with data protected','مراجعة سياسة الاستخدام مع حماية البيانات']};
 function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
 let FILT='all';
 const isEn=()=>document.documentElement.lang==='en';
@@ -483,25 +485,26 @@ function renderProgs(){renderFilt();const el=document.getElementById('progs');
  const list=COURSES.filter(c=>FILT==='all'||(FILT==='ready'?ONLINE[c.id].ready:String(c.lvl)===FILT)).sort((x,y)=>(ONLINE[y.id].ready?1:0)-(ONLINE[x.id].ready?1:0));
  el.innerHTML=list.map(c=>{const L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
   return `<article class="prog${O.ready?' live':''}">${cover(c.id)}<div class="tags"><span class="m">${O.ready?T('متاحة الآن','Available now'):T('قريباً','Coming soon')}</span><span>${T('أونلاين · بالسرعة اللي تناسبك','Online · self-paced')}</span><span>${LV[c.lvl][i]}</span></div><h3>${L.t}</h3><p class="s">${L.s}</p><div class="meta">${O.ready?(isEn()?O.en:O.ar):T('4 وحدات · شهادة إتمام','4 modules · certificate')}</div>
-  <div class="row"><div class="price">${pr(O)}<small>${T('لفترة محدودة','Limited time only')}</small></div></div>
-  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
+  <div class="row"><div class="price">${pr(O)}<small>${lim(O)}</small></div></div>
+  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
  const sel=document.getElementById('r_int'),cur=sel.value;
  sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (all 10 courses)">${T('الوصول الكامل لجميع الدورات','All-Access, all 10 courses')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
  if(cur)sel.value=cur}
 function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (all 10 courses)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
 function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
  document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
- <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${T('لفترة محدودة','Limited time only')}<b>${pr(O)}</b></div></div>
+ <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
  <div><h4>${T('لمن هذه الدورة','Who it is for')}</h4><p class="inc" style="color:var(--ink)">${L.for}</p></div>
  <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
  <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>
  <p class="inc">${T('يشمل: دروس قصيرة مع أمثلة وطلبات جاهزة للنسخ، تمارين على عملك، اختبار بعد كل وحدة، وشهادة إتمام من معهد X10. لا تحتاج تحضر أي جلسة.','Includes: short lessons with examples and copy-ready prompts, exercises on your own work, a quiz after each module and an X10 certificate. No sessions to attend.')}</p>
- <div class="go"><div class="price">${pr(O)}</div>${O.ready?`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`:`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
+ <div class="go"><div class="price">${pr(O)}</div>${O.ready?`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`:`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
  const d=document.getElementById('cd');if(!d.open)d.showModal()}
 /* ---------- checkout: order bump + upsell ---------- */
 let CO={id:null,plan:'one',bump:false,lib:false};
 function buy(id,opts){opts=opts||{};
  if(!X10Auth.user){location.href='account.html#buy-'+(opts.lib?'lib':opts.plan==='all'?'all':id);return}
+ const FC=x10Course(id);if(FC&&FC.p===0&&!opts.lib&&opts.plan!=='all'){if(X10Auth.owns(id)){location.href=FC.path;return}X10Auth.claimFree(id).then(r=>{location.href=r&&r.error?'account.html':FC.path});return}
  CO=Object.assign({id,plan:'one',bump:false,lib:false},opts);
  if(X10Auth.owns('all')&&!CO.lib){location.href='account.html';return}
  if(CO.lib&&X10Auth.owns('lib')){location.href='account.html';return}
@@ -523,9 +526,12 @@ function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one
  </div>
  ${X10Auth.owns('lib')?'':`<label class="bump"><input type="checkbox" ${CO.bump?'checked':''} onchange="CO.bump=this.checked;renderCO()"><span><b>${T('نعم، أضفها لطلبي','Yes, add it to my order')} <s class="was ltr">${kd(BUMP.was)}</s> <span class="ltr">+${kd(BUMP.p)}</span></b>${isEn()?BUMP.en:BUMP.ar}</span></label>`}`}
  <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="price ltr">${kd(coTotal())}</div></div>
- ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:`<a class="btn red" href="${order}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`}</div>
- ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تفتح دورتك في حسابك فوراً.','Secure payment by UPayments: KNET or card. Your course opens in your account right after payment.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`)}</p>
+ ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:(X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('اطلب الآن','Request it now')}</button>`:`<a class="btn red" href="${order}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`)}</div><div id="ordMsg" role="status"></div>
+ ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تفتح دورتك في حسابك فوراً.','Secure payment by UPayments: KNET or card. Your course opens in your account right after payment.'):(X10Auth.REAL?T('اضغط «اطلب الآن» ونرسل لك رابط الدفع على بريدك.','Press "Request it now" and we will email you the payment link.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`))}</p>
  </div>`}
+async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const r=await X10Auth.order(coKey().split('+'));
+ if(r.error){b.disabled=false;m.innerHTML=`<p class="inc">${T('تعذّر تسجيل الطلب. راسلنا على','We could not record the request. Write to us at')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;return}
+ b.hidden=true;m.innerHTML=`<p class="inc" style="background:#E8F6EE;border:1px solid #9ED3B4;border-radius:10px;padding:8px 12px;color:#14213D"><b>${T('وصلنا طلبك.','We have your request.')}</b> ${T('سنرسل رابط الدفع إلى بريدك','We will send the payment link to')} <span dir="ltr">${X10Auth.user.email}</span>${T('، ويفتح مشتراك في حسابك بعد تأكيد الدفع.','. Your purchase opens in your account once payment is confirmed.')}</p>`}
 function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':(CO.plan==='all'?(credit()?'Upgrade to All-Access':'All-Access (all 10 courses)'):c.en.t)}${CO.bump&&!CO.lib?' + Prompt Library':''}. Total: ${kd(coTotal())}. Account email: ${X10Auth.user?X10Auth.user.email:''}`}
 function hashOffer(){const h=location.hash.slice(1);if(!/^(buy-|offer-)/.test(h))return;
  const mine=X10_CATALOG.find(c=>c.live&&!c.review&&X10Auth.owned.includes(c.id)),first=(mine||X10_CATALOG.find(c=>c.live)||{id:'essentials'}).id;

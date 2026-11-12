@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>X10 · الشروط والسياسات</title>
+<style>
+:root{--navy:#14264F;--red:#ED1C24;--ink:#14213D;--mute:#5A6478;--tile:#EEF1F6}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;background:var(--tile);color:var(--ink);line-height:1.85}
+header{background:var(--navy);color:#fff}header .in{max-width:860px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+header a{color:#fff;text-decoration:none;font-weight:700}header button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;padding:6px 16px;font:inherit;cursor:pointer}
+main{max-width:860px;margin:auto;padding:26px 20px 60px}h1{font-size:30px;margin:8px 0 4px}h2{font-size:21px;margin:0 0 8px;color:var(--navy)}
+.card{background:#fff;border-radius:18px;padding:22px 24px;margin-top:16px}.card ul{margin:6px 0;padding-inline-start:22px}.card li{margin:4px 0}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}nav.toc a{background:#fff;border-radius:999px;padding:5px 14px;color:var(--navy);text-decoration:none;font-weight:600;font-size:14px}
+.m{color:var(--mute);font-size:14px}.ltr{direction:ltr;unicode-bidi:isolate}.todo{background:#FFF8E1;border:1px dashed #E0A800;border-radius:8px;padding:0 8px}
+</style></head>
+<body><header><div class="in"><a id="home" href="./"></a><button id="lb" type="button"></button></div></header>
+<main id="v"></main>
+<script>
+/* Company details. build_store.py refuses to ship this page to the live site while any value below is empty. */
+const LEGAL={name_ar:"شركة رد سولو شنز للاستشارات الإدارية (شركة الشخص الواحد)",name_en:"Red Solutions Consulting Co. (single-person company)",licence:"2021/15270",address_ar:"مكتب 15/4، الدور 7، مبنى سوق الكويت، شارع عُمان، القبلة، الكويت",address_en:"Office 15/4, Floor 7, Souq Al-Kuwait Building, Oman Street, Qibla, Kuwait",refund_days:7,updated:"2026-11-12"};
+/* DRAFT: set to false only after Ebrahim has edited and approved the text (planned before payments go live). */
+const DRAFT=false;
+const MAIL='x10@solutionsbyred.com';
+let L='ar';try{const g=localStorage.getItem('x10_lang');if(g==='en'||g==='ar')L=g}catch(e){}
+const en=()=>L==='en',T=(a,e)=>en()?e:a;
+const fill=(v,what)=>v?v:`<span class="todo">${T('يُستكمل: ','To be completed: ')}${what}</span>`;
+function render(){document.documentElement.lang=L;document.documentElement.dir=en()?'ltr':'rtl';document.title=T('X10 · الشروط والسياسات','X10 · Terms and policies');
+ document.getElementById('lb').textContent=en()?'العربية':'English';document.getElementById('home').textContent=T('معهد X10 · العودة للموقع','X10 Institute · Back to the site');
+ const co=fill(en()?LEGAL.name_en:LEGAL.name_ar,T('الاسم القانوني للشركة','legal company name')),lic=fill(LEGAL.licence,T('رقم الترخيص التجاري','commercial licence number')),ad=fill(en()?LEGAL.address_en:LEGAL.address_ar,T('عنوان المكتب','office address')),d=LEGAL.refund_days;
+ const mail=`<a class="ltr" href="mailto:${MAIL}">${MAIL}</a>`;
+ const S=en()?[
+ ['about','About us',`<p>X10 Institute for Private Training is a training institute in Kuwait, operated by ${co} (commercial licence ${lic}). We teach people and companies how to use artificial intelligence in their real work, through instructor-led courses and self-paced online courses in Arabic and English.</p>`],
+ ['contact','Contact us',`<p>Email: ${mail}<br>Website: <span class="ltr">www.solutionsbyred.com/x10</span><br>Instagram: <span class="ltr">@x10academy.ai</span><br>Address: ${ad}</p><p>We reply to emails on working days, Sunday to Thursday.</p>`],
+ ['terms','Terms and conditions',`<p>These terms apply when you create an account or buy an online course or the Prompt Library from X10. By creating an account or placing an order you accept them.</p>
+ <ul><li><b>What you buy.</b> A self-paced online course is a set of written lessons, ready prompts, exercises and quizzes, with a certificate of completion. Nothing is shipped and there is no live session unless the course page says so.</li>
+ <li><b>Your account.</b> Give your correct name and email, keep your password private, and use one account per person. An account may not be shared, sold or transferred.</li>
+ <li><b>Prices and payment.</b> Prices are in Kuwaiti dinars (KWD) and are the ones shown on the site when you order. Limited-time prices may end without notice, but an order already paid keeps its price. Payment is made through a licensed payment provider in Kuwait. We do not see or store your card details.</li>
+ <li><b>Access.</b> Your course opens in your account once your payment is confirmed. You keep access for as long as X10 offers the course on this platform. If we ever retire a course you bought, we will tell you by email at least 30 days before.</li>
+ <li><b>Licence.</b> The content is for your personal learning. You may use the prompts and templates in your own work. You may not copy, publish, record, resell or share the lessons, or let other people use your account.</li>
+ <li><b>Certificate.</b> The certificate confirms that you completed the course on this platform. It is not an academic degree or a government-accredited qualification.</li>
+ <li><b>What we do not promise.</b> The courses are educational. AI tools change often and their answers can be wrong, so you remain responsible for checking any result and for following your employer's rules. We do not guarantee a specific result, job or saving.</li>
+ <li><b>Misuse.</b> We may suspend an account that shares access, copies content or abuses the service. In that case no refund is due.</li>
+ <li><b>Our liability.</b> To the extent the law allows, our liability for any claim related to a purchase is limited to the amount you paid for it.</li>
+ <li><b>Changes.</b> We may update these terms. The date at the bottom of this page shows the latest version. Changes do not reduce the rights of an order already paid.</li>
+ <li><b>Law.</b> These terms are governed by the laws of the State of Kuwait, and its courts have jurisdiction.</li></ul>`],
+ ['delivery','Delivery policy',`<p>Everything we sell online is digital. Nothing is shipped.</p><ul><li>Your course or library appears under "My courses" in your account as soon as your payment is confirmed.</li><li>If you paid and your purchase has not opened within one working day, write to ${mail} with the email you used and we will fix it.</li><li>You can study from any device by logging in to your account. Your progress is saved to your account, so you can continue on another device.</li></ul>`],
+ ['refund','Refund and cancellation policy',`<p>Our courses and the Prompt Library are digital products that open in your account right after payment. For that reason, <b>all sales are final and we do not offer refunds</b> once a purchase is paid, except in the cases below. You can take the course Safe and Responsible AI in full, free, to see how our courses work before you buy.</p><ul><li><b>Paid twice or charged in error?</b> We refund the extra amount in full at any time.</li><li><b>Access problem we cannot fix?</b> If we cannot give you working access within 5 working days of your report to ${mail}, we refund the full amount.</li><li><b>Where the law requires it.</b> Nothing in this policy removes a right that Kuwaiti law gives you.</li><li><b>How refunds are paid.</b> Refunds go back to the original payment method. The time it takes to appear depends on your bank.</li><li><b>After a refund</b> access to that course or library is removed from your account.</li><li><b>Cancelling an order.</b> An order that has not been paid can be cancelled at any time by not completing the payment.</li></ul>`],
+ ['privacy','Privacy policy',`<p>This explains what we collect when you use the X10 online courses and what we do with it.</p>
+ <ul><li><b>What we collect.</b> Your name, email and, if you give it, your mobile number; the courses you bought; and the payment reference we receive from the payment provider. We never receive your card number.</li>
+ <li><b>Your progress.</b> Your lesson progress, quiz results and notes are saved in your browser and in your account, so you can continue on any device. Your language choice stays on your device only.</li>
+ <li><b>Why we use it.</b> To create your account, open the courses you bought, answer your messages and send receipts and service notices. We send marketing messages only if you agreed to receive them, and you can stop them at any time.</li>
+ <li><b>Who processes it for us.</b> Your account data is stored with Supabase, our database provider, on servers in the European Union (Frankfurt). Account emails, such as login and password codes, are sent through Google. Payments are handled by a payment provider licensed in Kuwait. The website files are hosted on GitHub Pages, which may keep standard technical logs such as IP addresses.</li>
+ <li><b>What we never do.</b> We do not sell your data and we do not share it with advertisers.</li>
+ <li><b>How long we keep it.</b> For as long as your account is open, and afterwards only for as long as accounting and legal rules require for payment records.</li>
+ <li><b>Your choices.</b> Write to ${mail} to see, correct or delete your data, or to close your account. We answer within 30 days.</li>
+ <li><b>Cookies.</b> We do not use advertising or tracking cookies. The site only stores what it needs to keep you logged in and remember your language.</li>
+ <li><b>Age.</b> The courses are for adults. Anyone under 18 needs a parent or guardian to buy and to agree to these terms.</li>
+ <li><b>Security.</b> Access to the database is protected so that each account can read only its own data. No online service can promise perfect security; if a breach ever affects your data, we will tell you.</li></ul>`]]
+ :[
+ ['about','من نحن',`<p>معهد X10 للتدريب الأهلي معهد تدريب في الكويت، تشغّله ${co} (ترخيص تجاري رقم ${lic}). نعلّم الأفراد والشركات استخدام الذكاء الاصطناعي في عملهم الفعلي، عبر دورات يقدّمها مدرّبون ودورات ذاتية أونلاين، بالعربية والإنجليزية.</p>`],
+ ['contact','تواصل معنا',`<p>البريد الإلكتروني: ${mail}<br>الموقع: <span class="ltr">www.solutionsbyred.com/x10</span><br>إنستغرام: <span class="ltr">@x10academy.ai</span><br>العنوان: ${ad}</p><p>نرد على الرسائل في أيام العمل، من الأحد إلى الخميس.</p>`],
+ ['terms','الشروط والأحكام',`<p>تسري هذه الشروط عند إنشاء حساب أو شراء دورة أونلاين أو مكتبة الطلبات من X10. إنشاؤك الحساب أو تقديمك الطلب يعني موافقتك عليها.</p>
+ <ul><li><b>ما الذي تشتريه.</b> الدورة الذاتية الأونلاين مجموعة دروس مكتوبة وطلبات جاهزة وتمارين واختبارات، مع شهادة إتمام. لا يُشحن شيء، ولا توجد جلسات مباشرة إلا إذا ذكرت صفحة الدورة ذلك.</li>
+ <li><b>حسابك.</b> اكتب اسمك وبريدك الصحيحين، واحتفظ بكلمة المرور لنفسك، واستخدم حساباً واحداً لكل شخص. لا يجوز مشاركة الحساب أو بيعه أو نقله.</li>
+ <li><b>الأسعار والدفع.</b> الأسعار بالدينار الكويتي، وهي المعروضة في الموقع وقت الطلب. قد تنتهي أسعار الفترة المحدودة بلا إشعار، لكن الطلب المدفوع يحتفظ بسعره. يتم الدفع عبر مزوّد دفع مرخّص في الكويت. نحن لا نرى بيانات بطاقتك ولا نحفظها.</li>
+ <li><b>الوصول.</b> تُفتح دورتك في حسابك بعد تأكيد الدفع. ويبقى وصولك ما دامت X10 تقدّم الدورة على هذه المنصة. وإذا أوقفنا دورة اشتريتها، نبلغك بالبريد قبل 30 يوماً على الأقل.</li>
+ <li><b>الترخيص.</b> المحتوى لتعلّمك الشخصي. يحق لك استخدام الطلبات والقوالب في عملك. ولا يحق لك نسخ الدروس أو نشرها أو تسجيلها أو إعادة بيعها أو مشاركتها، ولا السماح لغيرك باستخدام حسابك.</li>
+ <li><b>الشهادة.</b> تثبت الشهادة أنك أكملت الدورة على هذه المنصة. وليست شهادة أكاديمية ولا مؤهلاً معتمداً من جهة حكومية.</li>
+ <li><b>ما لا نعد به.</b> الدورات تعليمية. أدوات الذكاء الاصطناعي تتغير كثيراً وقد تخطئ في إجاباتها، فتبقى مسؤولاً عن مراجعة أي نتيجة وعن الالتزام بأنظمة جهة عملك. ولا نضمن نتيجة محددة أو وظيفة أو توفيراً بعينه.</li>
+ <li><b>سوء الاستخدام.</b> يحق لنا إيقاف الحساب الذي يشارك الوصول أو ينسخ المحتوى أو يسيء استخدام الخدمة، ولا يُستحق استرداد في هذه الحالة.</li>
+ <li><b>مسؤوليتنا.</b> في الحدود التي يسمح بها القانون، تقتصر مسؤوليتنا عن أي مطالبة متعلقة بعملية شراء على المبلغ الذي دفعته فيها.</li>
+ <li><b>التعديلات.</b> قد نحدّث هذه الشروط، والتاريخ في أسفل الصفحة يبيّن آخر نسخة. ولا تنقص التعديلات حقوق طلب مدفوع.</li>
+ <li><b>القانون.</b> تخضع هذه الشروط لقوانين دولة الكويت، وتختص محاكمها بالنظر في أي نزاع.</li></ul>`],
+ ['delivery','سياسة التسليم',`<p>كل ما نبيعه أونلاين رقمي. لا يُشحن شيء.</p><ul><li>تظهر دورتك أو مكتبتك تحت «دوراتي» في حسابك فور تأكيد الدفع.</li><li>إذا دفعت ولم يُفتح مشتراك خلال يوم عمل واحد، راسلنا على ${mail} بالبريد الذي استخدمته وسنعالج الأمر.</li><li>تستطيع الدراسة من أي جهاز بتسجيل الدخول إلى حسابك. ويُحفظ تقدّمك في حسابك، فتكمل من جهاز آخر من حيث توقفت.</li></ul>`],
+ ['refund','سياسة الاسترداد والإلغاء',`<p>دوراتنا ومكتبة الطلبات منتجات رقمية تُفتح في حسابك فور الدفع، لذلك <b>جميع المبيعات نهائية ولا نقدّم استرداداً</b> بعد إتمام الدفع، إلا في الحالات التالية. وتستطيع أخذ دورة «الاستخدام الآمن والمسؤول للذكاء الاصطناعي» كاملة مجاناً لتعرف طريقة دوراتنا قبل الشراء.</p><ul><li><b>دفعت مرتين أو خُصم منك مبلغ بالخطأ؟</b> نعيد المبلغ الزائد كاملاً في أي وقت.</li><li><b>مشكلة في الوصول لم نستطع حلها؟</b> إذا لم نوفّر لك وصولاً يعمل خلال 5 أيام عمل من بلاغك على ${mail}، نعيد المبلغ كاملاً.</li><li><b>حيث يفرض القانون ذلك.</b> لا تُسقط هذه السياسة أي حق يمنحك إياه القانون الكويتي.</li><li><b>طريقة الاسترداد.</b> يعود المبلغ إلى وسيلة الدفع الأصلية، ومدة ظهوره تعتمد على بنكك.</li><li><b>بعد الاسترداد</b> يُزال الوصول إلى تلك الدورة أو المكتبة من حسابك.</li><li><b>إلغاء الطلب.</b> الطلب الذي لم يُدفع يمكن إلغاؤه في أي وقت بعدم إتمام الدفع.</li></ul>`],
+ ['privacy','سياسة الخصوصية',`<p>توضح هذه السياسة ما نجمعه عند استخدامك دورات X10 الأونلاين وماذا نفعل به.</p>
+ <ul><li><b>ما نجمعه.</b> اسمك وبريدك الإلكتروني، ورقم هاتفك إذا كتبته، والدورات التي اشتريتها، ومرجع الدفع الذي يصلنا من مزوّد الدفع. ولا يصلنا رقم بطاقتك أبداً.</li>
+ <li><b>تقدّمك.</b> تقدّمك في الدروس ونتائج الاختبارات وملاحظاتك تُحفظ في متصفحك وفي حسابك، فتكمل من أي جهاز. أما اختيار اللغة فيبقى على جهازك فقط.</li>
+ <li><b>لماذا نستخدمه.</b> لإنشاء حسابك، وفتح الدورات التي اشتريتها، والرد على رسائلك، وإرسال الإيصالات وإشعارات الخدمة. ولا نرسل رسائل تسويقية إلا إذا وافقت عليها، وتستطيع إيقافها في أي وقت.</li>
+ <li><b>من يعالجه لصالحنا.</b> تُحفظ بيانات حسابك لدى Supabase، مزوّد قاعدة البيانات، على خوادم في الاتحاد الأوروبي (فرانكفورت). وتُرسل رسائل الحساب، مثل رموز الدخول وتغيير كلمة المرور، عبر Google. ويتولى المدفوعات مزوّد دفع مرخّص في الكويت. وتُستضاف ملفات الموقع على GitHub Pages، وقد تحتفظ بسجلات تقنية معتادة مثل عناوين الإنترنت.</li>
+ <li><b>ما لا نفعله أبداً.</b> لا نبيع بياناتك ولا نشاركها مع المعلنين.</li>
+ <li><b>مدة الاحتفاظ.</b> ما دام حسابك مفتوحاً، وبعده فقط للمدة التي تفرضها الأنظمة المحاسبية والقانونية لسجلات الدفع.</li>
+ <li><b>خياراتك.</b> راسلنا على ${mail} للاطلاع على بياناتك أو تصحيحها أو حذفها، أو لإغلاق حسابك. نرد خلال 30 يوماً.</li>
+ <li><b>ملفات الارتباط.</b> لا نستخدم ملفات ارتباط إعلانية أو تتبعية. الموقع يحفظ فقط ما يلزم لإبقائك مسجّلاً ولتذكّر لغتك.</li>
+ <li><b>العمر.</b> الدورات للبالغين. من هو دون 18 سنة يحتاج إلى ولي أمر ليشتري ويوافق على هذه الشروط.</li>
+ <li><b>الأمان.</b> الوصول إلى قاعدة البيانات محمي بحيث لا يقرأ كل حساب إلا بياناته. ولا تستطيع أي خدمة على الإنترنت أن تعد بأمان كامل، وإذا مسّ اختراق بياناتك يوماً فسنبلغك.</li></ul>`]];
+ document.getElementById('v').innerHTML=`${DRAFT?`<div class="todo" style="padding:8px 14px;font-weight:700">${T('مسودة للمراجعة · غير منشورة','Draft for review · not published')}</div>`:''}<h1>${T('الشروط والسياسات','Terms and policies')}</h1><p class="m">${T('معهد X10 للتدريب الأهلي · الدورات الأونلاين','X10 Institute for Private Training · Online courses')}</p>
+ <nav class="toc">${S.map(s=>`<a href="#${s[0]}">${s[1]}</a>`).join('')}</nav>${S.map(s=>`<section class="card" id="${s[0]}"><h2>${s[1]}</h2>${s[2]}</section>`).join('')}
+ <p class="m" style="margin-top:18px">${T('آخر تحديث: ','Last updated: ')}<span class="ltr">${LEGAL.updated}</span></p>`}
+document.getElementById('lb').onclick=()=>{L=en()?'ar':'en';try{localStorage.setItem('x10_lang',L)}catch(e){}render()};
+render();if(location.hash){const e=document.getElementById(location.hash.slice(1));if(e)e.scrollIntoView()}
+</script></body></html>

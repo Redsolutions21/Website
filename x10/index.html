@@ -274,7 +274,7 @@ footer a{color:var(--navy)}
   </section>
 </main>
 <dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
-<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور توضيحية مولّدة بالذكاء الاصطناعي.</span></span></div></footer>
+<footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور توضيحية مولّدة بالذكاء الاصطناعي.</span><!--legal--> · <a href="legal.html">الشروط والسياسات · Terms and policies</a><!--/legal--></span></div></footer>
 
 <script src="auth.js"></script>
 <script src="catalog.js"></script>
@@ -526,7 +526,7 @@ function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one
  </div>
  ${X10Auth.owns('lib')?'':`<label class="bump"><input type="checkbox" ${CO.bump?'checked':''} onchange="CO.bump=this.checked;renderCO()"><span><b>${T('نعم، أضفها لطلبي','Yes, add it to my order')} <s class="was ltr">${kd(BUMP.was)}</s> <span class="ltr">+${kd(BUMP.p)}</span></b>${isEn()?BUMP.en:BUMP.ar}</span></label>`}`}
  <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="price ltr">${kd(coTotal())}</div></div>
- ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:(X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('اطلب الآن','Request it now')}</button>`:`<a class="btn red" href="${order}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`)}</div><div id="ordMsg" role="status"></div>
+ ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:(X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('اطلب الآن','Request it now')}</button>`:`<a class="btn red" href="${order}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`)}</div><p style="font-size:13px;color:var(--mute);margin:10px 0 0">${T('منتجات رقمية تُفتح فور الدفع، لذلك المبيعات نهائية. بإتمام الطلب توافق على','Digital products that open right after payment, so sales are final. By ordering you agree to the')} <a href="legal.html#refund" target="_blank" rel="noopener">${T('الشروط وسياسة الاسترداد','terms and refund policy')}</a>.</p><div id="ordMsg" role="status"></div>
  ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تفتح دورتك في حسابك فوراً.','Secure payment by UPayments: KNET or card. Your course opens in your account right after payment.'):(X10Auth.REAL?T('اضغط «اطلب الآن» ونرسل لك رابط الدفع على بريدك.','Press "Request it now" and we will email you the payment link.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`))}</p>
  </div>`}
 async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const r=await X10Auth.order(coKey().split('+'));

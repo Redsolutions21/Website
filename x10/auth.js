@@ -24,7 +24,12 @@ const X10Auth=(()=>{
  async function signIn({email,password}){email=email.trim().toLowerCase();
   if(!REAL){const d=rd();if(!d.users[email])return {error:'nouser'};d.cur=email;wr(d);await load();return {}}
   const c=await client();const {error}=await c.auth.signInWithPassword({email,password});
-  if(error)return {error:'bad'};await load();return {}}
+  if(error)return {error:/confirm/i.test(error.message||'')?'unconfirmed':'bad'};await load();return {}}
+ /* sign-up is confirmed with a code from the email, typed on the same page (no link, no browser switch) */
+ async function confirmCode(email,token){if(!REAL)return {error:'demo'};const c=await client();email=email.trim().toLowerCase();token=token.replace(/\D/g,'');
+  let {error}=await c.auth.verifyOtp({email,token,type:'signup'});if(error){const r2=await c.auth.verifyOtp({email,token,type:'email'});error=r2.error}
+  if(error)return {error:error.message};await load();return {}}
+ async function resendSignup(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resend({type:'signup',email:email.trim().toLowerCase(),options:{emailRedirectTo:location.origin+location.pathname}});return error?{error:error.message}:{}}
  async function signOut(){if(!REAL){const d=rd();d.cur=null;wr(d)}else{const c=await client();await c.auth.signOut()}cache={user:null,owned:[]}}
  /* demo only: in real mode purchases are written by the payment webhook, never by the browser */
  function demoGrant(items){if(REAL)return;const d=rd();const u=d.cur&&d.users[d.cur];if(!u)return;u.owned=[...new Set([...(u.owned||[]),...items])];wr(d);cache.owned=u.owned}
@@ -45,5 +50,5 @@ const X10Auth=(()=>{
  async function pullProgress(){if(!REAL||!cache.user)return;try{const c=await client();const {data}=await c.from('progress').select('course,data');for(const r of data||[]){let l=null;try{l=JSON.parse(localStorage.getItem(r.course)||'null')}catch(e){}localStorage.setItem(r.course,JSON.stringify(merge(l,r.data)))}}catch(e){}}
  let pt=null;function pushProgress(key){if(!REAL||!cache.user)return;clearTimeout(pt);pt=setTimeout(async()=>{try{const c=await client();const {data:{user}}=await c.auth.getUser();if(!user)return;await c.from('progress').upsert({user_id:user.id,course:key,data:JSON.parse(localStorage.getItem(key)||'{}'),updated_at:new Date().toISOString()})}catch(e){}},1500)}
  const owns=i=>cache.owned.includes(i)||(i!=='lib'&&cache.owned.includes('all'));
- return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,setPassword,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
+ return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

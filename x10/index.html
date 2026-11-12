@@ -475,17 +475,17 @@ const credit=()=>Math.min(ALL.p,X10_CATALOG.filter(c=>c.live&&!c.review&&X10Auth
    "<course id>", "<course id>+lib", "all", "all+lib", "lib". Empty = the order goes by email. */
 const PAY={"essentials":"","essentials+lib":"","all":"","all+lib":"","lib":""};
 /* Course images (illustrative, created with AI: the people shown are not real) and what each one shows */
-const PH={essentials:['An employee using an AI assistant on his laptop','موظف يستخدم مساعد ذكاء اصطناعي على اللابتوب'],
-prompt:['Typing a request into an AI chat tool','كتابة طلب في أداة محادثة ذكاء اصطناعي'],
-office:['Office work on a laptop: a spreadsheet and a slide','عمل مكتبي على اللابتوب: جدول وشريحة عرض'],
-finance:['Financial charts and a spreadsheet on an iPad and a laptop','رسوم مالية وجدول على آيباد ولابتوب'],
-marketing:['Planning a month of content at the desk','تخطيط محتوى شهر كامل على المكتب'],
-creative:['Editing a video at a creative workstation','مونتاج فيديو في محطة عمل إبداعية'],
-data:['A data dashboard on an iPad','لوحة بيانات على آيباد'],
-agents:['An automation workflow on a laptop screen','سير عمل مؤتمت على شاشة لابتوب'],
-leaders:['A manager presenting a plan to the team','مدير يعرض خطة على فريقه'],
-safe:['Reviewing a usage policy, with data protected','مراجعة سياسة الاستخدام مع حماية البيانات']};
-function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg?v=2" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
+const PH={essentials:['A robot hand and a human hand reaching toward an AI chat on a laptop','يد روبوت ويد إنسان تتجهان إلى محادثة ذكاء اصطناعي على اللابتوب'],
+prompt:['Typing a request on a big screen as text flows out','كتابة طلب على شاشة كبيرة والنص يتدفق منها'],
+office:['A desk robot handing over a report next to a laptop','روبوت مكتبي يسلّم تقريراً بجانب اللابتوب'],
+finance:['A calculator, a report and a robot arm pointing at a chart','آلة حاسبة وتقرير وذراع روبوت تشير إلى رسم بياني'],
+marketing:['A phone with a content grid and a robot arm arranging posts','هاتف عليه شبكة محتوى وذراع روبوت ترتّب المنشورات'],
+creative:['A robot operating a camera in a creative studio','روبوت يدير الكاميرا في استوديو إبداعي'],
+data:['An analyst and a robot in front of glowing dashboards','محلل وروبوت أمام لوحات بيانات مضيئة'],
+agents:['Small robots passing a document between email, a sheet and a laptop','روبوتات صغيرة تمرّر مستنداً بين البريد والجدول واللابتوب'],
+leaders:['A boardroom at dusk with a robot at the head of the table','قاعة اجتماعات عند الغروب وروبوت على رأس الطاولة'],
+safe:['A glowing padlock over a laptop while typing','قفل مضيء فوق اللابتوب أثناء الكتابة']};
+function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg?v=3" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
 let FILT='all';
 const isEn=()=>document.documentElement.lang==='en';
 const T=(ar,en)=>isEn()?en:ar;
@@ -504,7 +504,7 @@ function renderProgs(){renderFilt();const el=document.getElementById('progs');
 function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (every course)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
 function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
  document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
- <div class="bd"><img src="photos/${c.id}.jpg?v=2" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
+ <div class="bd"><img src="photos/${c.id}.jpg?v=3" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
  <div><h4>${T('لمن هذه الدورة','Who it is for')}</h4><p class="inc" style="color:var(--ink)">${L.for}</p></div>
  <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
  <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>

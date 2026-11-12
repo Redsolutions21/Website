@@ -474,7 +474,7 @@ data:['A data dashboard on an iPad','لوحة بيانات على آيباد'],
 agents:['An automation workflow on a laptop screen','سير عمل مؤتمت على شاشة لابتوب'],
 leaders:['A manager presenting a plan to the team','مدير يعرض خطة على فريقه'],
 safe:['Reviewing a usage policy, with data protected','مراجعة سياسة الاستخدام مع حماية البيانات']};
-function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
+function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="cv"><img src="photos/${id}.jpg?v=2" alt="${cap}" width="640" height="360" loading="lazy"><figcaption>${T('في الصورة: ','Shown: ')}${cap}</figcaption></figure>`}
 let FILT='all';
 const isEn=()=>document.documentElement.lang==='en';
 const T=(ar,en)=>isEn()?en:ar;
@@ -493,7 +493,7 @@ function renderProgs(){renderFilt();const el=document.getElementById('progs');
 function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (all 10 courses)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
 function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
  document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
- <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
+ <div class="bd"><img src="photos/${c.id}.jpg?v=2" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${lim(O)}<b>${pr(O)}</b></div></div>
  <div><h4>${T('لمن هذه الدورة','Who it is for')}</h4><p class="inc" style="color:var(--ink)">${L.for}</p></div>
  <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
  <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>

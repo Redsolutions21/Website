@@ -37,6 +37,10 @@ input{border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-siz
 .soon{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:10px}
 .soon div{background:#fff;border-radius:12px;padding:10px 12px;font-size:14px;display:flex;justify-content:space-between;gap:8px}
 .soon b{white-space:nowrap}
+.itx{flex:1 1 220px;min-width:0}
+.pb{height:6px;border-radius:999px;background:var(--tile);margin:8px 0 2px;overflow:hidden}.pb i{display:block;height:100%;background:var(--red);border-radius:999px}
+.st{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:#7A4B00;background:#FFF8E1;border:1px solid #E0A800;border-radius:999px;padding:1px 10px}
+.st.rv{color:#B3141A;background:#FDECEC;border-color:#F0A8AB}
 </style>
 </head>
 <body>
@@ -58,7 +62,7 @@ function vAuth(){const buying=next();
  ${X10Auth.REAL?'':`<div class="demo">${T('وضع تجريبي للمعاينة: الحساب يُحفظ على هذا المتصفح فقط.','Preview demo mode: the account is kept in this browser only.')}</div>`}
  <span class="tag">${buying?T('خطوة 1 من 2','Step 1 of 2'):T('حسابي','My account')}</span>
  <h1>${buying?T('أنشئ حسابك لتكمل الشراء','Create your account to continue'):T('ادخل إلى دوراتك','Get to your courses')}</h1>
- <p style="color:var(--mute);margin:0">${T('حساب واحد لكل دوراتك وشهاداتك، من أي جهاز.','One account for all your courses and certificates, on any device.')}</p>
+ <p style="color:var(--mute);margin:0">${T('حساب واحد لكل دوراتك، تدخله من أي جهاز.','One account for all your courses, from any device.')}</p>
  <div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="${TAB==='up'}" onclick="TAB='up';render()">${T('حساب جديد','New account')}</button><button type="button" role="tab" aria-selected="${TAB==='in'}" onclick="TAB='in';render()">${T('عندي حساب','I have an account')}</button></div>
  <form id="f" novalidate>
  ${TAB==='up'?`<label>${T('الاسم الكامل','Full name')}<input id="name" autocomplete="name" required></label><label>${T('رقم الهاتف','Mobile')}<input id="mobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr"></label>`:''}
@@ -67,22 +71,29 @@ function vAuth(){const buying=next();
  <button class="btn red w" type="submit">${TAB==='up'?(buying?T('أنشئ الحساب وأكمل الشراء','Create account and continue'):T('أنشئ حسابي','Create my account')):T('دخول','Log in')}</button>
  <div class="msg" id="msg" role="alert"></div></form></div>
  <div class="card dark"><h2>${T('ماذا تحصل مع حسابك','What your account gives you')}</h2><ul>
- <li>${T('دوراتك كلها في مكان واحد','All your courses in one place')}</li><li>${T('تقدّمك محفوظ، وتكمل من حيث توقفت','Your progress is saved, pick up where you left off')}</li><li>${T('شهادة إتمام باسمك بعد كل دورة','A certificate in your name after each course')}</li><li>${T('عروض خاصة للخريجين','Graduate-only offers')}</li></ul>
+ <li>${T('دوراتك كلها في مكان واحد','All your courses in one place')}</li><li>${T('تقدّمك يُحفظ على جهازك، وتكمل من حيث توقفت','Your progress is saved on your device, so you pick up where you left off')}</li><li>${T('شهادة إتمام باسمك بعد كل دورة','A certificate in your name after each course')}</li><li>${T('عروض خاصة للخريجين','Graduate-only offers')}</li></ul>
  <div class="up" style="background:rgba(255,255,255,.12)"><span class="tag">${T('الأوفر','Best value')}</span><h3 style="margin-top:8px">${T('الوصول الكامل: الدورات العشر','All-Access: all 10 courses')}</h3><p>${T('349 د.ك بدل 796 د.ك. تبدأ اليوم، وكل دورة جديدة تفتح لك يوم إطلاقها.','KWD 349 instead of KWD 796. Start today; each new course unlocks the day it launches.')}</p></div></div></div>`}
-function vDash(){const u=X10Auth.user,ess=X10Auth.owns('essentials'),all=X10Auth.owns('all'),lib=X10Auth.owns('lib');
- let mine='';
- if(ess)mine+=`<div class="it"><div><h3>${T('أساسيات الذكاء الاصطناعي للعمل','AI Essentials for Work')}</h3><small>${T('12 درساً · 4 اختبارات · شهادة','12 lessons · 4 quizzes · certificate')}</small></div><a class="btn red" href="learn/a7q2-essentials/">${T('أكمل الدورة','Continue the course')}</a></div>`;
+const LVL={1:['مبتدئ','Beginner'],2:['متوسط','Intermediate'],3:['متقدم','Advanced']};
+const CAT=[{"id": "essentials", "path": "learn/a7q2-essentials/", "key": "x10_ess_v1", "ar": "أساسيات الذكاء الاصطناعي للعمل", "en": "AI Essentials for Work", "lv": 1, "mar": "حوالي 3 ساعات", "men": "About 3 hours", "live": true, "review": false}];
+const staff=()=>X10Auth.owned.includes('staff');
+const canOpen=c=>c.live?X10Auth.owns(c.id):staff();
+function prog(c){try{const j=JSON.parse(localStorage.getItem(c.key)||'null');if(!j)return 0;const n=Object.keys(j.done||{}).filter(k=>/^l\d+-\d+$/.test(k)&&j.done[k]).length+Object.values(j.quiz||{}).filter(v=>v>=2).length;return Math.min(100,Math.round(100*n/16))}catch(e){return 0}}
+function courseCard(c){const p=prog(c);
+ const tag=c.review?`<span class="st rv">${T('تحتاج مراجعة مختص · غير معروضة للبيع','Needs specialist review · not on sale')}</span>`:(!c.live?`<span class="st">${T('جاهزة · لم تُطرح للبيع بعد','Ready · not on sale yet')}</span>`:'');
+ return `<div class="it"><div class="itx"><h3>${en()?c.en:c.ar}</h3><small>${LVL[c.lv][en()?1:0]} · ${en()?c.men:c.mar} · ${T('12 درساً · 4 اختبارات · شهادة','12 lessons · 4 quizzes · certificate')}</small>${tag}<div class="pb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${p}%"></i></div><small>${p===100?T('مكتملة','Completed'):p?T(`أنجزت ${p}٪`,`${p}% done`):T('لم تبدأ بعد','Not started')}</small></div><a class="btn ${p===100?'':'red'}" href="${c.path}">${p===100?T('راجع الدورة','Review the course'):p?T('أكمل الدورة','Continue the course'):T('ابدأ الدورة','Start the course')}</a></div>`}
+function vDash(){const u=X10Auth.user,ess=X10Auth.owns('essentials'),all=X10Auth.owns('all'),lib=X10Auth.owns('lib'),st=staff();
+ let mine=CAT.filter(canOpen).map(courseCard).join('');
  if(lib)mine+=`<div class="it"><div><h3>${T('مكتبة الطلبات','Prompt Library')}</h3><small>${T('50 طلباً جاهزاً للعمل','50 ready prompts for work')}</small></div><a class="btn" href="learn/p9x4-prompts/">${T('افتح المكتبة','Open the library')}</a></div>`;
  if(!mine)mine=`<div class="it"><div><h3>${T('لا توجد دورات بعد','No courses yet')}</h3><small>${T('ابدأ بأول دورة، أو جرّب الوحدة الأولى مجاناً.','Start with your first course, or try module 1 free.')}</small></div><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn ghost" href="preview/">${T('جرّب مجاناً','Try free')}</a><a class="btn red" href="./#buy-essentials">${T('اشترِ الدورة','Buy the course')} · <s style="opacity:.7">${kd(79)}</s> ${kd(49)}</a></span></div>`;
  let ups='';
  if(!all)ups+=`<div class="up dark"><span class="tag">${ess?T('عرض الخريجين','Graduate offer'):T('الأوفر','Best value')}</span><h3 style="margin-top:8px">${T('الوصول الكامل لجميع الدورات العشر','All-Access to all 10 courses')}</h3><p>${ess?T('349 د.ك، ونخصم الـ49 د.ك التي دفعتها: تدفع 300 د.ك فقط. كل دورة جديدة تفتح لك يوم إطلاقها.','KWD 349, minus the KWD 49 you already paid: only KWD 300. Each new course unlocks the day it launches.'):T('349 د.ك بدل 796 د.ك. تبدأ بالدورة الأولى اليوم، وكل دورة جديدة تفتح لك يوم إطلاقها.','KWD 349 instead of KWD 796. Start with the first course today; each new one unlocks the day it launches.')}</p><a class="btn red" href="./#${ess?'offer-all':'buy-all'}">${T('رقِّ حسابي','Upgrade my account')} · ${kd(ess?300:349)}</a></div>`;
  if(!lib)ups+=`<div class="up" style="background:#FFF8E1;border:2px dashed #E0A800"><h3>${T('أضف مكتبة الطلبات','Add the Prompt Library')}</h3><p style="color:var(--mute)">${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي: إيميلات، اجتماعات، كتابة، تخطيط، Excel.','50 ready work prompts in Arabic and English: email, meetings, writing, planning, Excel.')}</p><a class="btn" href="./#buy-lib">${T('أضفها','Add it')} · <s style="opacity:.7">${kd(19)}</s> ${kd(12)}</a></div>`;
- return `${X10Auth.REAL?'':`<div class="demo">${T('وضع تجريبي للمعاينة: الحساب والمشتريات تُحفظ على هذا المتصفح فقط.','Preview demo mode: account and purchases are kept in this browser only.')}</div>`}
- <span class="tag">${T('حسابي','My account')}</span><h1>${T('أهلاً','Welcome')}${u.name?'، '+esc(u.name):''}</h1><p style="color:var(--mute);margin:0" dir="ltr">${esc(u.email)}</p>
- <div class="split" style="margin-top:18px"><div class="card"><h2>${T('دوراتي','My courses')}</h2>${mine}
- <h2 style="margin-top:22px">${T('قريباً','Coming soon')}</h2><p style="color:var(--mute);margin:0;font-size:14px">${all?T('كلها مشمولة في الوصول الكامل، وتفتح لك يوم إطلاقها.','All included in your All-Access; each opens the day it launches.'):T('مشمولة كلها في الوصول الكامل.','All included in All-Access.')}</p>
- <div class="soon">${SOON.map(([a,e,p,w])=>`<div><span>${en()?e:a}</span><b><s style="color:var(--mute);font-weight:400">${kd(w)}</s> ${kd(p)}</b></div>`).join('')}</div></div>
- <div>${ups||`<div class="card dark"><h2>${T('حسابك كامل','You have everything')}</h2><p>${T('سنبلغك عند إطلاق كل دورة جديدة.','We will tell you when each new course launches.')}</p></div>`}</div></div>`}
+ const soon=st?'':`<h2 style="margin-top:22px">${T('قريباً','Coming soon')}</h2><p style="color:var(--mute);margin:0;font-size:14px">${all?T('كلها مشمولة في الوصول الكامل، وتفتح لك يوم إطلاقها.','All included in your All-Access; each opens the day it launches.'):T('مشمولة كلها في الوصول الكامل.','All included in All-Access.')}</p>
+ <div class="soon">${SOON.map(([a,e,p,w])=>`<div><span>${en()?e:a}</span><b><s style="color:var(--mute);font-weight:400">${kd(w)}</s> ${kd(p)}</b></div>`).join('')}</div>`;
+ return `${X10Auth.REAL?'':`<div class="demo">${T('وضع تجريبي للمعاينة: الحساب والمشتريات تُحفظ على هذا المتصفح فقط.','Preview demo mode: account and purchases are kept in this browser only.')}${st?' '+T('هذا حساب المراجعة: يفتح كل الدورات، ومنها ما لم يُطرح للبيع بعد.','This is the review account: it opens every course, including those not on sale yet.'):''}</div>`}
+ <span class="tag">${T('حسابي','My account')}</span><h1>${T('أهلاً','Welcome')}${u.name?T('، ',', ')+esc(u.name):''}</h1><p style="color:var(--mute);margin:0" dir="ltr">${esc(u.email)}</p>
+ <div class="split" style="margin-top:18px"><div class="card"><h2>${T('دوراتي','My courses')}</h2>${mine}${soon}</div>
+ <div>${ups||`<div class="card dark"><h2>${T('حسابك كامل','You have everything')}</h2><p>${st?T('كل الدورات مفتوحة لك للمراجعة.','Every course is open to you for review.'):T('سنبلغك عند إطلاق كل دورة جديدة.','We will tell you when each new course launches.')}</p></div>`}</div></div>`}
 function render(){chrome();document.getElementById('v').innerHTML=X10Auth.user?vDash():vAuth();
  const f=document.getElementById('f');if(f)f.addEventListener('submit',submit)}
 async function submit(e){e.preventDefault();const g=id=>{const el=document.getElementById(id);return el?el.value.trim():''},m=document.getElementById('msg');m.textContent='';

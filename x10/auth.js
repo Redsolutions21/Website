@@ -1,8 +1,8 @@
 /* X10 accounts.
-   REAL MODE: fill SUPABASE_URL and SUPABASE_ANON (the public "anon" key) below.
+   REAL MODE: SUPABASE_URL and SUPABASE_ANON (the public, publishable key) are filled in by build_store.py for the store build.
    Until then the site runs in DEMO MODE: accounts and purchases are kept only in this browser,
    so you can preview the whole flow. Demo mode is NOT secure and must not be used for real sales. */
-const X10_CFG={SUPABASE_URL:"",SUPABASE_ANON:""};
+const X10_CFG={SUPABASE_URL:"https://ezgkqndfjjdifrvlpxcb.supabase.co",SUPABASE_ANON:"sb_publishable__Q-YVhJZoIgR7oL7eFsimg_p2jdNShV"};
 const X10Auth=(()=>{
  const REAL=!!(X10_CFG.SUPABASE_URL&&X10_CFG.SUPABASE_ANON);
  const K='x10_demo_acct_v1';
@@ -18,7 +18,7 @@ const X10Auth=(()=>{
   cache={user:{email:user.email,name:(user.user_metadata||{}).name||'',mobile:(user.user_metadata||{}).mobile||''},owned:(rows||[]).map(r=>r.item)};return cache}
  async function signUp({name,email,mobile,password}){email=email.trim().toLowerCase();
   if(!REAL){const d=rd();if(d.users[email])return {error:'exists'};d.users[email]={name,mobile,owned:[]};d.cur=email;wr(d);await load();return {}}
-  const c=await client();const {data,error}=await c.auth.signUp({email,password,options:{data:{name,mobile}}});
+  const c=await client();const {data,error}=await c.auth.signUp({email,password,options:{data:{name,mobile},emailRedirectTo:location.origin+location.pathname}});
   if(error)return {error:/registered/i.test(error.message)?'exists':error.message};
   await load();return {confirm:!data.session}}
  async function signIn({email,password}){email=email.trim().toLowerCase();
@@ -28,6 +28,10 @@ const X10Auth=(()=>{
  async function signOut(){if(!REAL){const d=rd();d.cur=null;wr(d)}else{const c=await client();await c.auth.signOut()}cache={user:null,owned:[]}}
  /* demo only: in real mode purchases are written by the payment webhook, never by the browser */
  function demoGrant(items){if(REAL)return;const d=rd();const u=d.cur&&d.users[d.cur];if(!u)return;u.owned=[...new Set([...(u.owned||[]),...items])];wr(d);cache.owned=u.owned}
+ /* real mode only: paid course pages come from a private bucket that only owners can read */
+ async function course(id){if(!REAL)return null;const c=await client();const {data,error}=await c.storage.from('courses').download(id+'.html');if(error||!data)return null;return await data.text()}
+ async function resetPassword(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resetPasswordForEmail(email.trim().toLowerCase(),{redirectTo:location.origin+location.pathname});return error?{error:error.message}:{}}
+ async function setPassword(password){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.updateUser({password});return error?{error:error.message}:{}}
  const owns=i=>cache.owned.includes(i)||(i!=='lib'&&cache.owned.includes('all'));
- return {REAL,load,signUp,signIn,signOut,demoGrant,owns,get user(){return cache.user},get owned(){return cache.owned}}
+ return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,setPassword,get user(){return cache.user},get owned(){return cache.owned}}
 })();

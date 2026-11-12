@@ -268,7 +268,6 @@ footer a{color:var(--navy)}
       </form>
       <div class="rows">
         <a class="chip" href="mailto:x10@solutionsbyred.com?subject=X10"><b class="ltr">x10@solutionsbyred.com</b><small data-i="k1">البريد الإلكتروني</small></a>
-        <a class="chip" href="https://wa.me/96598985006" target="_blank" rel="noopener"><b class="ltr">+965 9898 5006</b><small>واتساب · WhatsApp</small></a>
         <a class="chip" href="https://instagram.com/x10academy.ai" target="_blank" rel="noopener"><b class="ltr">@x10academy.ai</b><small data-i="k3">إنستغرام</small></a>
       </div>
     </div>
@@ -278,6 +277,7 @@ footer a{color:var(--navy)}
 <footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور: Pexels.</span></span></div></footer>
 
 <script src="auth.js"></script>
+<script src="catalog.js"></script>
 <script>
 const EN={
  bname:"X10 Institute for Private Training",n1:"Training areas",n2:"Who it's for",n3:"Train with us",n4:"Contact",
@@ -450,14 +450,17 @@ const COURSES=[
 
 const LV={1:["مبتدئ","Beginner"],2:["متوسط","Intermediate"],3:["متقدم","Advanced"]};
 /* ONLINE SELF-PACED: price (KWD), ready = full content built and deliverable */
-const ONLINE={essentials:{p:49,was:79,ready:true,ar:"12 درساً · حوالي 3 ساعات",en:"12 lessons · about 3 hours"},prompt:{p:59,was:99},office:{p:59,was:99},finance:{p:89,was:149},marketing:{p:69,was:115},creative:{p:75,was:125},data:{p:89,was:149},agents:{p:119,was:199},leaders:{p:149,was:249},safe:{p:39,was:65}};
+const ONLINE=Object.fromEntries(X10_CATALOG.filter(c=>!c.review).map(c=>[c.id,{p:c.p,was:c.was,ready:!!c.live,free:c.free||'',ar:`12 درساً · ${c.mar} مع التطبيق`,en:`12 lessons · ${c.men.replace(/^About/,'about')} with practice`}]));
 const off=o=>Math.round(100*(1-o.p/o.was));
 const pr=o=>`<s class="was ltr">${kd(o.was)}</s> <span class="ltr">${kd(o.p)}</span> <span class="offb ltr">-${off(o)}%</span>`;
-const BUMP={p:12,was:19,ar:"أضف «مكتبة الطلبات»: 50 طلباً جاهزاً للعمل بالعربي والإنجليزي، تصلك فوراً مع الدورة.",en:"Add the Prompt Library: 50 ready work prompts in Arabic and English, delivered instantly with your course."};
-const ALL={p:349,was:796};
-/* UPayments payment links: paste each link here when ready. Key = what the customer buys. */
-const PAY={"essentials":"","essentials+lib":"","all":"","all+lib":"","grad-all":"","lib":""};
-const WA="96598985006";
+const BUMP={p:X10_LIB.p,was:X10_LIB.was,ar:"أضف «مكتبة الطلبات»: 50 طلباً جاهزاً للعمل بالعربي والإنجليزي، تصلك فوراً مع الدورة.",en:"Add the Prompt Library: 50 ready work prompts in Arabic and English, delivered instantly with your course."};
+const ALL=X10_ALL;
+const ALLLIVE=X10_CATALOG.filter(c=>!c.review).every(c=>c.live);
+/* what the customer already paid for single courses is credited when they move to All-Access */
+const credit=()=>Math.min(ALL.p,X10_CATALOG.filter(c=>c.live&&!c.review&&X10Auth.owned.includes(c.id)).reduce((a,c)=>a+c.p,0));
+/* UPayments payment links: paste each link here when ready. Key = what the customer buys:
+   "<course id>", "<course id>+lib", "all", "all+lib", "lib". Empty = the order goes by email. */
+const PAY={"essentials":"","essentials+lib":"","all":"","all+lib":"","lib":""};
 /* Course photos (Pexels, free licence) and what each one shows */
 const PH={essentials:['Using an AI assistant on a laptop for everyday work','استخدام مساعد ذكاء اصطناعي على اللابتوب في العمل اليومي'],
 prompt:['Typing a prompt into an AI chat tool','كتابة طلب في أداة محادثة ذكاء اصطناعي'],
@@ -473,22 +476,22 @@ function cover(id){const cap=isEn()?PH[id][0]:PH[id][1];return `<figure class="c
 let FILT='all';
 const isEn=()=>document.documentElement.lang==='en';
 const T=(ar,en)=>isEn()?en:ar;
-const kd=n=>isEn()?`KWD ${n}`:`${n} د.ك`;
+const kd=n=>x10kd(n,isEn());
 function renderFilt(){const f=[['all','الكل','All'],['ready','متاحة الآن','Available now'],['1',LV[1][0],LV[1][1]],['2',LV[2][0],LV[2][1]],['3',LV[3][0],LV[3][1]]];
  document.getElementById('filt').innerHTML=f.map(([k,a,e])=>`<button type="button" aria-pressed="${FILT===k}" onclick="FILT='${k}';renderProgs()">${T(a,e)}</button>`).join('')}
 function renderProgs(){renderFilt();const el=document.getElementById('progs');
  const list=COURSES.filter(c=>FILT==='all'||(FILT==='ready'?ONLINE[c.id].ready:String(c.lvl)===FILT)).sort((x,y)=>(ONLINE[y.id].ready?1:0)-(ONLINE[x.id].ready?1:0));
  el.innerHTML=list.map(c=>{const L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
   return `<article class="prog${O.ready?' live':''}">${cover(c.id)}<div class="tags"><span class="m">${O.ready?T('متاحة الآن','Available now'):T('قريباً','Coming soon')}</span><span>${T('أونلاين · بالسرعة اللي تناسبك','Online · self-paced')}</span><span>${LV[c.lvl][i]}</span></div><h3>${L.t}</h3><p class="s">${L.s}</p><div class="meta">${O.ready?(isEn()?O.en:O.ar):T('4 وحدات · شهادة إتمام','4 modules · certificate')}</div>
-  <div class="row"><div class="price">${pr(O)}<small>${T('سعر الإطلاق','Launch price')}</small></div></div>
-  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready?`<a class="free" href="preview/">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
+  <div class="row"><div class="price">${pr(O)}<small>${T('لفترة محدودة','Limited time only')}</small></div></div>
+  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
  const sel=document.getElementById('r_int'),cur=sel.value;
  sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (all 10 courses)">${T('الوصول الكامل لجميع الدورات','All-Access, all 10 courses')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
  if(cur)sel.value=cur}
 function pick(id,who){const c=COURSES.find(x=>x.id===id);const sel=document.getElementById('r_int');sel.value=c?c.en.t:(id==='all'?'All-Access (all 10 courses)':'In-house company training');if(who)document.getElementById('r_who').value=who;const d=document.getElementById('cd');if(d.open)d.close()}
 function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
  document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><div class="tags" style="display:flex;gap:6px"><span class="mark" style="font-size:13px">${O.ready?T('متاحة الآن · أونلاين','Available now · online'):T('قريباً · أونلاين','Coming soon · online')}</span></div><h3 id="cd_t">${L.t}</h3><p>${L.s}</p></div>
- <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${T('سعر الإطلاق','Launch price')}<b>${pr(O)}</b></div></div>
+ <div class="bd"><img src="photos/${c.id}.jpg" alt="${isEn()?PH[c.id][0]:PH[c.id][1]}" style="width:100%;border-radius:16px;aspect-ratio:16/7;object-fit:cover"><div class="facts"><div>${T('الطريقة','Format')}<b>${T('أونلاين، بالسرعة اللي تناسبك','Online, self-paced')}</b></div><div>${T('المستوى','Level')}<b>${LV[c.lvl][i]}</b></div><div>${T('اللغة','Language')}<b>${T('عربي وإنجليزي','Arabic and English')}</b></div><div>${T('لفترة محدودة','Limited time only')}<b>${pr(O)}</b></div></div>
  <div><h4>${T('لمن هذه الدورة','Who it is for')}</h4><p class="inc" style="color:var(--ink)">${L.for}</p></div>
  <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
  <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>
@@ -496,31 +499,39 @@ function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn(
  <div class="go"><div class="price">${pr(O)}</div>${O.ready?`<button type="button" class="btn red" onclick="buy('${c.id}')">${T('اشترِ الآن','Buy now')}</button>`:`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
  const d=document.getElementById('cd');if(!d.open)d.showModal()}
 /* ---------- checkout: order bump + upsell ---------- */
-let CO={id:null,plan:'one',bump:false,grad:false};
+let CO={id:null,plan:'one',bump:false,lib:false};
 function buy(id,opts){opts=opts||{};
- if(!X10Auth.user){location.href='account.html#buy-essentials';return}
- CO=Object.assign({id,plan:'one',bump:false,grad:false,lib:false},opts);
- if(X10Auth.owns('all')||(X10Auth.owns('essentials')&&CO.plan==='one'&&!CO.grad&&!CO.lib)){location.href='account.html';return}
- if(X10Auth.owns('essentials')&&CO.plan==='all')CO.grad=true;
+ if(!X10Auth.user){location.href='account.html#buy-'+(opts.lib?'lib':opts.plan==='all'?'all':id);return}
+ CO=Object.assign({id,plan:'one',bump:false,lib:false},opts);
+ if(X10Auth.owns('all')&&!CO.lib){location.href='account.html';return}
+ if(CO.lib&&X10Auth.owns('lib')){location.href='account.html';return}
+ if(X10Auth.owns(id)&&!CO.lib){if(CO.plan!=='all'){location.href='account.html';return}}
  renderCO();const d=document.getElementById('cd');if(!d.open)d.showModal()}
-function coKey(){if(CO.lib)return 'lib';if(CO.grad)return 'grad-all';return (CO.plan==='all'?'all':CO.id)+(CO.bump?'+lib':'')}
-function coTotal(){if(CO.lib)return BUMP.p;const base=CO.grad?ALL.p-ONLINE.essentials.p:(CO.plan==='all'?ALL.p:ONLINE[CO.id].p);return base+(CO.bump&&!CO.grad?BUMP.p:0)}
-function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one=ONLINE[CO.id].p,link=PAY[coKey()];
- const sum=ALL.was;
- document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><span class="mark" style="font-size:13px">${T('إتمام الطلب','Checkout')}</span><h3 id="cd_t">${CO.lib?T('مكتبة الطلبات','Prompt Library'):CO.grad?T('ترقية الخريجين: الوصول الكامل','Graduate upgrade: All-Access'):L.t}</h3><p>${T('أونلاين بالكامل. تبدأ فور الدفع، بدون أي حضور.','Fully online. Start right after payment, nothing to attend.')}</p></div>
+const allPrice=()=>Math.max(0,ALL.p-credit());
+function coKey(){if(CO.lib)return 'lib';return (CO.plan==='all'?'all':CO.id)+(CO.bump?'+lib':'')}
+function coTotal(){if(CO.lib)return BUMP.p;return (CO.plan==='all'?allPrice():ONLINE[CO.id].p)+(CO.bump?BUMP.p:0)}
+function renderCO(){const c=COURSES.find(x=>x.id===CO.id),L=isEn()?c.en:c.ar,one=ONLINE[CO.id].p,cr=credit(),own=X10Auth.owns(CO.id);
+ if(own&&!CO.lib)CO.plan='all';
+ const link=cr&&CO.plan==='all'&&!CO.lib?'':PAY[coKey()];
+ const order=`mailto:${X10_MAIL}?subject=${encodeURIComponent('X10 order')}&body=${encodeURIComponent(orderText())}`;
+ document.getElementById('cd_in').innerHTML=`<div class="hd"><button class="x" type="button" aria-label="${T('إغلاق','Close')}" onclick="document.getElementById('cd').close()">×</button><span class="mark" style="font-size:13px">${T('إتمام الطلب','Checkout')}</span><h3 id="cd_t">${CO.lib?T('مكتبة الطلبات','Prompt Library'):own?T('الترقية إلى الوصول الكامل','Upgrade to All-Access'):L.t}</h3><p>${T('أونلاين بالكامل. تبدأ فور تأكيد الدفع، بدون أي حضور.','Fully online. Start as soon as your payment is confirmed, nothing to attend.')}</p></div>
  <div class="bd">
- ${CO.lib?`<div class="opt on"><b>${T('مكتبة الطلبات','Prompt Library')}</b><span>${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي.','50 ready work prompts in Arabic and English.')}</span><em class="ltr">${kd(BUMP.p)}</em></div>`:CO.grad?`<div class="opt on"><b>${T('الوصول الكامل لجميع الدورات العشر','All-Access to all 10 courses')}</b><span>${T('خصمنا لك سعر الدورة التي أكملتها (49 د.ك).','We have credited the course you completed (KWD 49).')}</span><em class="ltr">${kd(ALL.p-ONLINE.essentials.p)}</em></div>`:`
+ ${CO.lib?`<div class="opt on"><b>${T('مكتبة الطلبات','Prompt Library')}</b><span>${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي.','50 ready work prompts in Arabic and English.')}</span><em class="ltr">${kd(BUMP.p)}</em></div>`:`
  <div class="plans" role="radiogroup" aria-label="${T('اختر الباقة','Choose your plan')}">
-  <label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="plan" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><b>${L.t}</b><span>${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span><em><s class="was ltr">${kd(ONLINE[CO.id].was)}</s> <span class="ltr">${kd(one)}</span></em></label>
-  <label class="opt up ${CO.plan==='all'?'on':''}"><input type="radio" name="plan" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><span class="badge">${T('الأوفر','Best value')}</span><b>${T('الوصول الكامل: الدورات العشر','All-Access: all 10 courses')}</b><span>${T(`قيمتها ${sum} د.ك. تبدأ بهذه الدورة اليوم، وتفتح لك كل دورة جديدة يوم إطلاقها بدون دفع إضافي.`,`Worth KWD ${sum}. Start with this course today; every other course unlocks for you the day it launches, at no extra cost.`)}</span><em><s class="was ltr">${kd(ALL.was)}</s> <span class="ltr">${kd(ALL.p)}</span></em></label>
+  ${own?'':`<label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="plan" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><b>${L.t}</b><span>${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span><em><s class="was ltr">${kd(ONLINE[CO.id].was)}</s> <span class="ltr">${kd(one)}</span></em></label>`}
+  <label class="opt up ${CO.plan==='all'?'on':''}"><input type="radio" name="plan" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><span class="badge">${T('الأوفر','Best value')}</span><b>${T('الوصول الكامل: الدورات العشر','All-Access: all 10 courses')}</b><span>${ALLLIVE?T(`قيمتها ${kd(ALL.was)}. الدورات العشر كلها تفتح لك فور الدفع.`,`Worth ${kd(ALL.was)}. All 10 courses open for you right after payment.`):T(`قيمتها ${kd(ALL.was)}. تبدأ بهذه الدورة اليوم، وتفتح لك كل دورة جديدة يوم إطلاقها بدون دفع إضافي.`,`Worth ${kd(ALL.was)}. Start with this course today; every other course unlocks for you the day it launches, at no extra cost.`)}${cr?' '+T(`خصمنا لك ما دفعته في دوراتك: ${kd(cr)}.`,`We have credited what you paid for your courses: ${kd(cr)}.`):''}</span><em><s class="was ltr">${kd(ALL.was)}</s> <span class="ltr">${kd(allPrice())}</span></em></label>
  </div>
  ${X10Auth.owns('lib')?'':`<label class="bump"><input type="checkbox" ${CO.bump?'checked':''} onchange="CO.bump=this.checked;renderCO()"><span><b>${T('نعم، أضفها لطلبي','Yes, add it to my order')} <s class="was ltr">${kd(BUMP.was)}</s> <span class="ltr">+${kd(BUMP.p)}</span></b>${isEn()?BUMP.en:BUMP.ar}</span></label>`}`}
  <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="price ltr">${kd(coTotal())}</div></div>
- ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:`<a class="btn red" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(orderText())}">${T('أكمل الطلب عبر واتساب','Complete order on WhatsApp')}</a>`}</div>
- ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تصلك روابط الدورة فوراً.','Secure payment by UPayments: KNET or card. Your course links arrive right after payment.'):T('الدفع الإلكتروني يفتح قريباً. أرسل طلبك عبر واتساب ونرسل لك رابط الدفع.','Online payment opens soon. Send your order on WhatsApp and we will send you the payment link.')}</p>
+ ${link?`<a class="btn red" href="${link}">${T('ادفع الآن','Pay now')}</a>`:`<a class="btn red" href="${order}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`}</div>
+ ${!link&&!X10Auth.REAL?`<p class="inc" style="background:#FFF8E1;border:1px dashed #E0A800;border-radius:10px;padding:6px 10px">${T('للمعاينة فقط:','Preview only:')} <a href="thanks.html#${coKey().replace('+','-')}">${T('جرّب صفحة ما بعد الدفع','see the after-payment page')}</a></p>`:''}<p class="inc">${link?T('الدفع آمن عبر UPayments: كي نت أو بطاقة. بعد الدفع تفتح دورتك في حسابك فوراً.','Secure payment by UPayments: KNET or card. Your course opens in your account right after payment.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`)}</p>
  </div>`}
-function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':CO.grad?'Graduate upgrade to All-Access':(CO.plan==='all'?'All-Access (all 10 courses)':c.en.t)}${CO.bump&&!CO.grad&&!CO.lib?' + Prompt Library':''}. Total: KWD ${coTotal()}`}
-function hashOffer(){const h=location.hash;if(h==='#offer-all')buy('essentials',{grad:true});if(h==='#buy-essentials')buy('essentials');if(h==='#buy-all')buy('essentials',{plan:'all'});if(h==='#buy-lib')buy('essentials',{lib:true})}
+function orderText(){const c=COURSES.find(x=>x.id===CO.id);return `X10 order: ${CO.lib?'Prompt Library':(CO.plan==='all'?(credit()?'Upgrade to All-Access':'All-Access (all 10 courses)'):c.en.t)}${CO.bump&&!CO.lib?' + Prompt Library':''}. Total: ${kd(coTotal())}. Account email: ${X10Auth.user?X10Auth.user.email:''}`}
+function hashOffer(){const h=location.hash.slice(1);if(!/^(buy-|offer-)/.test(h))return;
+ const mine=X10_CATALOG.find(c=>c.live&&!c.review&&X10Auth.owned.includes(c.id)),first=(mine||X10_CATALOG.find(c=>c.live)||{id:'essentials'}).id;
+ if(h==='offer-all'||h==='buy-all')return buy(first,{plan:'all'});
+ if(h==='buy-lib')return buy(first,{lib:true});
+ const id=h.replace(/^buy-/,''),O=ONLINE[id];if(O&&O.ready)buy(id)}
 addEventListener('hashchange',hashOffer);
 document.getElementById('cd').addEventListener('click',e=>{if(e.target.id==='cd')e.target.close()});
 const AR={};document.querySelectorAll('[data-i]').forEach(el=>AR[el.dataset.i]=el.innerHTML);

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>X10</title>
+<style>body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#EEF1F6;color:#14213D;display:grid;place-items:center;min-height:100vh;text-align:center}p{margin:0 20px;font-size:17px;line-height:1.8}a{color:#1D3461;font-weight:700}</style>
+<script src="../../auth.js"></script></head>
+<body><p id="m">…</p>
+<script>
+/* Opens a paid course. The course page is not part of this website: it is fetched from a private store
+   after login, and only for an account that owns it. */
+(async()=>{
+ let en=false;try{en=localStorage.getItem('x10_lang')==='en'}catch(e){}
+ const T=(a,e)=>en?e:a,m=document.getElementById('m'),home=()=>location.replace('../../account.html');
+ if(en){document.documentElement.lang='en';document.documentElement.dir='ltr'}
+ m.textContent=T('جارٍ فتح الدورة…','Opening your course…');
+ const id=new URLSearchParams(location.search).get('c')||'';
+ if(!/^[a-z]{2,20}$/.test(id))return home();
+ try{
+  await X10Auth.load();
+  if(!X10Auth.user||!X10Auth.owns(id))return home();
+  const html=await X10Auth.course(id);
+  if(!html){m.innerHTML=T('تعذّر فتح الدورة الآن. حدّث الصفحة، وإذا استمرت المشكلة راسلنا: ','We could not open the course right now. Refresh the page, and if it continues write to us: ')+'<a href="mailto:x10@solutionsbyred.com" dir="ltr">x10@solutionsbyred.com</a><br><a href="../../account.html">'+T('العودة إلى حسابي','Back to my account')+'</a>';return}
+  document.open();document.write(html);document.close();
+ }catch(e){home()}
+})();
+</script></body></html>

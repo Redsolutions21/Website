@@ -74,7 +74,7 @@ function vAuth(){const buying=next();
  <div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="${TAB==='up'}" onclick="TAB='up';render()">${T('حساب جديد','New account')}</button><button type="button" role="tab" aria-selected="${TAB==='in'}" onclick="TAB='in';render()">${T('عندي حساب','I have an account')}</button></div>
  ${social()}
  <form id="f" novalidate>
- ${TAB==='up'?`<label>${T('الاسم الكامل','Full name')}<input id="name" autocomplete="name" enterkeyhint="next" required></label><label>${T('رقم الموبايل','Mobile number')}<input id="mobile" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" dir="ltr" placeholder="9xxxxxxx" required></label><p style="color:var(--mute);font-size:13px;margin:-4px 0 10px">${T('رقم الكويت بدون رمز الدولة، أو أي رقم آخر مع رمز الدولة.','A Kuwaiti number without the country code, or any other number with its country code.')}</p>`:''}
+ ${TAB==='up'?`<label>${T('الاسم الكامل','Full name')}<input id="name" autocomplete="name" enterkeyhint="next" required></label><label>${T('رقم الموبايل','Mobile number')}${phoneField('mobile','')}</label>`:''}
  <label>${T('البريد الإلكتروني','Email')}<input id="email" type="email" autocomplete="email" enterkeyhint="next" dir="ltr" required></label>
  <label>${T('كلمة المرور','Password')}<input id="pw" type="password" autocomplete="${TAB==='up'?'new-password':'current-password'}" minlength="8" required></label>
  ${X10Auth.REAL&&TAB==='in'?`<button type="button" onclick="forgot()" style="background:none;border:0;padding:0;margin:2px 0 10px;color:var(--mute);text-decoration:underline;cursor:pointer;font:inherit;font-size:14px">${T('نسيت كلمة المرور؟','Forgot your password?')}</button>`:''}
@@ -83,7 +83,33 @@ function vAuth(){const buying=next();
  <div class="card dark"><h2>${T('ماذا تحصل مع حسابك','What your account gives you')}</h2><ul>
  <li>${T('دوراتك كلها في مكان واحد','All your courses in one place')}</li><li>${T('تقدّمك يُحفظ في حسابك، وتكمل من أي جهاز من حيث توقفت','Your progress is saved to your account, so you pick up where you left off on any device')}</li><li>${T('شهادة إتمام باسمك بعد كل دورة','A certificate in your name after each course')}</li><li>${T('عروض خاصة للخريجين','Graduate-only offers')}</li></ul>
  <div class="up" style="background:rgba(255,255,255,.12)"><span class="tag">${T('الأوفر','Best value')}</span><h3 style="margin-top:8px">${T('الوصول الكامل: جميع الدورات','All-Access: every course')}</h3><p>${T(`${kd(X10_ALL.p)} بدل ${kd(X10_ALL.was)}.`,`${kd(X10_ALL.p)} instead of ${kd(X10_ALL.was)}.`)} ${ALLLIVE?T('جميع الدورات تفتح لك فور الدفع.','Every course opens for you right after payment.'):T('تبدأ اليوم، وكل دورة جديدة تفتح لك يوم إطلاقها.','Start today; each new course unlocks the day it launches.')}</p></div></div></div>`}
-const okMobile=m=>{let d=String(m||'').replace(/[^\d+]/g,'');if(d.startsWith('00'))d='+'+d.slice(2);return /^\d{8}$/.test(d)||/^\+?\d{9,15}$/.test(d)};
+/* Mobile number with a country picker. Numbers are saved in one international format: +<country code><number>. */
+const DIAL={KW:'965',SA:'966',AE:'971',QA:'974',BH:'973',OM:'968',EG:'20',JO:'962',LB:'961',IQ:'964',SY:'963',PS:'970',YE:'967',SD:'249',LY:'218',TN:'216',DZ:'213',MA:'212',MR:'222',SO:'252',DJ:'253',KM:'269',TR:'90',IR:'98',PK:'92',IN:'91',BD:'880',LK:'94',NP:'977',AF:'93',
+GB:'44',IE:'353',US:'1',CA:'1',AU:'61',NZ:'64',FR:'33',DE:'49',IT:'39',ES:'34',PT:'351',NL:'31',BE:'32',LU:'352',CH:'41',AT:'43',SE:'46',NO:'47',DK:'45',FI:'358',IS:'354',PL:'48',CZ:'420',SK:'421',HU:'36',RO:'40',BG:'359',GR:'30',CY:'357',MT:'356',HR:'385',SI:'386',RS:'381',BA:'387',AL:'355',MK:'389',ME:'382',XK:'383',UA:'380',RU:'7',BY:'375',MD:'373',LT:'370',LV:'371',EE:'372',GE:'995',AM:'374',AZ:'994',KZ:'7',UZ:'998',TM:'993',KG:'996',TJ:'992',
+CN:'86',HK:'852',MO:'853',TW:'886',JP:'81',KR:'82',SG:'65',MY:'60',ID:'62',PH:'63',TH:'66',VN:'84',KH:'855',LA:'856',MM:'95',BN:'673',MV:'960',MN:'976',
+NG:'234',GH:'233',KE:'254',ET:'251',TZ:'255',UG:'256',RW:'250',ZA:'27',ZW:'263',ZM:'260',MW:'265',MZ:'258',AO:'244',CM:'237',CI:'225',SN:'221',ML:'223',NE:'227',TD:'235',ER:'291',SS:'211',MU:'230',SC:'248',MG:'261',BW:'267',NA:'264',
+MX:'52',BR:'55',AR:'54',CL:'56',CO:'57',PE:'51',VE:'58',EC:'593',BO:'591',PY:'595',UY:'598',CR:'506',PA:'507',GT:'502',HN:'504',SV:'503',NI:'505',DO:'1',PR:'1',JM:'1',TT:'1',CU:'53'};
+/* exact number lengths (without the country code) where they are fixed; anywhere else 6 to 12 digits */
+const PLEN={KW:[8],SA:[9],AE:[9],QA:[8],BH:[8],OM:[8],EG:[10],JO:[9],LB:[7,8],IQ:[10],GB:[10],US:[10],CA:[10],IN:[10],PK:[10],TR:[10],FR:[9],DE:[10,11],AU:[9]};
+const TZC={'Asia/Kuwait':'KW','Asia/Riyadh':'SA','Asia/Dubai':'AE','Asia/Qatar':'QA','Asia/Bahrain':'BH','Asia/Muscat':'OM','Africa/Cairo':'EG','Asia/Amman':'JO','Asia/Beirut':'LB','Asia/Baghdad':'IQ','Europe/London':'GB','Asia/Kolkata':'IN','Asia/Karachi':'PK','Europe/Istanbul':'TR'};
+function homeCC(){try{const z=Intl.DateTimeFormat().resolvedOptions().timeZone;if(TZC[z])return TZC[z]}catch(e){}
+ try{const r=(navigator.languages||[navigator.language]).map(l=>(l.split('-')[1]||'').toUpperCase()).find(c=>DIAL[c]);if(r)return r}catch(e){}return 'KW'}
+const flag=c=>c.replace(/./g,ch=>String.fromCodePoint(127397+ch.charCodeAt(0)));
+let CNAMES=null;function cname(c){try{if(!CNAMES||CNAMES.l!==L){CNAMES={l:L,d:new Intl.DisplayNames([en()?'en':'ar'],{type:'region'})}}return CNAMES.d.of(c)||c}catch(e){return c}}
+const GULF=['KW','SA','AE','QA','BH','OM'];
+function splitPhone(v){v=String(v||'').replace(/[^\d+]/g,'');if(!v.startsWith('+'))return {cc:homeCC(),n:v};const d=v.slice(1);
+ const pref=GULF.concat(Object.keys(DIAL));for(const len of [3,2,1])for(const c of pref)if(DIAL[c].length===len&&d.startsWith(DIAL[c]))return {cc:c,n:d.slice(len)};return {cc:homeCC(),n:d}}
+function phoneField(id,val){const p=splitPhone(val);const rest=Object.keys(DIAL).filter(c=>!GULF.includes(c)).sort((a,b)=>cname(a).localeCompare(cname(b),en()?'en':'ar'));
+ const opt=c=>`<option value="${c}"${c===p.cc?' selected':''}>${flag(c)} +${DIAL[c]}&nbsp;&nbsp;${esc(cname(c))}</option>`;
+ return `<div dir="ltr" style="display:flex;gap:8px"><span style="position:relative;flex:0 0 108px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px;font-weight:600"><span id="${id}_lb">${flag(p.cc)} +${DIAL[p.cc]}</span><span aria-hidden="true" style="font-size:11px;color:var(--mute)">▼</span><select id="${id}_cc" aria-label="${T('رمز الدولة','Country code')}" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px">${GULF.map(opt).join('')}<option disabled>──────</option>${rest.map(opt).join('')}</select></span>
+ <input id="${id}" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" value="${esc(p.n)}" placeholder="${PLEN[p.cc]?'x'.repeat(PLEN[p.cc][0]):''}" required style="flex:1;min-width:0"></div>`}
+/* returns +<code><number>, or '' when the number does not fit that country */
+function readPhone(id){const s=document.getElementById(id+'_cc'),i=document.getElementById(id);if(!s||!i)return '';const c=s.value;let n=i.value.replace(/\D/g,'');
+ if(n.startsWith('00'+DIAL[c]))n=n.slice(2+DIAL[c].length);else if(i.value.trim().startsWith('+')&&n.startsWith(DIAL[c]))n=n.slice(DIAL[c].length);
+ if(n.startsWith('0')&&!(PLEN[c]&&PLEN[c].includes(n.length)))n=n.replace(/^0+/,'');
+ const ok=PLEN[c]?PLEN[c].includes(n.length):(n.length>=6&&n.length<=12);return ok?'+'+DIAL[c]+n:''}
+document.addEventListener('change',e=>{if(e.target.id&&e.target.id.endsWith('_cc')){const i=document.getElementById(e.target.id.slice(0,-3));if(i){const c=e.target.value,lb=document.getElementById(e.target.id.slice(0,-3)+'_lb');if(lb)lb.textContent=flag(c)+' +'+DIAL[c];i.placeholder=PLEN[c]?'x'.repeat(PLEN[c][0]):'';i.focus()}}});
+
 function social(){const g=SOC.google&&!INAPP,a=SOC.apple;if(!X10Auth.REAL||(!g&&!a&&!(SOC.google&&INAPP)))return '';
  const bs='display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px 16px;border-radius:12px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;margin:0 0 10px';
  return `<div style="margin:14px 0 6px">${a?`<button type="button" onclick="soc('apple')" style="${bs};background:#000;color:#fff;border:0"><svg width="18" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>${T('المتابعة مع Apple','Continue with Apple')}</button>`:''}
@@ -95,12 +121,11 @@ async function soc(p){try{if(next())sessionStorage.setItem('x10_next',next())}ca
 function vComplete(){const u=X10Auth.user;return `<div class="split"><div class="card"><span class="tag">${T('خطوة أخيرة','One last step')}</span><h1>${T('أكمل بياناتك','Complete your details')}</h1>
  <p style="color:var(--mute);margin:0 0 10px">${T('نحتاج رقم موبايلك لنتواصل معك بخصوص دوراتك وشهاداتك.','We need your mobile number to reach you about your courses and certificates.')}</p>
  <form id="pf" novalidate>${u.name?'':`<label>${T('الاسم الكامل','Full name')}<input id="pname" autocomplete="name" required></label>`}
- <label>${T('رقم الموبايل','Mobile number')}<input id="pmobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="9xxxxxxx" required></label>
- <p style="color:var(--mute);font-size:13px;margin:-4px 0 10px">${T('رقم الكويت بدون رمز الدولة، أو أي رقم آخر مع رمز الدولة.','A Kuwaiti number without the country code, or any other number with its country code.')}</p>
+ <label>${T('رقم الموبايل','Mobile number')}${phoneField('pmobile',X10Auth.user.mobile)}</label>
  <button class="btn red w" type="submit">${T('احفظ وتابع','Save and continue')}</button><div class="msg" id="msg" role="alert"></div></form></div></div>`}
-async function completeSubmit(e){e.preventDefault();const m=document.getElementById('msg'),ne=document.getElementById('pname'),name=ne?ne.value.trim():X10Auth.user.name,mobile=document.getElementById('pmobile').value.trim();m.textContent='';
+async function completeSubmit(e){e.preventDefault();const m=document.getElementById('msg'),ne=document.getElementById('pname'),name=ne?ne.value.trim():X10Auth.user.name,mobile=readPhone('pmobile');m.textContent='';
  if(!name){m.textContent=T('اكتب اسمك.','Enter your name.');return}
- if(!okMobile(mobile)){m.textContent=T('اكتب رقم موبايل صحيحاً.','Enter a valid mobile number.');return}
+ if(!mobile){m.textContent=T('اكتب رقم موبايل صحيحاً للدولة المختارة.','Enter a valid mobile number for the chosen country.');return}
  const b=e.target.querySelector('button[type=submit]');b.disabled=true;const r=await X10Auth.updateProfile({name,mobile});b.disabled=false;
  if(r.error){m.textContent=T('تعذّر الحفظ. حاول مرة ثانية.','Could not save. Please try again.');return}
  if(afterLogin())return;render()}
@@ -155,15 +180,16 @@ let EDIT=false,SAVED=false;
 function vEdit(){const u=X10Auth.user;return `<div class="split"><div class="card"><span class="tag">${T('حسابي','My account')}</span><h1>${T('بياناتي','My details')}</h1>
  <form id="ef" novalidate><label>${T('الاسم الكامل','Full name')}<input id="ename" autocomplete="name" value="${esc(u.name)}" required></label>
  <p style="color:var(--mute);font-size:13px;margin:-4px 0 10px">${T('هذا الاسم يظهر في حسابك.','This is the name shown on your account.')}</p>
- <label>${T('رقم الهاتف','Mobile')}<input id="emobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" value="${esc(u.mobile)}"></label>
+ <label>${T('رقم الموبايل','Mobile number')}${phoneField('emobile',u.mobile)}</label>
  <label>${T('البريد الإلكتروني','Email')}<input type="email" dir="ltr" value="${esc(u.email)}" disabled style="opacity:.7"></label>
  <p style="color:var(--mute);font-size:13px;margin:-4px 0 10px">${T('لتغيير البريد الإلكتروني راسلنا على hello@solutionsbyred.com.','To change your email, write to hello@solutionsbyred.com.')}</p>
  ${X10Auth.REAL?`<label>${T('كلمة مرور جديدة (اختياري)','New password (optional)')}<input id="epw" type="password" autocomplete="new-password" minlength="8" placeholder="${T('اتركها فارغة لتبقى كما هي','Leave empty to keep it')}"></label>`:''}
  <button class="btn red w" type="submit">${T('احفظ','Save')}</button>
  <button type="button" onclick="EDIT=false;render()" style="background:none;border:0;padding:0;margin:10px 0 0;color:var(--mute);text-decoration:underline;cursor:pointer;font:inherit;font-size:14px">${T('رجوع','Back')}</button>
  <div class="msg" id="msg" role="alert"></div></form></div></div>`}
-async function editSubmit(e){e.preventDefault();const m=document.getElementById('msg'),name=document.getElementById('ename').value.trim(),mobile=document.getElementById('emobile').value.trim(),pe=document.getElementById('epw'),pw=pe?pe.value:'';m.textContent='';
+async function editSubmit(e){e.preventDefault();const m=document.getElementById('msg'),name=document.getElementById('ename').value.trim(),mobile=readPhone('emobile'),pe=document.getElementById('epw'),pw=pe?pe.value:'';m.textContent='';
  if(!name){m.textContent=T('اكتب اسمك.','Enter your name.');return}
+ if(!mobile){m.textContent=T('اكتب رقم موبايل صحيحاً للدولة المختارة.','Enter a valid mobile number for the chosen country.');return}
  if(pw&&pw.length<8){m.textContent=T('كلمة المرور 8 أحرف على الأقل.','Password must be at least 8 characters.');return}
  const b=e.target.querySelector('button[type=submit]');b.disabled=true;
  let r=await X10Auth.updateProfile({name,mobile});
@@ -233,16 +259,16 @@ async function submit(e){e.preventDefault();const g=id=>{const el=document.getEl
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent=T('اكتب بريداً إلكترونياً صحيحاً.','Enter a valid email address.');return}
  if(pw.length<8){m.textContent=T('كلمة المرور 8 أحرف على الأقل.','Password must be at least 8 characters.');return}
  let r;
- if(TAB==='up'){if(!g('name')){m.textContent=T('اكتب اسمك.','Enter your name.');return}if(!okMobile(g('mobile'))){m.textContent=T('اكتب رقم موبايل صحيحاً.','Enter a valid mobile number.');return}r=await X10Auth.signUp({name:g('name'),email,mobile:g('mobile'),password:pw})}
+ if(TAB==='up'){if(!g('name')){m.textContent=T('اكتب اسمك.','Enter your name.');return}if(!readPhone('mobile')){m.textContent=T('اكتب رقم موبايل صحيحاً للدولة المختارة.','Enter a valid mobile number for the chosen country.');return}r=await X10Auth.signUp({name:g('name'),email,mobile:readPhone('mobile'),password:pw})}
  else r=await X10Auth.signIn({email,password:pw});
  if(r.error==='unconfirmed'){VERIFY=email;await X10Auth.resendSignup(email);render();return}
- if(r.error){m.textContent=r.error==='exists'?T('هذا البريد عنده حساب. اختر «عندي حساب» وسجّل دخولك، وإذا نسيت كلمة المرور اختر «نسيت كلمة المرور».','This email already has an account. Choose "I have an account" and sign in, or use "Forgot password" if you need a new one.'):r.error==='mobile'?T('اكتب رقم موبايل صحيحاً.','Enter a valid mobile number.'):r.error==='nouser'||r.error==='bad'?T('البريد أو كلمة المرور غير صحيحة.','Email or password is incorrect.'):T('تعذّر إتمام العملية. حاول مرة ثانية.','Something went wrong. Please try again.');return}
+ if(r.error){m.textContent=r.error==='exists'?T('هذا البريد عنده حساب. اختر «عندي حساب» وسجّل دخولك، وإذا نسيت كلمة المرور اختر «نسيت كلمة المرور».','This email already has an account. Choose "I have an account" and sign in, or use "Forgot password" if you need a new one.'):r.error==='mobile'?T('اكتب رقم موبايل صحيحاً للدولة المختارة.','Enter a valid mobile number for the chosen country.'):r.error==='nouser'||r.error==='bad'?T('البريد أو كلمة المرور غير صحيحة.','Email or password is incorrect.'):T('تعذّر إتمام العملية. حاول مرة ثانية.','Something went wrong. Please try again.');return}
  if(r.confirm){VERIFY=email;render();return}
  if(next()){location.href=nextUrl();return}
  await X10Auth.pullProgress();render()}
 document.getElementById('lb').onclick=()=>{L=en()?'ar':'en';try{localStorage.setItem('x10_lang',L)}catch(e){}render()};
 document.getElementById('outBtn').onclick=async()=>{await X10Auth.signOut();EDIT=false;render()};
-Promise.all([X10Auth.load(),X10Auth.channels().then(c=>{SOC=c||{}},()=>{})]).then(async()=>{if(X10Auth.user){if(X10Auth.user.mobile&&afterLogin())return;await X10Auth.pullProgress()}}).then(render,render);
+Promise.all([X10Auth.load(),X10Auth.channels().then(c=>{SOC=Object.assign({},c||{},{whatsapp:false})},()=>{})]).then(async()=>{if(X10Auth.user){if(X10Auth.user.mobile&&afterLogin())return;await X10Auth.pullProgress()}}).then(render,render);
 </script>
 </body>
 </html>

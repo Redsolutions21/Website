@@ -64,7 +64,7 @@ footer{background:var(--navy);color:#fff;padding:28px 0;font-size:14px}footer a{
 <main id="v"></main>
 <footer><div class="wrap" id="ft"></div></footer>
 <dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
-<script src="catalog.js?v=23060d03"></script>
+<script src="catalog.js?v=6bde7f2f"></script>
 <script src="auth.js?v=aa07598c"></script>
 <script>
 let L='ar';try{const g=localStorage.getItem('x10_lang');if(g==='en'||g==='ar')L=g}catch(e){}
@@ -75,17 +75,17 @@ const C=[
   band:['من 7 إلى 9 سنوات','Ages 7 to 9'],t:['مستكشفو الذكاء الاصطناعي','AI Explorers'],
   d:['يتعرّف طفلك على الذكاء الاصطناعي بالقصص والرسم والألعاب، وأنت بجانبه.','Your child discovers AI through stories, drawing and games, with you beside them.'],
   pts:[['ما هو الذكاء الاصطناعي، وكيف يتعلّم من الأمثلة','What AI is, and how it learns from examples'],['يسأل أسئلة واضحة ويتحقق من الأجوبة','Asking clear questions and checking the answers'],['يكتب قصة ويصنع لعبة ألغاز للعائلة','Making a story and a riddle game for the family'],['الأشياء الخاصة تبقى خاصة','Private things stay private']],
-  mins:['حوالي ساعتين','About 2 hours'],with:['مع أحد الوالدين','With a parent']},
+  mins:['حوالي 35 دقيقة','About 35 minutes'],with:['مع أحد الوالدين','With a parent']},
  {id:'kids10',cls:'c2',ic:'gear',
   band:['من 10 إلى 12 سنة','Ages 10 to 12'],t:['صنّاع الذكاء الاصطناعي','AI Makers'],
   d:['يتعلّم كيف يعمل الذكاء الاصطناعي، ويكتب طلبات ذكية، ويصنع مشروعه الأول.','Learns how AI works, writes smart prompts and makes a first project.'],
   pts:[['كيف يتعلّم الذكاء الاصطناعي، ولماذا يخطئ','How AI learns, and why it gets things wrong'],['يجعل الذكاء الاصطناعي معلّماً يشرح ويختبره، لا يحلّ عنه','Using AI as a tutor that explains and quizzes, not one that does the homework'],['قصة أو قصة مصوّرة أو مشروع مدرسي','A story, a comic script or a school project'],['الصور المزيفة، والخصوصية، والأمانة في المدرسة','Fake pictures, privacy and honesty at school']],
-  mins:['حوالي ساعتين ونصف','About 2.5 hours'],with:['وأحد الوالدين قريب','A parent nearby']},
+  mins:['حوالي 50 دقيقة','About 50 minutes'],with:['وأحد الوالدين قريب','A parent nearby']},
  {id:'kids13',cls:'c3',ic:'bulb',
   band:['من 13 إلى 16 سنة','Ages 13 to 16'],t:['الذكاء الاصطناعي للمراهقين','AI for Teens'],
   d:['ذاكر بذكاء، أبدع، وكن آمناً: استخدام ناضج ومسؤول للذكاء الاصطناعي.','Study smarter, create, stay safe: a mature, responsible way to use AI.'],
   pts:[['كيف تعمل أدوات المحادثة، ونقاط قوتها وحدودها','How chatbots work, their strengths and limits'],['معلّم شخصي للمذاكرة، والتحقق من المصادر','A personal study tutor, and checking sources'],['مشروع إبداعي، وفكرة تطبيق أو لعبة، وعرض فكرة','A creative project, an app or game plan, and a pitch'],['الاحتيال والتزييف العميق والموافقة، والتوازن','Scams, deepfakes, consent and balance']],
-  mins:['حوالي 3 ساعات','About 3 hours'],with:['بإذن أحد الوالدين','With a parent\'s permission']}];
+  mins:['حوالي 45 دقيقة','About 45 minutes'],with:['بإذن أحد الوالدين','With a parent\'s permission']}];
 C.forEach(c=>{const k=X10_JUNIORS.find(x=>x.id===c.id);c.p=k.p;c.was=k.was;c.path=k.path});
 const BUNDLE=X10_JR_BUNDLE;
 const ICON={
@@ -137,7 +137,7 @@ function render(){document.documentElement.lang=L;document.documentElement.dir=e
   ${[
    ['هل يحتاج طفلي إلى حساب في أداة ذكاء اصطناعي؟','Does my child need an account on an AI tool?','لا. للأعمار من 7 إلى 12 تستخدمون أداة على حسابك أنت وأنت حاضر. للمراهقين، يتبعون قواعد العمر في كل أداة، بإذنك.','No. For ages 7 to 12 you use a tool on your own account while you are there. Teens follow each tool\'s age rules, with your permission.'],
    ['أي أداة نستخدم؟','Which AI tool do we use?','أي أداة محادثة معروفة مثل ChatGPT أو Claude أو Gemini. الطلبات في الدورة تعمل مع أي منها.','Any well-known chat tool such as ChatGPT, Claude or Gemini. The prompts in the course work with any of them.'],
-   ['كم تستغرق الدورة؟','How long does a course take?','من ساعتين إلى 3 ساعات تقريباً، مقسّمة على 12 درساً قصيراً. معظم العائلات تأخذ درساً أو درسين في الجلسة.','About 2 to 3 hours, split into 12 short lessons. Most families do one or two lessons per sitting.'],
+   ['كم تستغرق الدورة؟','How long does a course take?','من 35 إلى 50 دقيقة تقريباً حسب العمر، مقسّمة على 12 درساً قصيراً. معظم العائلات تأخذ درساً أو درسين في الجلسة.','About 35 to 50 minutes depending on the age group, split into 12 short lessons. Most families do one or two lessons per sitting.'],
    ['هل الدورات بالعربية؟','Are the courses in Arabic?','كل دورة بالعربية والإنجليزية، وتبدّل اللغة بضغطة زر في أي وقت.','Every course is in Arabic and English, and you can switch language at any time with one tap.'],
    ['هل يستطيع طفلي الدراسة وحده؟','Can my child study alone?','دورة 7 إلى 9 تُدرس معك. في دورة 10 إلى 12 يقرأ طفلك وحده ويستخدم أداة الذكاء الاصطناعي على حسابك، وأنت قريب منه طوال الوقت. دورة المراهقين يدرسها وحده.','The 7 to 9 course is done with you. In the 10 to 12 course your child reads alone and uses the AI tool on your account, with you nearby the whole time. Teens study on their own.']].map(q=>`<details><summary>${en()?q[1]:q[0]}</summary><p>${en()?q[3]:q[2]}</p></details>`).join('')}</div></section>`;
  document.getElementById('ft').innerHTML=`${T('معهد X10 للتدريب الأهلي، الكويت','X10 Institute for Private Training, Kuwait')} · <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a> · <a href="legal.html">${T('الشروط والسياسات','Terms and policies')}</a>`;

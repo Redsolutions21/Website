@@ -15,9 +15,10 @@ nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}nav.toc a{background
 <main id="v"></main>
 <script>
 /* Company details. build_store.py refuses to ship this page to the live site while any value below is empty. */
-const LEGAL={name_ar:"شركة رد سولو شنز للاستشارات الإدارية (شركة الشخص الواحد)",name_en:"Red Solutions Consulting Co. (single-person company)",licence:"2021/15270",address_ar:"مكتب 15/4، الدور 7، مبنى سوق الكويت، شارع عُمان، القبلة، الكويت",address_en:"Office 15/4, Floor 7, Souq Al-Kuwait Building, Oman Street, Qibla, Kuwait",refund_days:7,updated:"2026-11-12"};
+const LEGAL={name_ar:"",name_en:"",licence:"",address_ar:"",address_en:"",refund_days:7,updated:"2026-11-12"};
 /* DRAFT: set to false only after Ebrahim has edited and approved the text (planned before payments go live). */
 const DRAFT=false;
+/* 13 Nov (Ebrahim): company name, licence number and address are kept off the public page for now; they stay in LEGAL above. */
 const MAIL='x10@solutionsbyred.com';
 let L='ar';try{const g=localStorage.getItem('x10_lang');if(g==='en'||g==='ar')L=g}catch(e){}
 const en=()=>L==='en',T=(a,e)=>en()?e:a;
@@ -27,8 +28,8 @@ function render(){document.documentElement.lang=L;document.documentElement.dir=e
  const co=fill(en()?LEGAL.name_en:LEGAL.name_ar,T('الاسم القانوني للشركة','legal company name')),lic=fill(LEGAL.licence,T('رقم الترخيص التجاري','commercial licence number')),ad=fill(en()?LEGAL.address_en:LEGAL.address_ar,T('عنوان المكتب','office address')),d=LEGAL.refund_days;
  const mail=`<a class="ltr" href="mailto:${MAIL}">${MAIL}</a>`;
  const S=en()?[
- ['about','About us',`<p>X10 Institute for Private Training is a training institute in Kuwait, operated by ${co} (commercial licence ${lic}). We teach people and companies how to use artificial intelligence in their real work, through instructor-led courses and self-paced online courses in Arabic and English.</p>`],
- ['contact','Contact us',`<p>Email: ${mail}<br>Website: <span class="ltr">www.solutionsbyred.com/x10</span><br>Instagram: <span class="ltr">@x10academy.ai</span><br>Address: ${ad}</p><p>We reply to emails on working days, Sunday to Thursday.</p>`],
+ ['about','About us',`<p>X10 Institute for Private Training is a training institute in Kuwait. We teach people and companies how to use artificial intelligence in their real work, through instructor-led courses and self-paced online courses in Arabic and English.</p>`],
+ ['contact','Contact us',`<p>Email: ${mail}<br>Website: <span class="ltr">www.solutionsbyred.com/x10</span><br>Instagram: <span class="ltr">@x10academy.ai</span></p><p>We reply to emails on working days, Sunday to Thursday.</p>`],
  ['terms','Terms and conditions',`<p>These terms apply when you create an account or buy an online course or the Prompt Library from X10. By creating an account or placing an order you accept them.</p>
  <ul><li><b>What you buy.</b> A self-paced online course is a set of written lessons, ready prompts, exercises and quizzes, with a certificate of completion. Nothing is shipped and there is no live session unless the course page says so.</li>
  <li><b>Your account.</b> Give your correct name and email, keep your password private, and use one account per person. An account may not be shared, sold or transferred.</li>
@@ -55,8 +56,8 @@ function render(){document.documentElement.lang=L;document.documentElement.dir=e
  <li><b>Age.</b> The courses are for adults. Anyone under 18 needs a parent or guardian to buy and to agree to these terms.</li>
  <li><b>Security.</b> Access to the database is protected so that each account can read only its own data. No online service can promise perfect security; if a breach ever affects your data, we will tell you.</li></ul>`]]
  :[
- ['about','من نحن',`<p>معهد X10 للتدريب الأهلي معهد تدريب في الكويت، تشغّله ${co} (ترخيص تجاري رقم ${lic}). نعلّم الأفراد والشركات استخدام الذكاء الاصطناعي في عملهم الفعلي، عبر دورات يقدّمها مدرّبون ودورات ذاتية أونلاين، بالعربية والإنجليزية.</p>`],
- ['contact','تواصل معنا',`<p>البريد الإلكتروني: ${mail}<br>الموقع: <span class="ltr">www.solutionsbyred.com/x10</span><br>إنستغرام: <span class="ltr">@x10academy.ai</span><br>العنوان: ${ad}</p><p>نرد على الرسائل في أيام العمل، من الأحد إلى الخميس.</p>`],
+ ['about','من نحن',`<p>معهد X10 للتدريب الأهلي معهد تدريب في الكويت. نعلّم الأفراد والشركات استخدام الذكاء الاصطناعي في عملهم الفعلي، عبر دورات يقدّمها مدرّبون ودورات ذاتية أونلاين، بالعربية والإنجليزية.</p>`],
+ ['contact','تواصل معنا',`<p>البريد الإلكتروني: ${mail}<br>الموقع: <span class="ltr">www.solutionsbyred.com/x10</span><br>إنستغرام: <span class="ltr">@x10academy.ai</span></p><p>نرد على الرسائل في أيام العمل، من الأحد إلى الخميس.</p>`],
  ['terms','الشروط والأحكام',`<p>تسري هذه الشروط عند إنشاء حساب أو شراء دورة أونلاين أو مكتبة الطلبات من X10. إنشاؤك الحساب أو تقديمك الطلب يعني موافقتك عليها.</p>
  <ul><li><b>ما الذي تشتريه.</b> الدورة الذاتية الأونلاين مجموعة دروس مكتوبة وطلبات جاهزة وتمارين واختبارات، مع شهادة إتمام. لا يُشحن شيء، ولا توجد جلسات مباشرة إلا إذا ذكرت صفحة الدورة ذلك.</li>
  <li><b>حسابك.</b> اكتب اسمك وبريدك الصحيحين، واحتفظ بكلمة المرور لنفسك، واستخدم حساباً واحداً لكل شخص. لا يجوز مشاركة الحساب أو بيعه أو نقله.</li>

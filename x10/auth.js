@@ -40,6 +40,11 @@ const X10Auth=(()=>{
  async function resetPassword(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resetPasswordForEmail(email.trim().toLowerCase(),{redirectTo:location.origin+location.pathname});return error?{error:error.message}:{}}
  /* the reset email carries a code; typing it here signs the customer in on this same browser */
  async function verifyCode(email,token){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.verifyOtp({email:email.trim().toLowerCase(),token:token.replace(/\D/g,''),type:'recovery'});if(error)return {error:error.message};await load();return {}}
+ async function updateProfile({name,mobile}){name=String(name||'').trim();mobile=String(mobile||'').trim();
+  if(!REAL){const d=rd();const u=d.cur&&d.users[d.cur];if(!u)return {error:'nouser'};u.name=name;u.mobile=mobile;wr(d);await load();return {}}
+  const c=await client();const {error}=await c.auth.updateUser({data:{name,mobile}});if(error)return {error:error.message};
+  try{await c.rpc('update_my_profile',{p_name:name,p_mobile:mobile})}catch(e){}
+  await load();return {}}
  async function setPassword(password){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.updateUser({password});return error?{error:error.message}:{}}
  /* a course priced at zero can be claimed by any signed-in account; the server checks the price */
  async function claimFree(id){if(!REAL){demoGrant([id]);return {}}const c=await client();const {error}=await c.rpc('claim_free',{p_slug:id});if(error)return {error:error.message};await load();return {}}
@@ -52,5 +57,5 @@ const X10Auth=(()=>{
  /* All-Access opens the 10 adult courses; the AI Juniors bundle opens the 3 kids courses. The server applies the same rule. */
  const JR=['kids7','kids10','kids13'];
  const owns=i=>cache.owned.includes(i)||(JR.includes(i)?cache.owned.includes('juniors'):(i!=='lib'&&i!=='juniors'&&cache.owned.includes('all')));
- return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
+ return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,updateProfile,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

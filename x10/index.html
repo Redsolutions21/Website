@@ -50,7 +50,9 @@ html[lang="en"] h1{font-weight:900;letter-spacing:-.03em;line-height:1.05;max-wi
 .cta{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 24px;margin-top:32px;align-items:center}
 .btn{display:inline-block;background:#fff;color:var(--navy);text-decoration:none;border-radius:999px;padding:12px 24px;font-weight:700}
 .btn:hover{background:#F2F5FA}
-.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:#C9151C}
+.btn.red{background:var(--red);color:#fff}
+.launch{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;background:var(--navy);color:#fff;border-radius:16px;padding:14px 18px;margin:0 0 16px}.launch .x10cd{font-size:22px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}.launch small{width:100%;opacity:.85}
+.prog .btn.cdb,.btn.cdb{background:#EEF2F8;color:var(--navy);cursor:default;font-size:14px}.btn.cdb b{font-variant-numeric:tabular-nums}.btn.red:hover{background:#C9151C}
 .more{color:#fff;text-decoration:none;font-weight:700}.more:hover{text-decoration:underline}
 
 .band{padding:88px 0}
@@ -224,6 +226,7 @@ footer a{color:var(--navy)}
       <h2 data-i="p_h">دورات الذكاء الاصطناعي أونلاين. اشترِ وابدأ فوراً.</h2>
       <p class="lede" data-i="p_p">دورات ذاتية بالعربي والإنجليزي، تتعلمها بالسرعة اللي تناسبك ومن أي جهاز. بدون حضور، ومع شهادة إتمام.</p>
       <div class="frb"><div><span class="frt" data-i="fr_t">مجاناً بالكامل</span><h3 data-i="fr_h">ابدأ من الأساس مجاناً: دورتان كاملتان وشهادتان</h3><p data-i="fr_p">قبل أن تدفع لأي دورة، ابدأ بالأساس: ما هو الذكاء الاصطناعي، وكيف تستخدمه دون أن تعرّض بياناتك للخطر. لذلك جعلنا دورتي الأساس مجانيتين بالكامل، مع شهادة إتمام لكل دورة. يكفي حساب مجاني.</p></div><div class="fra"><button type="button" onclick="buy('essentials')" data-i="fr_b1">مقدمة في الذكاء الاصطناعي</button><button type="button" onclick="buy('safe')" data-i="fr_b2">كن آمناً مع الذكاء الاصطناعي</button></div></div>
+      <div class="launch" id="launch" hidden></div>
       <div class="filt" id="filt"></div>
       <div class="progs" id="progs"></div>
       <a class="jrb" href="juniors.html"><div><span class="jrt" data-i="jr_t">جديد · AI Juniors</span><h3 data-i="jr_h">دورات الذكاء الاصطناعي لأطفالك، بالطريقة الآمنة</h3><p data-i="jr_p">3 دورات أونلاين قصيرة للأعمار من 7 إلى 9، ومن 10 إلى 12، ومن 13 إلى 16: يفهم الذكاء الاصطناعي، ويبدع به، ويبقى آمناً. ومن هم دون 13 سنة يستخدمونه على حساب أحد الوالدين فقط.</p></div><span class="btn red" data-i="jr_b">تعرّف على AI Juniors</span></a>
@@ -286,7 +289,7 @@ footer a{color:var(--navy)}
 <footer><div class="wrap"><span data-i="ft">© 2026 X10 للتدريب الأهلي. الكويت.</span><span><span data-i="ftp">جزء من رد سولو شنز للاستشارات.</span> <a href="https://www.solutionsbyred.com" data-i="ftl">زيارة الموقع</a> · <span data-i="ftc">الصور توضيحية مولّدة بالذكاء الاصطناعي.</span><!--legal--> · <a href="legal.html">الشروط والسياسات · Terms and policies</a><!--/legal--></span></div></footer>
 
 <script src="auth.js?v=aa07598c"></script>
-<script src="catalog.js?v=6bde7f2f"></script>
+<script src="catalog.js?v=bbb40917"></script>
 <script>
 const EN={
  bname:"X10 Institute for Private Training",n1:"Training areas",n2:"Who it's for",n3:"Train with us",n4:"Contact",
@@ -490,14 +493,18 @@ let FILT='all';
 const isEn=()=>document.documentElement.lang==='en';
 const T=(ar,en)=>isEn()?en:ar;
 const kd=n=>x10kd(n,isEn());
-function renderFilt(){const f=[['all','الكل','All'],['ready','متاحة الآن','Available now'],['1',LV[1][0],LV[1][1]],['2',LV[2][0],LV[2][1]],['3',LV[3][0],LV[3][1]]];
+/* paid courses open at X10_LAUNCH (catalog.js); free courses stay open */
+const cdBtn=()=>`<span class="btn cdb" aria-live="off">${T('تفتح بعد','Opens in')} <b class="x10cd" dir="${isEn()?'ltr':'rtl'}">${x10Left(isEn())}</b></span>`;
+function renderLaunch(){const el=document.getElementById('launch');if(!el)return;el.hidden=x10Open();if(x10Open())return;
+ el.innerHTML=`<b>${T('الدورات المدفوعة تفتح الثلاثاء ١٧ نوفمبر الساعة ١٢ بالليل','Paid courses open Tuesday 17 November at midnight')}</b><span class="x10cd" dir="${isEn()?'ltr':'rtl'}">${x10Left(isEn())}</span><small>${T('الدورات المجانية متاحة الحين.','The free courses are open now.')}</small>`}
+function renderFilt(){renderLaunch();const f=[['all','الكل','All'],['ready','متاحة الآن','Available now'],['1',LV[1][0],LV[1][1]],['2',LV[2][0],LV[2][1]],['3',LV[3][0],LV[3][1]]];
  document.getElementById('filt').innerHTML=f.map(([k,a,e])=>`<button type="button" aria-pressed="${FILT===k}" onclick="FILT='${k}';renderProgs()">${T(a,e)}</button>`).join('')}
 function renderProgs(){renderFilt();const el=document.getElementById('progs');
  const list=COURSES.filter(c=>FILT==='all'||(FILT==='ready'?ONLINE[c.id].ready:String(c.lvl)===FILT)).sort((x,y)=>(ONLINE[y.id].ready?1:0)-(ONLINE[x.id].ready?1:0));
  el.innerHTML=list.map(c=>{const L=isEn()?c.en:c.ar,i=isEn()?1:0,O=ONLINE[c.id];
   return `<article class="prog${O.ready?' live':''}">${cover(c.id)}<div class="tags"><span class="m">${O.ready?T('متاحة الآن','Available now'):T('قريباً','Coming soon')}</span><span>${T('أونلاين · بالسرعة اللي تناسبك','Online · self-paced')}</span><span>${LV[c.lvl][i]}</span></div><h3>${L.t}</h3><p class="s">${L.s}</p><div class="meta">${O.ready?(isEn()?O.en:O.ar):T('4 وحدات · شهادة إتمام','4 modules · certificate')}</div>
   <div class="row"><div class="price">${pr(O)}<small>${lim(O)}</small></div></div>
-  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
+  <div class="acts"><button type="button" class="ghost" onclick="openC('${c.id}')">${T('المنهج','Curriculum')}</button>${O.ready?(X10Auth.owns(c.id)?`<a class="btn red" href="account.html">${T('افتح دورتي','Open my course')}</a>`:(O.p&&!x10Open()?cdBtn():`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`)):`<a class="btn" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div>${O.ready&&O.free?`<a class="free" href="${O.free}">${T('جرّب الوحدة الأولى مجاناً ←','Try module 1 free →')}</a>`:''}</article>`}).join('');
  const sel=document.getElementById('r_int'),cur=sel.value;
  sel.innerHTML=COURSES.map(c=>`<option value="${c.en.t}">${isEn()?c.en.t:c.ar.t}</option>`).join('')+`<option value="All-Access (every course)">${T('الوصول الكامل لجميع الدورات','All-Access, every course')}</option><option value="In-house company training">${T('تدريب داخلي لشركتي','In-house training for my company')}</option><option value="Not sure yet">${T('لم أحدد بعد','Not sure yet')}</option>`;
  if(cur)sel.value=cur}
@@ -509,11 +516,12 @@ function openC(id){const c=COURSES.find(x=>x.id===id),L=isEn()?c.en:c.ar,i=isEn(
  <div><h4>${T('المنهج','Curriculum')}</h4><div class="mods">${L.mods.map(([h,p])=>`<div class="mod"><b>${h}</b><ul>${p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>
  <div><h4>${T('ماذا ستحقق','What you will achieve')}</h4><ul class="out">${L.out.map(x=>`<li>${x}</li>`).join('')}</ul></div>
  <p class="inc">${T('يشمل: دروس قصيرة مع أمثلة وطلبات جاهزة للنسخ، تمارين على عملك، اختبار بعد كل وحدة، وشهادة إتمام من معهد X10. لا تحتاج تحضر أي جلسة.','Includes: short lessons with examples and copy-ready prompts, exercises on your own work, a quiz after each module and an X10 certificate. No sessions to attend.')}</p>
- <div class="go"><div class="price">${pr(O)}</div>${O.ready?`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`:`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
+ <div class="go"><div class="price">${pr(O)}</div>${O.ready?(O.p&&!x10Open()?cdBtn():`<button type="button" class="btn red" onclick="buy('${c.id}')">${bl(O)}</button>`):`<a class="btn red" href="#contact" onclick="pick('${c.id}')">${T('أبلغني عند الإطلاق','Notify me')}</a>`}</div></div>`;
  const d=document.getElementById('cd');if(!d.open)d.showModal()}
 /* ---------- checkout: order bump + upsell ---------- */
 let CO={id:null,plan:'one',bump:false,lib:false};
 function buy(id,opts){opts=opts||{};
+ if(!x10Open()){const P=x10Course(id);if(opts.lib||opts.plan==='all'||!P||P.p>0){if(P&&ONLINE[id])openC(id);else location.hash='programs';return}}
  if(!X10Auth.user){location.href='account.html#buy-'+(opts.lib?'lib':opts.plan==='all'?'all':id);return}
  const FC=x10Course(id);if(FC&&FC.p===0&&!opts.lib&&opts.plan!=='all'){if(X10Auth.owns(id)){location.href=FC.path;return}X10Auth.claimFree(id).then(r=>{location.href=r&&r.error?'account.html':FC.path});return}
  CO=Object.assign({id,plan:'one',bump:false,lib:false},opts);

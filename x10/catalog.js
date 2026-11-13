@@ -191,4 +191,8 @@ const X10_JUNIORS=[
 ];
 const X10_JR_BUNDLE={"p": 59, "was": 177};
 const x10Course=id=>X10_CATALOG.find(c=>c.id===id);
+const X10_LAUNCH=Date.parse('2026-11-18T00:00:00+03:00');
+const x10Open=()=>Date.now()>=X10_LAUNCH;
+const x10Left=en=>{const s=Math.max(0,Math.floor((X10_LAUNCH-Date.now())/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=s%60,p=n=>String(n).padStart(2,'0');return en?`${d}d ${p(h)}h ${p(m)}m ${p(x)}s`:`${d} ${d===1?'يوم':d===2?'يومين':d<=10?'أيام':'يوم'} · ${p(h)}:${p(m)}:${p(x)}`};
+(()=>{let was=x10Open();setInterval(()=>{const en=document.documentElement.lang==='en';document.querySelectorAll('.x10cd').forEach(e=>e.textContent=x10Left(en));if(!was&&x10Open())location.reload();was=x10Open()},1000)})();
 const x10kd=(n,en)=>{const s=Number.isInteger(Number(n))?String(Number(n)):Number(n).toFixed(3);return en?`KWD ${s}`:`${s} د.ك`};

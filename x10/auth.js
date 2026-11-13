@@ -17,7 +17,8 @@ const X10Auth=(()=>{
   const c=await client();const {data:{user}}=await c.auth.getUser();
   if(!user){cache={user:null,owned:[]};return cache}
   const {data:rows}=await c.from('purchases').select('item');
-  cache={user:{email:user.email,name:(user.user_metadata||{}).name||'',mobile:(user.user_metadata||{}).mobile||''},owned:(rows||[]).map(r=>r.item)};return cache}
+  const md=user.user_metadata||{};let pr=null;try{const {data:pp}=await c.rpc('my_profile');pr=pp&&pp[0]}catch(e){}
+  cache={user:{email:user.email,name:(pr&&pr.full_name)||md.name||md.full_name||'',mobile:(pr&&pr.mobile)||md.mobile||'',emailOk:!!(pr&&pr.email_verified),mobileOk:!!(pr&&pr.mobile_verified),method:(pr&&pr.signup_method)||((user.app_metadata||{}).provider)||'email'},owned:(rows||[]).map(r=>r.item)};return cache}
  /* Accounts are created by the x10-signup function already confirmed: no email code. */
  async function makeAccount(body){try{const ac=new AbortController();const t=setTimeout(()=>ac.abort(),20000);
   const r=await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-signup',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON},body:JSON.stringify(body),signal:ac.signal});clearTimeout(t);
@@ -65,5 +66,20 @@ const X10Auth=(()=>{
  /* All-Access opens the 10 adult courses; the AI Juniors bundle opens the 3 kids courses. The server applies the same rule. */
  const JR=['kids7','kids10','kids13'];
  const owns=i=>cache.owned.includes(i)||(JR.includes(i)?cache.owned.includes('juniors'):(i!=='lib'&&i!=='juniors'&&cache.owned.includes('all')));
- return {REAL,load,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,updateProfile,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
+ /* 4-digit codes (optional email / WhatsApp confirmation, forgot password) run through the x10-code function */
+ async function codeFn(body){try{const h={'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON};
+  if(cache.user){const c=await client();const {data:{session}}=await c.auth.getSession();if(session)h.Authorization='Bearer '+session.access_token}
+  const ac=new AbortController();const t=setTimeout(()=>ac.abort(),20000);
+  const r=await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-code',{method:'POST',headers:h,body:JSON.stringify(body),signal:ac.signal});clearTimeout(t);
+  const j=await r.json().catch(()=>({}));return r.ok?j:{error:j.error||'failed'}}catch(e){return {error:'failed'}}}
+ let CH=null;async function channels(){if(!REAL)return {};if(!CH){const r=await codeFn({action:'channels'});CH=r.error?{}:r}return CH}
+ const lang=()=>{try{return localStorage.getItem('x10_lang')==='en'?'en':'ar'}catch(e){return 'ar'}};
+ async function sendCode(purpose,o={}){return codeFn({action:'send',purpose,email:o.email,channel:o.channel,lang:lang()})}
+ async function checkCode(purpose,code,o={}){const r=await codeFn({action:'verify',purpose,code:String(code).replace(/\D/g,''),email:o.email,password:o.password});if(r.error)return r;
+  if(purpose==='reset'){const c=await client();const {error}=await c.auth.signInWithPassword({email:o.email.trim().toLowerCase(),password:o.password});if(error)return {error:'failed'}}
+  await load();return {}}
+ /* Apple / Google: the browser goes to Apple or Google and comes back here signed in */
+ async function oauth(provider){if(!REAL)return {error:'demo'};const c=await client();
+  const {error}=await c.auth.signInWithOAuth({provider,options:{redirectTo:location.origin+location.pathname}});return error?{error:error.message}:{}}
+ return {REAL,load,channels,sendCode,checkCode,oauth,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,updateProfile,claimFree,order,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

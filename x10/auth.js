@@ -2,6 +2,8 @@
    REAL MODE: SUPABASE_URL and SUPABASE_ANON (the public, publishable key) are filled in by build_store.py for the store build.
    Until then the site runs in DEMO MODE: accounts and purchases are kept only in this browser,
    so you can preview the whole flow. Demo mode is NOT secure and must not be used for real sales. */
+/* Always use the secure https address: on http some browsers (Instagram's in-app browser) refuse the course decryption and the course never opens. */
+if(location.protocol==='http:'&&!/^(localhost|127\.)/.test(location.hostname)){location.replace('https://'+location.host+location.pathname+location.search+location.hash)}
 const X10_CFG={SUPABASE_URL:"https://ezgkqndfjjdifrvlpxcb.supabase.co",SUPABASE_ANON:"sb_publishable__Q-YVhJZoIgR7oL7eFsimg_p2jdNShV"};
 const X10Auth=(()=>{
  const REAL=!!(X10_CFG.SUPABASE_URL&&X10_CFG.SUPABASE_ANON);
@@ -20,6 +22,8 @@ const X10Auth=(()=>{
   if(!REAL){const d=rd();if(d.users[email])return {error:'exists'};d.users[email]={name,mobile,owned:[]};d.cur=email;wr(d);await load();return {}}
   const c=await client();const {data,error}=await c.auth.signUp({email,password,options:{data:{name,mobile},emailRedirectTo:location.origin+location.pathname}});
   if(error)return {error:/registered/i.test(error.message)?'exists':error.message};
+  /* an email that already has an account comes back with no identities and no email is sent: tell the person to sign in instead */
+  if(data&&data.user&&Array.isArray(data.user.identities)&&data.user.identities.length===0)return {error:'exists'};
   await load();return {confirm:!data.session}}
  async function signIn({email,password}){email=email.trim().toLowerCase();
   if(!REAL){const d=rd();if(!d.users[email])return {error:'nouser'};d.cur=email;wr(d);await load();return {}}

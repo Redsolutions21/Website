@@ -9,7 +9,7 @@ const X10Auth=(()=>{
  const rd=()=>{try{return JSON.parse(localStorage.getItem(K)||'null')||{users:{},cur:null}}catch(e){return {users:{},cur:null}}};
  const wr=d=>{try{localStorage.setItem(K,JSON.stringify(d))}catch(e){}};
  let sb=null,cache={user:null,owned:[]};
- async function client(){if(!sb){const m=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm');sb=m.createClient(X10_CFG.SUPABASE_URL,X10_CFG.SUPABASE_ANON)}return sb}
+ async function client(){if(!sb){const m=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm');sb=m.createClient(X10_CFG.SUPABASE_URL,X10_CFG.SUPABASE_ANON,{auth:{lock:(name,wait,fn)=>fn()}})}return sb}
  async function load(){
   if(!REAL){const d=rd();const u=d.cur&&d.users[d.cur];cache={user:u?{email:d.cur,name:u.name,mobile:u.mobile}:null,owned:u?u.owned||[]:[]};return cache}
   const c=await client();const {data:{user}}=await c.auth.getUser();

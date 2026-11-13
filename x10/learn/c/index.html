@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>X10</title>
-<style>body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#EEF1F6;color:#14213D;display:grid;place-items:center;min-height:100vh;text-align:center}p{margin:0 20px;font-size:17px;line-height:1.8}a{color:#1D3461;font-weight:700}</style>
-<script src="../../auth.js?v=aa07598c"></script></head>
+<style>body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#EEF1F6;color:#14213D;display:grid;place-items:center;min-height:100vh;text-align:center}p{margin:0 20px;font-size:17px;line-height:1.8}a{color:#1D3461;font-weight:700}
+.b{display:inline-block;margin:14px 6px 0;padding:11px 20px;border-radius:10px;border:0;font:inherit;font-size:16px;font-weight:700;cursor:pointer;background:#1D3461;color:#fff}.b.s{background:#fff;color:#1D3461;border:2px solid #1D3461}</style>
+<script src="../../auth.js?v=a123e410"></script></head>
 <body><p id="m">…</p>
 <script>
 /* Opens a paid course. The course page is not part of this website: it is fetched from a private store
@@ -14,12 +15,26 @@
  m.textContent=T('جارٍ فتح الدورة…','Opening your course…');
  const id=new URLSearchParams(location.search).get('c')||'';
  if(!/^[a-z][a-z0-9]{1,19}$/.test(id))return home();
+ /* If anything hangs (a slow network, or a saved login stuck in the browser), show a way out instead of waiting forever. */
+ let done=false;
+ const stuck=()=>{if(done)return;done=true;
+  m.innerHTML=T('الدورة تأخرت في الفتح.','The course is taking too long to open.')+'<br>'+
+   '<button class="b" id="r">'+T('حاول مرة ثانية','Try again')+'</button>'+
+   '<button class="b s" id="o">'+T('سجّل الدخول من جديد','Sign in again')+'</button><br>'+
+   '<span style="font-size:14px;opacity:.75">'+T('إذا استمرت المشكلة راسلنا: ','If it continues, write to us: ')+'<a href="mailto:x10@solutionsbyred.com" dir="ltr">x10@solutionsbyred.com</a></span>';
+  document.getElementById('r').onclick=()=>location.reload();
+  document.getElementById('o').onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith('sb-')).forEach(k=>localStorage.removeItem(k))}catch(e){}home()};
+ };
+ const timer=setTimeout(stuck,15000);
  try{
   await X10Auth.load();
-  if(!X10Auth.user||!X10Auth.owns(id))return home();
+  if(done)return;
+  if(!X10Auth.user||!X10Auth.owns(id)){done=true;clearTimeout(timer);return home()}
   const html=await X10Auth.course(id);
+  if(done)return;done=true;clearTimeout(timer);
   if(!html){m.innerHTML=T('تعذّر فتح الدورة الآن. حدّث الصفحة، وإذا استمرت المشكلة راسلنا: ','We could not open the course right now. Refresh the page, and if it continues write to us: ')+'<a href="mailto:x10@solutionsbyred.com" dir="ltr">x10@solutionsbyred.com</a><br><a href="../../account.html">'+T('العودة إلى حسابي','Back to my account')+'</a>';return}
   document.open();document.write(html);document.close();
- }catch(e){home()}
+ }catch(e){if(!done){done=true;clearTimeout(timer);stuck_err()}}
+ function stuck_err(){done=false;stuck()}
 })();
 </script></body></html>

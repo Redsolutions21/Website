@@ -18,17 +18,21 @@ const X10Auth=(()=>{
   if(!user){cache={user:null,owned:[]};return cache}
   const {data:rows}=await c.from('purchases').select('item');
   cache={user:{email:user.email,name:(user.user_metadata||{}).name||'',mobile:(user.user_metadata||{}).mobile||''},owned:(rows||[]).map(r=>r.item)};return cache}
+ /* Accounts are created by the x10-signup function already confirmed: no email code. */
+ async function makeAccount(body){try{const ac=new AbortController();const t=setTimeout(()=>ac.abort(),20000);
+  const r=await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-signup',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON},body:JSON.stringify(body),signal:ac.signal});clearTimeout(t);
+  const j=await r.json().catch(()=>({}));return r.ok?{}:{error:j.error||'failed'}}catch(e){return {error:'failed'}}}
  async function signUp({name,email,mobile,password}){email=email.trim().toLowerCase();
   if(!REAL){const d=rd();if(d.users[email])return {error:'exists'};d.users[email]={name,mobile,owned:[]};d.cur=email;wr(d);await load();return {}}
-  const c=await client();const {data,error}=await c.auth.signUp({email,password,options:{data:{name,mobile},emailRedirectTo:location.origin+location.pathname}});
-  if(error)return {error:/registered/i.test(error.message)?'exists':error.message};
-  /* an email that already has an account comes back with no identities and no email is sent: tell the person to sign in instead */
-  if(data&&data.user&&Array.isArray(data.user.identities)&&data.user.identities.length===0)return {error:'exists'};
-  await load();return {confirm:!data.session}}
+  const m=await makeAccount({name,email,mobile,password});if(m.error)return m;
+  const c=await client();const {error}=await c.auth.signInWithPassword({email,password});if(error)return {error:'failed'};
+  await load();return {}}
  async function signIn({email,password}){email=email.trim().toLowerCase();
   if(!REAL){const d=rd();if(!d.users[email])return {error:'nouser'};d.cur=email;wr(d);await load();return {}}
-  const c=await client();const {error}=await c.auth.signInWithPassword({email,password});
-  if(error)return {error:/confirm/i.test(error.message||'')?'unconfirmed':'bad'};await load();return {}}
+  const c=await client();let {error}=await c.auth.signInWithPassword({email,password});
+  /* an account left unconfirmed by the old code flow: confirm it with this password, then sign in */
+  if(error&&/confirm/i.test(error.message||'')){const m=await makeAccount({email,password});if(!m.error){const r2=await c.auth.signInWithPassword({email,password});error=r2.error}}
+  if(error)return {error:'bad'};await load();return {}}
  /* sign-up is confirmed with a code from the email, typed on the same page (no link, no browser switch) */
  async function confirmCode(email,token){if(!REAL)return {error:'demo'};const c=await client();email=email.trim().toLowerCase();token=token.replace(/\D/g,'');
   let {error}=await c.auth.verifyOtp({email,token,type:'signup'});if(error){const r2=await c.auth.verifyOtp({email,token,type:'email'});error=r2.error}
@@ -39,7 +43,7 @@ const X10Auth=(()=>{
  function demoGrant(items){if(REAL)return;const d=rd();const u=d.cur&&d.users[d.cur];if(!u)return;u.owned=[...new Set([...(u.owned||[]),...items])];wr(d);cache.owned=u.owned}
  /* real mode only: paid pages are on the site encrypted; Supabase gives the key only to an account that owns the product */
  async function course(id){if(!REAL)return null;const c=await client();const {data,error}=await c.from('my_course_keys').select('key').eq('slug',id).maybeSingle();if(error||!data||!data.key)return null;
-  const r=await fetch(new URL('d/'+id+'.txt',location.href));if(!r.ok)return null;const b=s=>Uint8Array.from(atob(s),x=>x.charCodeAt(0)),raw=b((await r.text()).trim());
+  let r=null;for(let i=0;i<2&&!(r&&r.ok);i++){try{r=await fetch(new URL('d/'+id+'.txt',location.href),{cache:i?'reload':'default'})}catch(e){r=null}}if(!r||!r.ok)return null;const b=s=>Uint8Array.from(atob(s),x=>x.charCodeAt(0)),raw=b((await r.text()).trim());
   const k=await crypto.subtle.importKey('raw',b(data.key),'AES-GCM',false,['decrypt']);return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:raw.slice(0,12)},k,raw.slice(12)))}
  async function resetPassword(email){if(!REAL)return {error:'demo'};const c=await client();const {error}=await c.auth.resetPasswordForEmail(email.trim().toLowerCase(),{redirectTo:location.origin+location.pathname});return error?{error:error.message}:{}}
  /* the reset email carries a code; typing it here signs the customer in on this same browser */

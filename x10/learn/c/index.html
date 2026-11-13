@@ -3,7 +3,7 @@
 <meta name="robots" content="noindex,nofollow"><title>X10</title>
 <style>body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#EEF1F6;color:#14213D;display:grid;place-items:center;min-height:100vh;text-align:center}p{margin:0 20px;font-size:17px;line-height:1.8}a{color:#1D3461;font-weight:700}
 .b{display:inline-block;margin:14px 6px 0;padding:11px 20px;border-radius:10px;border:0;font:inherit;font-size:16px;font-weight:700;cursor:pointer;background:#1D3461;color:#fff}.b.s{background:#fff;color:#1D3461;border:2px solid #1D3461}</style>
-<script src="../../auth.js?v=5fc6d7b5"></script></head>
+<script src="../../auth.js?v=acb5ddf1"></script></head>
 <body><p id="m">…</p>
 <script>
 /* Opens a paid course. The course page is not part of this website: it is fetched from a private store
@@ -25,7 +25,9 @@
   document.getElementById('r').onclick=()=>location.reload();
   document.getElementById('o').onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith('sb-')).forEach(k=>localStorage.removeItem(k))}catch(e){}home()};
  };
- const timer=setTimeout(stuck,15000);
+ if(!(window.crypto&&crypto.subtle)){if(location.protocol==='http:'){location.replace('https://'+location.host+location.pathname+location.search);return}
+  m.innerHTML=T('هذا المتصفح ما يقدر يفتح الدورة. افتح الرابط في Safari أو Chrome.','This browser cannot open the course. Open the link in Safari or Chrome.');return}
+ const timer=setTimeout(stuck,25000);
  try{
   await X10Auth.load();
   if(done)return;

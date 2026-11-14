@@ -1,0 +1,29 @@
+name: Fetch social assets
+# Downloads files listed in rs/social/fetch.txt ("<url> <repo-path>" per line) and commits them.
+on:
+  push:
+    paths: ['rs/social/fetch.txt']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        run: |
+          while read -r url path; do
+            [ -z "$url" ] && continue
+            case "$path" in rs/social/*) ;; *) echo "skip $path"; continue;; esac
+            case "$url" in https://ezgkqndfjjdifrvlpxcb.supabase.co/*|https://d8j0ntlcm91z4.cloudfront.net/*) ;; *) echo "skip $url"; continue;; esac
+            mkdir -p "$(dirname "$path")"
+            curl -sSfL --retry 3 "$url" -o "$path" || echo "failed $url"
+          done < rs/social/fetch.txt
+      - name: Commit
+        run: |
+          git config user.name "social-bot"
+          git config user.email "social-bot@users.noreply.github.com"
+          git add rs/social
+          git diff --cached --quiet || git commit -m "Fetch social assets"
+          git push

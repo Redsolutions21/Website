@@ -1,2 +1,3 @@
-# 1794676928
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-04-1.jpg rs/social/burst3/img/x10-04-1.jpg
+# 1794677811
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-14-1.jpg rs/social/burst3/img/x10-14-1.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-24-2.jpg rs/social/burst3/img/x10-24-2.jpg

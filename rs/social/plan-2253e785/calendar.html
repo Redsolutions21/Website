@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>Instagram plan · calendar</title><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#14264F"><style>:root{--navy:#14264F;--red:#AF3736;--ink:#14213D;--mute:#5A6478;--bg:#EEF2F7;--line:#D9DFEA}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Arabic",sans-serif;background:var(--bg);color:var(--ink)}
+.lay{display:flex;gap:6px;justify-content:center;padding:8px;background:#0E1B3A}.lay a{color:#cfd8ea;text-decoration:none;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px}.lay a.on{background:#fff;color:#14264F}
+
+header{background:var(--navy);color:#fff;padding:14px 16px}header h1{margin:0;font-size:18px}header p{margin:4px 0 0;font-size:12.5px;opacity:.85}
+main{max-width:1150px;margin:0 auto;padding:10px}
+.flt{display:flex;gap:8px;margin:4px 0 10px}.flt button{flex:1;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;padding:8px;font:inherit;font-weight:700;cursor:pointer}.flt button.on{background:var(--navy);color:#fff}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.wk .h{font-size:11px;font-weight:800;color:var(--mute);text-align:center;padding:2px 0}
+.c{background:#fff;border-radius:10px;padding:6px;min-height:120px;display:flex;flex-direction:column;gap:5px;min-width:0}.c.empty{background:transparent}
+.c.today{outline:3px solid var(--navy)}.c.past{opacity:.55}
+.c .dn{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}.c .dn span{font-size:10px;font-weight:700;color:var(--mute)}
+.c .ev{font-size:10px;background:#FFF4D6;color:#7A5600;border-radius:6px;padding:2px 5px;font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:2px}.row b{width:100%;font-size:9.5px;color:var(--mute)}.row.red b{color:var(--red)}
+.row img{width:calc((100% - 8px)/5);aspect-ratio:4/5;object-fit:cover;border-radius:3px;cursor:pointer;border-bottom:3px solid transparent}
+body.only-red .row.x10,body.only-x10 .row.red{display:none}
+@media(max-width:760px){.wk{grid-template-columns:1fr}.wk .h{display:none}.c.empty{display:none}.row img{width:calc((100% - 14px)/8)}}
+.k{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;margin:10px 2px}.k i{display:inline-block;width:12px;height:4px;margin-right:4px;vertical-align:2px}
+#v{position:fixed;inset:0;background:rgba(8,12,24,.94);display:none;flex-direction:column;z-index:9;color:#fff}#v.on{display:flex}
+#v .top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:10px}#v .top b{font-size:14px}#v .x{background:none;border:0;color:#fff;font-size:28px;cursor:pointer;line-height:1}
+#v .wrap{position:relative;flex:0 0 auto;max-width:540px;width:100%;margin:0 auto}
+#v .sl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}#v .sl::-webkit-scrollbar{display:none}
+#v .sl>*{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:contain;scroll-snap-align:center;background:#000}
+#v .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);color:#111;border:0;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer}#v .pv{left:8px}#v .nx{right:8px}
+#v .dots{display:flex;justify-content:center;gap:6px;padding:10px}#v .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)}#v .dots i.on{background:#fff}
+#v .cap{max-width:540px;width:100%;margin:0 auto;padding:0 16px 20px;white-space:pre-wrap;font-size:14px;line-height:1.55;overflow:auto;unicode-bidi:plaintext;flex:1}
+#v .meta{font-size:12px;opacity:.75;padding:0 16px 8px;max-width:540px;width:100%;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}#v .meta img{width:34px;height:42px;object-fit:cover;border-radius:5px}
+</style></head><body><nav class="lay"><a href="./">List</a><a href="calendar.html" class=on>Calendar</a><a href="grid.html">Profile grid</a></nav><header><h1>Calendar view</h1><p>Each day shows every post's cover; the coloured underline is the batch. Tap any cover to swipe its slides.</p></header>
+<main><div class="flt"><button class="on" data-f="">Both</button><button data-f="red">Red Solutions</button><button data-f="x10">X10</button></div><div class="k" id="k"></div><div class="wk" id="cal"></div></main>
+<div id="v" role="dialog" aria-modal="true"><div class="top"><b id="vt"></b><button class="x" aria-label="Close" onclick="closeV()">×</button></div>
+<div class="wrap"><div class="sl" id="sl"></div><button class="nav pv" aria-label="Previous" onclick="go(-1)">‹</button><button class="nav nx" aria-label="Next" onclick="go(1)">›</button></div>
+<div class="dots" id="dots"></div><div class="meta" id="vm"></div><div class="cap" id="vc" dir="auto"></div></div>
+<script>const PC={"Launch redo":"#2FA88E","Batch 1":"#1F5BD6","Batch 2":"#7A4FD6","Batch 3 · translations":"#E08A1E"};
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let P=[];const kw=()=>new Date(Date.now()+3*3600e3).toISOString().slice(0,16).replace('T',' ');
+const fmt=d=>new Date(d+'T12:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+
+const EV={"2026-11-17":"08:00 confirm deleting old launch posts"};
+function draw(){const D={};P.forEach((p,i)=>{p.i=i;(D[p.when.slice(0,10)]=D[p.when.slice(0,10)]||[]).push(p)});const ds=Object.keys(D).sort();const today=kw().slice(0,10);
+ const first=new Date(ds[0]+'T12:00');const lead=(first.getDay()+6)%7;let h=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="h">${x}</div>`).join('');
+ for(let i=0;i<lead;i++)h+='<div class="c empty"></div>';
+ const last=new Date(ds[ds.length-1]+'T12:00');for(let d=new Date(first);d<=last;d.setDate(d.getDate()+1)){const k=d.toISOString().slice(0,10);const a=D[k]||[];
+  const row=b=>{const x=a.filter(p=>p.b==b);return x.length?`<div class="row ${b}"><b>${b=='red'?'Red':'X10'} · ${x.length}</b>${x.map(p=>`<img src="${p.t}" loading="lazy" alt="" title="${p.when.slice(11)}" style="border-color:${PC[p.ph]}" onclick="openV(${p.i})">`).join('')}</div>`:''};
+  h+=`<div class="c${k==today?' today':''}${k<today?' past':''}"><div class="dn">${fmt(k)}<span>${a.length}</span></div>${EV[k]?`<div class="ev">⚑ ${EV[k]}</div>`:''}${row('red')}${row('x10')}</div>`}
+ document.getElementById('cal').innerHTML=h;
+ document.getElementById('k').innerHTML=Object.keys(PC).map(k=>`<span><i style="background:${PC[k]}"></i>${k}</span>`).join('')}
+let cur=0;
+function openV(i){const p=P[i];cur=i;const sl=document.getElementById('sl');
+ sl.innerHTML=p.m.map(u=>u.endsWith('.mp4')?`<video src="${u}" poster="${p.cv||''}" controls playsinline preload="none"></video>`:`<img src="${u}" alt="slide">`).join('');
+ document.getElementById('vt').textContent=`${p.b=='red'?'@solutionsbyred':'@x10academy.ai'} · ${fmt(p.when.slice(0,10))} ${p.when.slice(11)}`;
+ document.getElementById('vc').textContent=p.cap;
+ document.getElementById('vm').innerHTML=`<span>${p.ph} · ${p.type}</span>`+(p.pid?`<img src="${p.pt}" alt=""><span>Photo ${p.pid}${p.u>1?' (shared with its translated twin)':''}</span>`:'');
+ const n=p.m.length;document.getElementById('dots').innerHTML=n>1?Array.from({length:n},(_,k)=>`<i${k?'':' class="on"'}></i>`).join(''):'';
+ document.querySelectorAll('#v .nav').forEach(b=>b.style.display=n>1?'':'none');
+ sl.scrollLeft=0;document.getElementById('v').classList.add('on');document.body.style.overflow='hidden'}
+function closeV(){document.getElementById('v').classList.remove('on');document.body.style.overflow='';document.getElementById('sl').innerHTML=''}
+function go(d){const sl=document.getElementById('sl');sl.scrollBy({left:d*sl.clientWidth,behavior:'smooth'})}
+document.getElementById('sl').addEventListener('scroll',e=>{const sl=e.target;const k=Math.round(sl.scrollLeft/sl.clientWidth);document.querySelectorAll('#dots i').forEach((d,j)=>d.classList.toggle('on',j===k))});
+document.addEventListener('keydown',e=>{if(!document.getElementById('v').classList.contains('on'))return;if(e.key=='Escape')closeV();if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)});
+
+document.querySelectorAll('.flt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.flt button').forEach(x=>x.classList.toggle('on',x===b));document.body.className=b.dataset.f?'only-'+b.dataset.f:''});
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{P=d;draw()});
+</script></body></html>

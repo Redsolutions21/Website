@@ -10,8 +10,9 @@ function load(name){return new Promise((res,rej)=>{const f=document.createElemen
   const bg=[...d.querySelectorAll('div')].map(x=>getComputedStyle(x).backgroundImage).filter(s=>s.startsWith('url(')).map(s=>s.slice(5,-2));
   await Promise.all(bg.map(u=>new Promise(r=>{const im=new Image();im.crossOrigin='anonymous';im.onload=im.onerror=r;im.src=u})));res(f)}catch(e){rej(e)}};
  f.src='h/'+name+'.html?r='+Date.now();document.body.appendChild(f)})}
+let FONTCSS=null;async function fontCSS(){if(!FONTCSS){const b=await (await fetch('NotoSansArabic.ttf')).blob();const d=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(b)});FONTCSS='@font-face{font-family:NA;src:url('+d+') format("truetype")}'}return FONTCSS}
 async function one(name){const f=await load(name);const node=f.contentDocument.querySelector('.board');
- const data=await htmlToImage.toJpeg(node,{width:1080,height:1350,pixelRatio:1,quality:0.9,cacheBust:false});f.remove();
+ const data=await htmlToImage.toJpeg(node,{width:1080,height:1350,pixelRatio:1,quality:0.9,cacheBust:false,fontEmbedCSS:await fontCSS()});f.remove();
  const r=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json','x-upload-key':window.KEY},body:JSON.stringify({path:'burst2/'+name+'.jpg',data})});
  const j=await r.json();document.getElementById('log').textContent+=name+' '+(j.ok?'ok':JSON.stringify(j))+'\n';return j.ok?j.url:('ERR '+JSON.stringify(j))}
 window.renderAll=async list=>{const out={};for(const n of list){try{out[n]=await one(n)}catch(e){out[n]='ERR '+e.message}}return out};

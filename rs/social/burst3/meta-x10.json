@@ -1,0 +1,1382 @@
+[
+ {
+  "id": "x10-01",
+  "lang": "en",
+  "kind": "term",
+  "title": "What is AI? In one sentence",
+  "sub": "The simplest explanation you'll hear.",
+  "slides": [
+   [
+    "Simply",
+    "Software that learns from examples, instead of us writing every rule."
+   ],
+   [
+    "Example",
+    "Show it thousands of cat photos, and it learns to recognize a cat by itself."
+   ],
+   [
+    "That's it",
+    "The same thing that lets your phone recognize your face."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 09:00"
+ },
+ {
+  "id": "x10-02",
+  "lang": "ar",
+  "kind": "term",
+  "title": "مصطلح اليوم: التوكن (Token)",
+  "sub": "شلون يقرا الذكاء الاصطناعي فعلاً.",
+  "slides": [
+   [
+    "شنو اهو؟",
+    "القطع الصغيرة اللي يقرا فيها الكلام: كلمات أو أجزاء كلمات."
+   ],
+   [
+    "تقريباً",
+    "بالإنجليزي، التوكن حوالي ¾ كلمة."
+   ],
+   [
+    "ليش يهم؟",
+    "حدود الذكاء الاصطناعي وأسعاره تنحسب بالتوكن."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 09:45"
+ },
+ {
+  "id": "x10-03",
+  "lang": "en",
+  "kind": "fact",
+  "title": "The first 'programmable' machine was built in Baghdad",
+  "sub": "More than a thousand years before computers.",
+  "slides": [
+   [
+    "9th century",
+    "Three scholar brothers in Baghdad designed an automatic flute player."
+   ],
+   [
+    "Programmable?",
+    "It played different tunes depending on a rotating cylinder you could swap."
+   ],
+   [
+    "So",
+    "The idea of a 'program' is more than 1,100 years old."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 10:30"
+ },
+ {
+  "id": "x10-04",
+  "lang": "ar",
+  "kind": "quiz",
+  "title": "خمّن السنة: متى طلعت «سيري»؟",
+  "sub": "اسحب وشوف الجواب.",
+  "slides": [
+   [
+    "الخيارات",
+    "أ) 2007<br>ب) 2011<br>ج) 2016"
+   ],
+   [
+    "الجواب: ب) 2011",
+    "طلعت مع آيفون 4S، وصار المساعد الصوتي بجيب ملايين الناس."
+   ],
+   [
+    "اليوم",
+    "المساعدات الصوتية تفهم السياق وتجاوب على الأسئلة اللي بعدها."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 11:15"
+ },
+ {
+  "id": "x10-05",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Machine Learning",
+  "sub": "Explained simply.",
+  "slides": [
+   [
+    "Machine learning",
+    "The computer learns from data."
+   ],
+   [
+    "Instead of rules",
+    "We don't tell it 'if this, do that'. It finds the pattern itself."
+   ],
+   [
+    "Where you see it",
+    "Video suggestions, spam filters and maps."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 12:00"
+ },
+ {
+  "id": "x10-06",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "3 طرق تتعلم فيها الذكاء الاصطناعي أسرع",
+  "sub": "احفظ البوست.",
+  "slides": [
+   [
+    "استخدمه كل يوم",
+    "10 دقايق باليوم أحسن من 3 ساعات مرة بالشهر."
+   ],
+   [
+    "خله يعلّمك",
+    "«اختبرني على اللي تعلمته الحين»."
+   ],
+   [
+    "سوّ شي صغير",
+    "خطة، ملخص، أو مشروع صغير."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 12:45"
+ },
+ {
+  "id": "x10-07",
+  "lang": "en",
+  "kind": "kids",
+  "title": "For your kids: AI is like a clever student",
+  "sub": "An explanation any child gets.",
+  "slides": [
+   [
+    "It learns from examples",
+    "The more it sees, the smarter it gets."
+   ],
+   [
+    "But sometimes it's wrong",
+    "So we always ask and check."
+   ],
+   [
+    "The most important rule",
+    "Never give it your full name, address or photos."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 13:30"
+ },
+ {
+  "id": "x10-08",
+  "lang": "ar",
+  "kind": "promo",
+  "title": "دورة مجانية: مقدمة في الذكاء الاصطناعي",
+  "sub": "ابدأ من الصفر. بدون أي خبرة.",
+  "slides": [
+   [
+    "شنو بتتعلم",
+    "شنو الذكاء الاصطناعي، وشلون يشتغل، ووين تستخدمه أصلاً."
+   ],
+   [
+    "بوقتك",
+    "تتعلم من موبايلك، بالوقت اللي يناسبك."
+   ],
+   [
+    "ببلاش",
+    "الرابط في البايو."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 14:15"
+ },
+ {
+  "id": "x10-09",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Prompt",
+  "sub": "The most important AI skill.",
+  "slides": [
+   [
+    "It is",
+    "The request or question you type to the AI."
+   ],
+   [
+    "The clearer it is",
+    "The better the answer."
+   ],
+   [
+    "Try it",
+    "Instead of 'write me an email', say 'write a short, friendly thank-you email to a client'."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 15:00"
+ },
+ {
+  "id": "x10-10",
+  "lang": "ar",
+  "kind": "term",
+  "title": "شنو هي الشبكة العصبية؟",
+  "sub": "بثلاث سلايدات.",
+  "slides": [
+   [
+    "مستوحاة من المخ",
+    "طبقات من وحدات صغيرة متصلة تنقل إشارات."
+   ],
+   [
+    "كل طبقة تتعلم",
+    "الطبقات الأولى تشوف أشكال بسيطة، واللي بعدها تعرف ويه كامل."
+   ],
+   [
+    "التدريب",
+    "تعدّل ملايين الاتصالات لين يطلع الجواب صح."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 15:45"
+ },
+ {
+  "id": "x10-11",
+  "lang": "en",
+  "kind": "quiz",
+  "title": "True or false: AI can write poetry",
+  "sub": "Think before you swipe.",
+  "slides": [
+   [
+    "What do you think?",
+    "True... or false?"
+   ],
+   [
+    "True",
+    "It writes poems in many styles, but real feeling still comes from people."
+   ],
+   [
+    "Try it",
+    "Ask it for a line of poetry about Kuwait, and compare it with yours."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 16:30"
+ },
+ {
+  "id": "x10-12",
+  "lang": "ar",
+  "kind": "safe",
+  "title": "3 قواعد ذهبية للاستخدام الآمن",
+  "sub": "شاركها مع أهلك.",
+  "slides": [
+   [
+    "لا تشارك أسرارك",
+    "لا باسووردات، ولا أرقام مدنية، ولا بيانات بنك."
+   ],
+   [
+    "تأكد من المعلومة",
+    "الذكاء الاصطناعي ممكن يغلط وهو واثق."
+   ],
+   [
+    "الصوت والفيديو ممكن يكون مزيف",
+    "تأكد قبل لا تصدق أو تشارك."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 17:15"
+ },
+ {
+  "id": "x10-13",
+  "lang": "en",
+  "kind": "term",
+  "title": "Narrow AI vs general AI: what's the difference?",
+  "sub": "And which one do we use today?",
+  "slides": [
+   [
+    "Narrow",
+    "Great at one thing: chess, or recognizing faces."
+   ],
+   [
+    "General",
+    "Can do anything a human can. It doesn't exist yet."
+   ],
+   [
+    "What we use today",
+    "Very powerful tools, but not a complete 'mind'."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 18:00"
+ },
+ {
+  "id": "x10-14",
+  "lang": "ar",
+  "kind": "safe",
+  "title": "الديب فيك: شلون تكشفه؟",
+  "sub": "3 فحوصات سريعة.",
+  "slides": [
+   [
+    "دقق",
+    "رمش غريب، أطراف مغبشة، أيادي أو أسنان غريبة."
+   ],
+   [
+    "اسمع",
+    "صوت جامد، وقفات غريبة، ولهجة مو مضبوطة."
+   ],
+   [
+    "شيّك المصدر",
+    "من حساب رسمي؟ دوّر قبل لا تشارك."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 18:45"
+ },
+ {
+  "id": "x10-15",
+  "lang": "en",
+  "kind": "promo",
+  "title": "AI Juniors: 3 courses by age",
+  "sub": "AI for kids, safely.",
+  "slides": [
+   [
+    "Ages 7–9",
+    "A first step into AI, through play and examples."
+   ],
+   [
+    "Ages 10–12",
+    "How AI thinks, and how to use it safely."
+   ],
+   [
+    "Ages 13–16",
+    "Small projects with real tools. Link in bio."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 19:30"
+ },
+ {
+  "id": "x10-16",
+  "lang": "ar",
+  "kind": "term",
+  "title": "مصطلح اليوم: بيانات التدريب",
+  "sub": "اللي يتعلم منه الذكاء الاصطناعي.",
+  "slides": [
+   [
+    "شنو هي؟",
+    "الأمثلة اللي يتعلم منها: نصوص، صور، أصوات."
+   ],
+   [
+    "اللي يدخل يطلع",
+    "بيانات سيئة = ذكاء اصطناعي سيئ."
+   ],
+   [
+    "عشان جذي",
+    "الفرق الشاطرة تقضي أغلب وقتها على البيانات."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 20:15"
+ },
+ {
+  "id": "x10-17",
+  "lang": "en",
+  "kind": "tip",
+  "title": "Let AI quiz you",
+  "sub": "The fastest way to memorize anything.",
+  "slides": [
+   [
+    "Write, for example",
+    "'Quiz me with 5 questions on Kuwait's history, each with 3 options.'"
+   ],
+   [
+    "Answer",
+    "Then ask it to correct you and explain your mistakes."
+   ],
+   [
+    "Why?",
+    "Testing yourself locks in information better than reading."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 21:00"
+ },
+ {
+  "id": "x10-18",
+  "lang": "ar",
+  "kind": "fact",
+  "title": "2012: السنة اللي تعلّم فيها الذكاء الاصطناعي يشوف",
+  "sub": "نقطة تحوّل أغلب الناس ما انتبهوا لها.",
+  "slides": [
+   [
+    "تحدي ImageNet",
+    "مسابقة للتعرف على الأشياء في أكثر من مليون صورة."
+   ],
+   [
+    "AlexNet",
+    "شبكة عصبية فازت على كل المشاركين بفرق كبير."
+   ],
+   [
+    "من بعدها",
+    "انتشر فتح الموبايل بالويه، والبحث بالصور، ووايد غيرها."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 21:45"
+ },
+ {
+  "id": "x10-19",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Generative AI",
+  "sub": "Explained simply.",
+  "slides": [
+   [
+    "Generative",
+    "It produces something new."
+   ],
+   [
+    "What does it make?",
+    "Text, images, audio, video and even code."
+   ],
+   [
+    "Example",
+    "Type 'a cat wearing a dishdasha' and get a picture."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 22:30"
+ },
+ {
+  "id": "x10-20",
+  "lang": "ar",
+  "kind": "quiz",
+  "title": "أي وحدة مو ذكاء اصطناعي؟",
+  "sub": "خمّن قبل لا تسحب.",
+  "slides": [
+   [
+    "الخيارات",
+    "أ) آلة حاسبة عادية<br>ب) مساعد صوتي<br>ج) تطبيق ترجمة"
+   ],
+   [
+    "الجواب: أ",
+    "الآلة الحاسبة تمشي على قواعد ثابتة. ما تتعلم أبداً."
+   ],
+   [
+    "القاعدة",
+    "إذا يتعلم من البيانات، فهو ذكاء اصطناعي."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-14 23:15"
+ },
+ {
+  "id": "x10-21",
+  "lang": "en",
+  "kind": "tip",
+  "title": "Learn the basics of any topic in 20 minutes",
+  "sub": "With just 3 prompts.",
+  "slides": [
+   [
+    "5 minutes",
+    "'Explain [topic] to me in the simplest way.'"
+   ],
+   [
+    "10 minutes",
+    "'Give me examples from my daily life.'"
+   ],
+   [
+    "5 minutes",
+    "'Quiz me with 3 questions.'"
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 09:00"
+ },
+ {
+  "id": "x10-22",
+  "lang": "ar",
+  "kind": "safe",
+  "title": "الذكاء الاصطناعي يتسمّع علي؟",
+  "sub": "الأشياء اللي بإيدك.",
+  "slides": [
+   [
+    "السماعات الذكية",
+    "تنطر كلمة التشغيل قبل لا تبدأ تسجل."
+   ],
+   [
+    "إعداداتك",
+    "تقدر تراجع سجل صوتك وتمسحه."
+   ],
+   [
+    "نصيحة",
+    "شيّك إعدادات الخصوصية بكل تطبيق ذكاء اصطناعي تستخدمه."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 09:45"
+ },
+ {
+  "id": "x10-23",
+  "lang": "en",
+  "kind": "fact",
+  "title": "Weird fact: AI sometimes miscounts",
+  "sub": "Try it yourself.",
+  "slides": [
+   [
+    "Ask it",
+    "How many letters are in a long word? Sometimes it gets it wrong."
+   ],
+   [
+    "Why?",
+    "It reads text in chunks (tokens), not letter by letter."
+   ],
+   [
+    "The lesson",
+    "For exact calculations, ask it to work step by step."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 10:30"
+ },
+ {
+  "id": "x10-24",
+  "lang": "ar",
+  "kind": "promo",
+  "title": "دورة مجانية: كن آمناً مع الذكاء الاصطناعي",
+  "sub": "احمِ نفسك وأهلك.",
+  "slides": [
+   [
+    "اكشف المزيف",
+    "الديب فيك، والاحتيال، والأصوات المقلدة."
+   ],
+   [
+    "احمِ بياناتك",
+    "شنو تشارك، وشنو تخليه خاص."
+   ],
+   [
+    "ببلاش وبوقتك",
+    "الرابط في البايو."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 11:15"
+ },
+ {
+  "id": "x10-25",
+  "lang": "en",
+  "kind": "kids",
+  "title": "AI at school: cheating or help?",
+  "sub": "The question every parent asks.",
+  "slides": [
+   [
+    "Cheating",
+    "When a student copies the answer without understanding."
+   ],
+   [
+    "Help",
+    "When it explains the lesson another way, or quizzes them."
+   ],
+   [
+    "The rule",
+    "Use it to learn, not to escape learning."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 12:00"
+ },
+ {
+  "id": "x10-26",
+  "lang": "ar",
+  "kind": "term",
+  "title": "مصطلح اليوم: نافذة السياق",
+  "sub": "ذاكرة الذكاء الاصطناعي القصيرة.",
+  "slides": [
+   [
+    "شنو هي؟",
+    "كمية الكلام اللي يقدر يتذكرها بنفس الوقت."
+   ],
+   [
+    "تخيّل مكتب",
+    "كل ما كبر المكتب، قدرت تحط أوراق أكثر قدامك."
+   ],
+   [
+    "ليش تهم؟",
+    "الملفات الطويلة وايد أحياناً لازم تنقسم أجزاء."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 12:45"
+ },
+ {
+  "id": "x10-27",
+  "lang": "en",
+  "kind": "quiz",
+  "title": "Where do you use AI without knowing it?",
+  "sub": "Think before you swipe.",
+  "slides": [
+   [
+    "Think",
+    "Your phone, your car, your apps..."
+   ],
+   [
+    "Examples",
+    "The keyboard that finishes your words, maps that predict traffic, and photo filters."
+   ],
+   [
+    "So",
+    "You've been using it for years."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 13:30"
+ },
+ {
+  "id": "x10-28",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "تعلّم بسؤال «ليش؟» خمس مرات",
+  "sub": "أسرع طريقة تفهم فيها صدق.",
+  "slides": [
+   [
+    "اسأل",
+    "«ليش الذكاء الاصطناعي يحتاج بيانات وايد؟»"
+   ],
+   [
+    "واسأل ليش مرة ثانية",
+    "كل جواب ينزلك خطوة أعمق."
+   ],
+   [
+    "بعد 5 «ليش»",
+    "تفهم الموضوع، مو بس تحفظه."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 14:15"
+ },
+ {
+  "id": "x10-29",
+  "lang": "en",
+  "kind": "term",
+  "title": "What is computer vision?",
+  "sub": "Explained simply.",
+  "slides": [
+   [
+    "Simply",
+    "A computer that 'sees' and understands images and video."
+   ],
+   [
+    "Examples",
+    "Face unlock, reading car plates and checking X-rays."
+   ],
+   [
+    "How?",
+    "It trains on millions of images until it recognizes shapes."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 15:00"
+ },
+ {
+  "id": "x10-30",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "أول مشروع ذكاء اصطناعي لك في ليلة وحدة",
+  "sub": "بدون برمجة.",
+  "slides": [
+   [
+    "اختار مشكلة",
+    "أكل الأسبوع، جدول مذاكرة، أو سفرة."
+   ],
+   [
+    "خططها مع الذكاء الاصطناعي",
+    "خطوة بخطوة، بمحادثة."
+   ],
+   [
+    "طوّرها",
+    "اسأله «شنو يخليها أحسن؟» ثلاث مرات."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 15:45"
+ },
+ {
+  "id": "x10-31",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Bias",
+  "sub": "Explained simply.",
+  "slides": [
+   [
+    "Bias",
+    "When AI favors one group over another."
+   ],
+   [
+    "Why does it happen?",
+    "Because it learned from data that carries human bias."
+   ],
+   [
+    "The fix",
+    "Diverse data, and a human review."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 16:30"
+ },
+ {
+  "id": "x10-32",
+  "lang": "ar",
+  "kind": "quiz",
+  "title": "أي وحدة مصطلح حقيقي بالذكاء الاصطناعي؟",
+  "sub": "خمّن قبل لا تسحب.",
+  "slides": [
+   [
+    "الخيارات",
+    "أ) الهلوسة<br>ب) أحلام اليقظة<br>ج) المشي بالنوم"
+   ],
+   [
+    "الجواب: أ",
+    "الهلوسة لما الذكاء الاصطناعي يقول معلومة غلط وهو واثق تماماً."
+   ],
+   [
+    "تذكّر",
+    "دايماً تأكد من المعلومات والأرقام قبل لا تشاركها."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 17:15"
+ },
+ {
+  "id": "x10-33",
+  "lang": "en",
+  "kind": "kids",
+  "title": "Kids' rules for using AI",
+  "sub": "For parents. Save them.",
+  "slides": [
+   [
+    "Use it together",
+    "Especially with little ones."
+   ],
+   [
+    "No personal info",
+    "No full name, school, address or photos."
+   ],
+   [
+    "Check and talk",
+    "Not every answer is right. And if something upsets them, they tell us straight away."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 18:00"
+ },
+ {
+  "id": "x10-34",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "الشات الذكي ولا محرك البحث؟",
+  "sub": "متى تستخدم كل واحد.",
+  "slides": [
+   [
+    "البحث",
+    "يطلع لك صفحات، وأنت تقرا وتقرر."
+   ],
+   [
+    "الشات الذكي",
+    "يكتب لك جواب. سريع، بس ممكن يغلط."
+   ],
+   [
+    "أحسن طريقة",
+    "اسأل الذكاء الاصطناعي، وبعدين تأكد بالبحث."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 18:45"
+ },
+ {
+  "id": "x10-35",
+  "lang": "en",
+  "kind": "safe",
+  "title": "Voices are now easy to copy",
+  "sub": "Watch out for this trick.",
+  "slides": [
+   [
+    "Text to voice",
+    "AI can read any text in a natural voice."
+   ],
+   [
+    "And voice cloning",
+    "A short voice clip is sometimes enough to copy someone's voice."
+   ],
+   [
+    "Stay safe",
+    "If a call asks for money urgently, hang up and call the person yourself."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 19:30"
+ },
+ {
+  "id": "x10-36",
+  "lang": "ar",
+  "kind": "term",
+  "title": "مصطلح اليوم: الوكيل (Agent)",
+  "sub": "أكثر من شات بوت.",
+  "slides": [
+   [
+    "الشات بوت",
+    "يجاوب لما تسأله."
+   ],
+   [
+    "الوكيل",
+    "ياخذ هدف ويسوي الخطوات: يدوّر، يكتب، يرسل."
+   ],
+   [
+    "مثال",
+    "«دوّر لي 3 قاعات، قارن الأسعار، واكتب إيميل لكل وحدة»."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 20:15"
+ },
+ {
+  "id": "x10-37",
+  "lang": "en",
+  "kind": "tip",
+  "title": "7-day challenge: learn AI",
+  "sub": "10 minutes a day.",
+  "slides": [
+   [
+    "Days 1–3",
+    "Use it daily for something simple: an email, a summary, a plan."
+   ],
+   [
+    "Days 4–6",
+    "Try images and voice."
+   ],
+   [
+    "Day 7",
+    "Write down what you learned, and share it with us in the comments."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 21:00"
+ },
+ {
+  "id": "x10-38",
+  "lang": "ar",
+  "kind": "fact",
+  "title": "ليش الذكاء الاصطناعي شاطر باللغات؟",
+  "sub": "قرا أكثر من أي إنسان.",
+  "slides": [
+   [
+    "تعلّم من النصوص",
+    "مليارات الجمل، بلغات وايد."
+   ],
+   [
+    "أنماط بكل مكان",
+    "القواعد والمعاني تمشي على أنماط يقدر يتعلمها."
+   ],
+   [
+    "بس",
+    "اللهجات مثل الكويتي لين الحين تحتاج مراجعة إنسان."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 21:45"
+ },
+ {
+  "id": "x10-39",
+  "lang": "en",
+  "kind": "quiz",
+  "title": "Which animal did AI learn to recognize on its own in 2012?",
+  "sub": "Guess before you swipe.",
+  "slides": [
+   [
+    "Options",
+    "A) Cats<br>B) Camels<br>C) Falcons"
+   ],
+   [
+    "Answer: A) Cats",
+    "A Google neural network watched millions of YouTube video frames and learned to spot cats without being taught."
+   ],
+   [
+    "Why it matters",
+    "It was one of the first times a computer learned something from images by itself."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 22:30"
+ },
+ {
+  "id": "x10-40",
+  "lang": "ar",
+  "kind": "promo",
+  "title": "مكتبة X10 الكاملة",
+  "sub": "10 دورات ذكاء اصطناعي بوقتك.",
+  "slides": [
+   [
+    "حق شغلك",
+    "كتابة الأوامر، شغل المكتب، التسويق، المالية، البيانات، الوكلاء ووايد غيرها."
+   ],
+   [
+    "ابدأ ببلاش",
+    "«مقدمة في الذكاء الاصطناعي» و«كن آمناً مع الذكاء الاصطناعي»."
+   ],
+   [
+    "كل الدورات مفتوحة",
+    "الرابط في البايو."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-15 23:15"
+ },
+ {
+  "id": "x10-41",
+  "lang": "en",
+  "kind": "tip",
+  "title": "4 questions before any AI request",
+  "sub": "And your answer will change.",
+  "slides": [
+   [
+    "Who?",
+    "Who do you want it to be? A teacher, a designer, an accountant."
+   ],
+   [
+    "What?",
+    "What exactly do you need?"
+   ],
+   [
+    "For whom, and how?",
+    "Who is the answer for? And in what format: bullets, a table or a short message?"
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 09:00"
+ },
+ {
+  "id": "x10-42",
+  "lang": "ar",
+  "kind": "fact",
+  "title": "سنة 2011، الذكاء الاصطناعي فاز ببرنامج مسابقات.",
+  "sub": "وغلب أقوى لاعبين بتاريخه.",
+  "slides": [
+   [
+    "Jeopardy!",
+    "«واتسون» من IBM غلب أعظم بطلين بتاريخ البرنامج."
+   ],
+   [
+    "الجزء الصعب",
+    "يفهم التلاعب بالكلام والأسئلة الملغومة."
+   ],
+   [
+    "اليوم",
+    "مساعد موبايلك يسوي نسخة أبسط من هذا."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 09:45"
+ },
+ {
+  "id": "x10-43",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Model",
+  "sub": "The word you hear everywhere.",
+  "slides": [
+   [
+    "The model",
+    "The result of training: the 'brain' that learned."
+   ],
+   [
+    "Like a student",
+    "Training is the studying; the model is the student after studying."
+   ],
+   [
+    "ChatGPT and others",
+    "They're all models, each trained in its own way."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 10:30"
+ },
+ {
+  "id": "x10-44",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "حيلة مذاكرة: حوّل ملاحظاتك لبطاقات",
+  "sub": "بطلب واحد.",
+  "slides": [
+   [
+    "الصق ملاحظاتك",
+    "أي مادة."
+   ],
+   [
+    "واطلب",
+    "«سوّ 15 بطاقة: السؤال قدام، والجواب ورا»."
+   ],
+   [
+    "راجع كل يوم",
+    "5 دقايق باليوم، وشوف كم بتتذكر."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 11:15"
+ },
+ {
+  "id": "x10-45",
+  "lang": "en",
+  "kind": "tip",
+  "title": "Why learn AI now?",
+  "sub": "3 reasons.",
+  "slides": [
+   [
+    "It's everywhere",
+    "At work, at school and at home."
+   ],
+   [
+    "It's easy",
+    "You talk to it in plain language, like you talk to a friend."
+   ],
+   [
+    "Learn it first",
+    "And you stay steps ahead."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 12:00"
+ },
+ {
+  "id": "x10-46",
+  "lang": "ar",
+  "kind": "quiz",
+  "title": "صح أو خطأ: الذكاء الاصطناعي يقدر يسوي موسيقى.",
+  "sub": "خمّن قبل لا تسحب.",
+  "slides": [
+   [
+    "فكّر",
+    "لحن، كلمات، وحتى أصوات غنا؟"
+   ],
+   [
+    "صح",
+    "يقدر يألف أغاني كاملة بأساليب وايد."
+   ],
+   [
+    "بس",
+    "حقوق النشر وحقوق الفنانين عليها نقاش كبير الحين."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 12:45"
+ },
+ {
+  "id": "x10-47",
+  "lang": "en",
+  "kind": "fact",
+  "title": "How does YouTube pick your next video?",
+  "sub": "AI is behind every suggestion.",
+  "slides": [
+   [
+    "It watches",
+    "What you watch, and how many minutes you finish."
+   ],
+   [
+    "It compares",
+    "With people whose taste is close to yours."
+   ],
+   [
+    "It predicts",
+    "The video you're most likely to watch to the end."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 13:30"
+ },
+ {
+  "id": "x10-48",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "الذكاء الاصطناعي وشغلك: تعلّمه، لا تخاف منه",
+  "sub": "طريقة بسيطة تفكر فيها.",
+  "slides": [
+   [
+    "المهام تتغير",
+    "بعض المهام تصير آلية."
+   ],
+   [
+    "المهارات ترتفع",
+    "اللي يستخدمه صح تزيد قيمته."
+   ],
+   [
+    "ابدأ صغير",
+    "دورة وحدة، أداة وحدة، عادة وحدة."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 14:15"
+ },
+ {
+  "id": "x10-49",
+  "lang": "en",
+  "kind": "kids",
+  "title": "A game for kids: 'Teach the robot'",
+  "sub": "They learn the basics of coding while laughing.",
+  "slides": [
+   [
+    "The game",
+    "One child is the robot; the other gives exact commands to make a sandwich."
+   ],
+   [
+    "The fun part",
+    "The robot does exactly what it's told, even when it's wrong!"
+   ],
+   [
+    "The lesson",
+    "That's coding: clear instructions, step by step."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 15:00"
+ },
+ {
+  "id": "x10-50",
+  "lang": "ar",
+  "kind": "term",
+  "title": "مصطلح اليوم: الضبط الدقيق (Fine-tuning)",
+  "sub": "من «يعرف كل شي» لمتخصص.",
+  "slides": [
+   [
+    "البداية عامة",
+    "نموذج يعرف شوي من كل شي."
+   ],
+   [
+    "تدريب زيادة",
+    "على أمثلة من مجال واحد: القانون، الطب، أو شركتك."
+   ],
+   [
+    "النتيجة",
+    "متخصص بدل واحد عام."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 15:45"
+ },
+ {
+  "id": "x10-51",
+  "lang": "en",
+  "kind": "fact",
+  "title": "The first self-driving car to win a desert race",
+  "sub": "2005, long before 'smart cars' were news.",
+  "slides": [
+   [
+    "The challenge",
+    "A race for cars with no driver, over 200 km through the Mojave Desert."
+   ],
+   [
+    "The winner",
+    "'Stanley', from Stanford University, finished in under 7 hours."
+   ],
+   [
+    "Today",
+    "The same idea now drives on real city streets."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 16:30"
+ },
+ {
+  "id": "x10-52",
+  "lang": "ar",
+  "kind": "fact",
+  "title": "شلون يتعلم الذكاء الاصطناعي؟ مثل ركوب السيكل",
+  "sub": "يجرب، يطيح، يعدّل، ويعيد.",
+  "slides": [
+   [
+    "يجرب",
+    "يخمّن جواب."
+   ],
+   [
+    "يتصحح",
+    "غلط؟ يعدّل شوي."
+   ],
+   [
+    "يعيد",
+    "ملايين المرات، لين نادراً يطيح."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 17:15"
+ },
+ {
+  "id": "x10-53",
+  "lang": "en",
+  "kind": "quiz",
+  "title": "True or false: AI always needs the internet",
+  "sub": "Think before you swipe.",
+  "slides": [
+   [
+    "What do you think?",
+    "True... or false?"
+   ],
+   [
+    "False",
+    "Some models run on a phone or laptop with no internet."
+   ],
+   [
+    "But",
+    "Most big tools run on servers and need the internet."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 18:00"
+ },
+ {
+  "id": "x10-54",
+  "lang": "ar",
+  "kind": "use",
+  "title": "للمعلمين: 3 طرق يوفر فيها الذكاء الاصطناعي وقتكم",
+  "sub": "وقت أكثر حق الطلبة.",
+  "slides": [
+   [
+    "تحضير الدروس",
+    "أول مسودة بدقايق."
+   ],
+   [
+    "الاختبارات",
+    "مستويات مختلفة حسب كل طالب."
+   ],
+   [
+    "الملاحظات",
+    "مسودة تعليقات، وأنت تضبطها لكل طالب."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 18:45"
+ },
+ {
+  "id": "x10-55",
+  "lang": "en",
+  "kind": "fact",
+  "title": "AI in Arabic: how good is it now?",
+  "sub": "And how to make it speak Kuwaiti.",
+  "slides": [
+   [
+    "Standard Arabic",
+    "It understands it well and writes it very well."
+   ],
+   [
+    "Dialects",
+    "Getting better, but Kuwaiti sometimes needs edits."
+   ],
+   [
+    "Tip",
+    "Tell it: 'Write in Kuwaiti dialect,' and give it an example."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 19:30"
+ },
+ {
+  "id": "x10-56",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "طلب «خلك مدرّسي»",
+  "sub": "تعلّم بدل ما تنسخ.",
+  "slides": [
+   [
+    "الطلب",
+    "«خلك مدرّسي. لا تعطيني الجواب، اسألني أسئلة»."
+   ],
+   [
+    "ليش؟",
+    "تفكر بدل ما تنسخ."
+   ],
+   [
+    "ينفع حق",
+    "الرياضيات، اللغات، الامتحانات، وحتى مقابلات الشغل."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 20:15"
+ },
+ {
+  "id": "x10-57",
+  "lang": "en",
+  "kind": "use",
+  "title": "AI at home: 3 uses for the family",
+  "sub": "Saves you time every day.",
+  "slides": [
+   [
+    "A family gathering",
+    "'Help me plan a dinner for 20: food, timing and tasks.'"
+   ],
+   [
+    "Homework help",
+    "'Explain fractions to my son with a real-life example', without doing it for him."
+   ],
+   [
+    "The next trip",
+    "'Plan 4 days in a city with kids, within a set budget.'"
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 21:00"
+ },
+ {
+  "id": "x10-58",
+  "lang": "ar",
+  "kind": "tip",
+  "title": "مهارة المستقبل: إنك تسأل صح",
+  "sub": "الذكاء الاصطناعي عنده الأجوبة. أنت تحتاج الأسئلة.",
+  "slides": [
+   [
+    "عنده أجوبة",
+    "أجوبة ما تخلص."
+   ],
+   [
+    "القيمة صارت بالسؤال",
+    "تعرف شنو تسأل، وليش."
+   ],
+   [
+    "تمرّن",
+    "قبل أي طلب، اسأل نفسك: شنو أحتاج فعلاً؟"
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 21:45"
+ },
+ {
+  "id": "x10-59",
+  "lang": "en",
+  "kind": "term",
+  "title": "AI word of the day: Automation",
+  "sub": "Explained simply.",
+  "slides": [
+   [
+    "Automation",
+    "A task that runs by itself, without you doing it every time."
+   ],
+   [
+    "With AI",
+    "It gets smarter: it reads, decides and sends."
+   ],
+   [
+    "Example",
+    "Every email with an invoice gets saved to a folder and logged in a sheet."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 22:30"
+ },
+ {
+  "id": "x10-60",
+  "lang": "ar",
+  "kind": "promo",
+  "title": "ابدأ تتعلم الذكاء الاصطناعي اليوم",
+  "sub": "دورات مجانية، ودورات للعيال، ومكتبة كاملة.",
+  "slides": [
+   [
+    "ببلاش",
+    "«مقدمة في الذكاء الاصطناعي» و«كن آمناً مع الذكاء الاصطناعي»."
+   ],
+   [
+    "للعيال",
+    "دورات AI Juniors لأعمار من 7 لين 16 سنة."
+   ],
+   [
+    "المكتبة الكاملة",
+    "10 دورات بوقتك. الرابط في البايو."
+   ]
+  ],
+  "n": 5,
+  "when": "2026-11-16 23:15"
+ }
+]

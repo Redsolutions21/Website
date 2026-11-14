@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>Instagram plan · Red & X10</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#14264F">
+<style>
+:root{--navy:#14264F;--red:#AF3736;--ink:#14213D;--mute:#5A6478;--bg:#EEF2F7;--line:#D9DFEA}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Arabic",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:16px 16px 12px}header h1{margin:0 0 4px;font-size:19px}header p{margin:0;opacity:.85;font-size:13px}
+main{max-width:1100px;margin:0 auto;padding:12px}
+.panel{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px}.panel h2{margin:0 0 10px;font-size:15px;color:var(--navy)}
+.bars{display:flex;gap:4px;align-items:flex-end;height:118px}.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:0}
+.bar .st{width:100%;display:flex;flex-direction:column-reverse;border-radius:4px;overflow:hidden}.bar span{font-size:10px;color:var(--mute)}.bar b{font-size:10px}
+.bar.today span{color:var(--navy);font-weight:800}
+.lg{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:12px}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.flt{display:flex;gap:8px;position:sticky;top:0;z-index:4;background:var(--bg);padding:8px 0}
+.flt button{flex:1;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;padding:9px;font:inherit;font-weight:700;cursor:pointer}.flt button.on{background:var(--navy);color:#fff}
+.day{background:#fff;border-radius:14px;margin-bottom:12px;overflow:hidden}
+.day>h3{margin:0;padding:12px 14px;font-size:15px;background:#F6F8FC;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.day>h3 small{font-weight:600;color:var(--mute)}
+.day.past{opacity:.6}
+.cols{display:grid;grid-template-columns:1fr 1fr}.col{padding:8px;min-width:0}.col+.col{border-left:1px solid var(--line)}
+.col h4{margin:2px 4px 8px;font-size:13px}.col.red h4{color:var(--red)}.col.x10 h4{color:var(--navy)}
+body.only-red .col.x10,body.only-x10 .col.red{display:none}body.only-red .cols,body.only-x10 .cols{grid-template-columns:1fr}
+.post{display:grid;grid-template-columns:44px 72px 1fr;gap:8px;align-items:center;padding:6px 4px;border-radius:10px;cursor:pointer}.post:hover{background:#F6F8FC}
+.t{font-weight:800;font-size:13px;font-variant-numeric:tabular-nums}
+.cvw{position:relative}.cv{width:72px;aspect-ratio:4/5;object-fit:cover;border-radius:6px;display:block;background:#ddd}
+.cvw em{position:absolute;right:3px;top:3px;background:rgba(0,0,0,.6);color:#fff;font-style:normal;font-size:10px;border-radius:5px;padding:0 5px}
+.inf{min-width:0;display:flex;flex-direction:column;gap:4px}
+.ti{font-size:13px;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;unicode-bidi:plaintext}
+.tg{display:flex;gap:5px;flex-wrap:wrap;align-items:center}.tag{font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pr{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--mute);background:#F1F3F8;border-radius:8px;padding:2px 6px 2px 2px}.pr img{width:22px;height:28px;object-fit:cover;border-radius:4px}
+.st2{font-size:10.5px;font-weight:700;color:#1E7B5A}
+.ev{margin:8px;padding:10px 12px;border-radius:10px;background:#FFF4D6;color:#7A5600;font-size:13px;font-weight:600}
+@media(max-width:700px){.cols{grid-template-columns:1fr}.col+.col{border-left:0;border-top:1px solid var(--line)}}
+#v{position:fixed;inset:0;background:rgba(8,12,24,.94);display:none;flex-direction:column;z-index:9;color:#fff}#v.on{display:flex}
+#v .top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:10px}#v .top b{font-size:14px}#v .x{background:none;border:0;color:#fff;font-size:28px;cursor:pointer;line-height:1}
+#v .wrap{position:relative;flex:0 0 auto;max-width:540px;width:100%;margin:0 auto}
+#v .sl{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}#v .sl::-webkit-scrollbar{display:none}
+#v .sl>*{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:contain;scroll-snap-align:center;background:#000}
+#v .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);color:#111;border:0;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer}#v .pv{left:8px}#v .nx{right:8px}
+#v .dots{display:flex;justify-content:center;gap:6px;padding:10px}#v .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)}#v .dots i.on{background:#fff}
+#v .cap{max-width:540px;width:100%;margin:0 auto;padding:0 16px 20px;white-space:pre-wrap;font-size:14px;line-height:1.55;overflow:auto;unicode-bidi:plaintext;flex:1}
+#v .meta{font-size:12px;opacity:.75;padding:0 16px 8px;max-width:540px;width:100%;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}#v .meta img{width:34px;height:42px;object-fit:cover;border-radius:5px}
+</style></head><body>
+<header><h1>Instagram plan · @solutionsbyred & @x10academy.ai</h1><p id="sub">Loading…</p></header>
+<main>
+<div class="panel"><h2>Posts per day (per account)</h2><div class="bars" id="bars"></div><div class="lg" id="lg"></div></div>
+<div class="flt"><button class="on" data-f="">Both</button><button data-f="red">Red Solutions</button><button data-f="x10">X10</button></div>
+<div id="days"></div></main>
+<div id="v" role="dialog" aria-modal="true"><div class="top"><b id="vt"></b><button class="x" aria-label="Close" onclick="closeV()">×</button></div>
+<div class="wrap"><div class="sl" id="sl"></div><button class="nav pv" aria-label="Previous" onclick="go(-1)">‹</button><button class="nav nx" aria-label="Next" onclick="go(1)">›</button></div>
+<div class="dots" id="dots"></div><div class="meta" id="vm"></div><div class="cap" id="vc" dir="auto"></div></div>
+<script>
+const PC={"Launch redo":"#2FA88E","Batch 1":"#1F5BD6","Batch 2":"#7A4FD6","Batch 3 · translations":"#E08A1E"};
+const EV={"2026-11-17":["08:00","Confirm deleting the 60 old launch posts (no photos). The globe stays centred."]};
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let P=[],D={};
+const kw=()=>new Date(Date.now()+3*3600e3).toISOString().slice(0,16).replace('T',' ');
+const fmt=d=>new Date(d+'T12:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+function card(p,i){const now=kw();const done=p.when<=now;
+ const ph=p.pid?`<span class="pr"><img src="${p.pt}" alt="">${p.pid}${p.u>1?' · twin':''}</span>`:'<span class="pr" style="padding-left:6px">Globe reel · no photo</span>';
+ return `<div class="post" onclick="openV(${i})"><div class="t">${p.when.slice(11)}</div><div class="cvw"><img class="cv" src="${p.t}" alt="" loading="lazy">${p.m.length>1?`<em>${p.m.length}</em>`:p.type=='reel'?'<em>▶</em>':''}</div><div class="inf"><div class="ti" dir="auto">${esc(p.cap.split('\n')[0])}</div><div class="tg"><span class="tag" style="background:${PC[p.ph]}22;color:${PC[p.ph]}">${p.ph}</span>${ph}${done?'<span class="st2">✓ due</span>':''}</div></div></div>`}
+function draw(){D={};P.forEach((p,i)=>{p.i=i;(D[p.when.slice(0,10)]=D[p.when.slice(0,10)]||[]).push(p)});
+ const today=kw().slice(0,10);const max=Math.max(...Object.values(D).map(a=>Math.max(a.filter(p=>p.b=='red').length,a.filter(p=>p.b=='x10').length)));
+ document.getElementById('bars').innerHTML=Object.keys(D).map(d=>{const a=D[d].filter(p=>p.b=='red');const c={};a.forEach(p=>c[p.ph]=(c[p.ph]||0)+1);
+  return `<div class="bar${d==today?' today':''}" onclick="document.getElementById('d-${d}').scrollIntoView({behavior:'smooth'})"><b>${a.length}</b><div class="st" style="height:${a.length/max*88}px">${Object.keys(c).map(k=>`<div style="flex:${c[k]};background:${PC[k]}"></div>`).join('')}</div><span>${d.slice(8)}</span></div>`}).join('');
+ document.getElementById('lg').innerHTML=Object.keys(PC).map(k=>`<span><i style="background:${PC[k]}"></i>${k}</span>`).join('')+'<span>Photo chip = background photo (twins share one)</span>';
+ document.getElementById('days').innerHTML=Object.keys(D).map(d=>{const a=D[d];const r=a.filter(p=>p.b=='red'),x=a.filter(p=>p.b=='x10');
+  const ev=EV[d]?`<div class="ev">⚑ ${EV[d][0]} · ${EV[d][1]}</div>`:'';
+  return `<section class="day${d<today?' past':''}" id="d-${d}"><h3>${fmt(d)}${d==today?' · today':''}<small>${r.length} Red · ${x.length} X10 · ${[...new Set(a.map(p=>p.ph))].join(' + ')}</small></h3>${ev}<div class="cols"><div class="col red"><h4>@solutionsbyred</h4>${r.map(p=>card(p,p.i)).join('')}</div><div class="col x10"><h4>@x10academy.ai</h4>${x.map(p=>card(p,p.i)).join('')}</div></div></section>`}).join('');
+ const t=document.getElementById('d-'+today);if(t&&!location.hash)setTimeout(()=>t.scrollIntoView(),50)}
+let cur=0;
+function openV(i){const p=P[i];cur=i;const sl=document.getElementById('sl');
+ sl.innerHTML=p.m.map(u=>u.endsWith('.mp4')?`<video src="${u}" poster="${p.cv||''}" controls playsinline preload="none"></video>`:`<img src="${u}" alt="slide">`).join('');
+ document.getElementById('vt').textContent=`${p.b=='red'?'@solutionsbyred':'@x10academy.ai'} · ${fmt(p.when.slice(0,10))} ${p.when.slice(11)}`;
+ document.getElementById('vc').textContent=p.cap;
+ document.getElementById('vm').innerHTML=`<span>${p.ph} · ${p.type}</span>`+(p.pid?`<img src="${p.pt}" alt=""><span>Photo ${p.pid}${p.u>1?' (shared with its translated twin)':''}</span>`:'');
+ const n=p.m.length;document.getElementById('dots').innerHTML=n>1?Array.from({length:n},(_,k)=>`<i${k?'':' class="on"'}></i>`).join(''):'';
+ document.querySelectorAll('#v .nav').forEach(b=>b.style.display=n>1?'':'none');
+ sl.scrollLeft=0;document.getElementById('v').classList.add('on');document.body.style.overflow='hidden'}
+function closeV(){document.getElementById('v').classList.remove('on');document.body.style.overflow='';document.getElementById('sl').innerHTML=''}
+function go(d){const sl=document.getElementById('sl');sl.scrollBy({left:d*sl.clientWidth,behavior:'smooth'})}
+document.getElementById('sl').addEventListener('scroll',e=>{const sl=e.target;const k=Math.round(sl.scrollLeft/sl.clientWidth);document.querySelectorAll('#dots i').forEach((d,j)=>d.classList.toggle('on',j===k))});
+document.addEventListener('keydown',e=>{if(!document.getElementById('v').classList.contains('on'))return;if(e.key=='Escape')closeV();if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)});
+document.querySelectorAll('.flt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.flt button').forEach(x=>x.classList.toggle('on',x===b));document.body.className=b.dataset.f?'only-'+b.dataset.f:''});
+fetch('data.json?'+Date.now()).then(r=>r.json()).then(d=>{P=d;document.getElementById('sub').textContent=`${P.length} queued posts · ${P[0].when.slice(0,10)} to ${P[P.length-1].when.slice(0,10)} · Kuwait time · tap a post to swipe its slides`;draw()}).catch(()=>document.getElementById('sub').textContent='Could not load the plan');
+</script></body></html>

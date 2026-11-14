@@ -1,4 +1,4 @@
-# 1794680818
+# 1794681025
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-1.jpg rs/social/burst3/img/x10-51-1.jpg
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-51-1.jpg rs/social/burst2/img/x10-51-1.jpg
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-2.jpg rs/social/burst3/img/x10-51-2.jpg
@@ -9,5 +9,5 @@ https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-51-4.jpg rs/social/burst2/img/x10-51-4.jpg
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-5.jpg rs/social/burst3/img/x10-51-5.jpg
 https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-51-5.jpg rs/social/burst2/img/x10-51-5.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-56-1.jpg rs/social/burst3/img/x10-56-1.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-56-3.jpg rs/social/burst3/img/x10-56-3.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-60-1.jpg rs/social/burst3/img/x10-60-1.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-60-3.jpg rs/social/burst3/img/x10-60-3.jpg

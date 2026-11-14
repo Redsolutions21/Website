@@ -1,11 +1,6 @@
-# 1794684417
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/b2-x10-51-1.jpg rs/social/burst3/img/b2-x10-51-1.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/b2-x10-51-2.jpg rs/social/burst3/img/b2-x10-51-2.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/b2-x10-51-3.jpg rs/social/burst3/img/b2-x10-51-3.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/b2-x10-51-4.jpg rs/social/burst3/img/b2-x10-51-4.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/b2-x10-51-5.jpg rs/social/burst3/img/b2-x10-51-5.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-1.jpg rs/social/burst3/img/x10-51-1.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-2.jpg rs/social/burst3/img/x10-51-2.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-3.jpg rs/social/burst3/img/x10-51-3.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-4.jpg rs/social/burst3/img/x10-51-4.jpg
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/x10-51-5.jpg rs/social/burst3/img/x10-51-5.jpg
+# 1794688533
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/rl-rs-d1a-ar-1.jpg rs/social/burst3/img/rl-rs-d1a-ar-1.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/rl-x10-intro-1-ar.jpg rs/social/burst3/img/rl-x10-intro-1-ar.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/rl-x10-centre-dark-3.jpg rs/social/burst3/img/rl-x10-centre-dark-3.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/rl-x10-intro-3-en.jpg rs/social/burst3/img/rl-x10-intro-3-en.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/rl-rs-d7a-ar-1.jpg rs/social/burst3/img/rl-rs-d7a-ar-1.jpg

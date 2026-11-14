@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>render</title>
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script></head>
+<body style="margin:0"><div id="log" style="font:14px monospace;padding:8px"></div>
+<script>
+// Renders slides from h/<name>.html to JPEG and stores them via the social-upload function.
+// The upload key is given at run time (window.KEY), never stored in this page.
+const FN='https://ezgkqndfjjdifrvlpxcb.supabase.co/functions/v1/social-upload';
+function load(name){return new Promise((res,rej)=>{const f=document.createElement('iframe');f.style.cssText='width:1080px;height:1350px;border:0;position:absolute;left:-5000px;top:0';
+ f.onload=async()=>{try{const d=f.contentDocument;await d.fonts.ready;const imgs=[...d.querySelectorAll('img')];await Promise.all(imgs.map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r})));
+  const bg=[...d.querySelectorAll('div')].map(x=>getComputedStyle(x).backgroundImage).filter(s=>s.startsWith('url(')).map(s=>s.slice(5,-2));
+  await Promise.all(bg.map(u=>new Promise(r=>{const im=new Image();im.crossOrigin='anonymous';im.onload=im.onerror=r;im.src=u})));res(f)}catch(e){rej(e)}};
+ f.src='h/'+name+'.html?r='+Date.now();document.body.appendChild(f)})}
+async function one(name){const f=await load(name);const node=f.contentDocument.querySelector('.board');
+ const data=await htmlToImage.toJpeg(node,{width:1080,height:1350,pixelRatio:1,quality:0.9,cacheBust:false});f.remove();
+ const r=await fetch(FN,{method:'POST',headers:{'Content-Type':'application/json','x-upload-key':window.KEY},body:JSON.stringify({path:'burst2/'+name+'.jpg',data})});
+ const j=await r.json();document.getElementById('log').textContent+=name+' '+(j.ok?'ok':JSON.stringify(j))+'\n';return j.ok?j.url:('ERR '+JSON.stringify(j))}
+window.renderAll=async list=>{const out={};for(const n of list){try{out[n]=await one(n)}catch(e){out[n]='ERR '+e.message}}return out};
+</script></body></html>

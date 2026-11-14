@@ -1,1 +1,5 @@
-https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst3/red-34-1.jpg rs/social/burst3/img/red-34-1.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-40-1.jpg rs/social/burst2/img/x10-40-1.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-40-2.jpg rs/social/burst2/img/x10-40-2.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-40-3.jpg rs/social/burst2/img/x10-40-3.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-40-4.jpg rs/social/burst2/img/x10-40-4.jpg
+https://ezgkqndfjjdifrvlpxcb.supabase.co/storage/v1/object/public/social/burst2/x10-40-5.jpg rs/social/burst2/img/x10-40-5.jpg

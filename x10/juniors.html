@@ -66,7 +66,7 @@ footer{background:var(--navy);color:#fff;padding:28px 0;font-size:14px}footer a{
 <footer><div class="wrap" id="ft"></div></footer>
 <dialog id="cd" aria-labelledby="cd_t"><div id="cd_in"></div></dialog>
 <script src="catalog.js?v=bbb40917"></script>
-<script src="auth.js?v=29a0d22b"></script>
+<script src="auth.js?v=c36ab52c"></script>
 <script>
 let L='ar';try{const g=localStorage.getItem('x10_lang');if(g==='en'||g==='ar')L=g}catch(e){}
 const en=()=>L==='en',T=(a,b)=>en()?b:a,kd=n=>en()?'KWD '+n:n+' د.ك';
@@ -158,11 +158,11 @@ function renderCO(){const c=cOf(CO.id),x=en()?1:0;
  <div class="cd-b" role="radiogroup" aria-label="${T('اختر','Choose')}">
  ${CO.only?'':`<label class="opt ${CO.plan==='one'?'on':''}"><input type="radio" name="pl" ${CO.plan==='one'?'checked':''} onchange="CO.plan='one';renderCO()"><div><b>${c.t[x]}</b><span>${c.band[x]} · ${T('دورة واحدة، وصول دائم','One course, lifetime access')}</span></div><em><s>${kd(c.was)}</s>${kd(c.p)}</em></label>`}
  <label class="opt ${CO.plan==='all'?'on':''}"><input type="radio" name="pl" ${CO.plan==='all'?'checked':''} onchange="CO.plan='all';renderCO()"><div><b>${T('الدورات الثلاث معاً','All 3 courses together')}</b><span>${T('للأعمار من 7 إلى 16، لكل أطفالك على حسابك.','Ages 7 to 16, for all your children on your account.')}</span></div><em><s>${kd(BUNDLE.was)}</s>${kd(BUNDLE.p)}</em></label>
- <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="tot">${kd(coTotal())}</div></div>${X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('اطلب الآن','Request it now')}</button>`:`<a class="btn red" href="${mail}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`}</div>
+ <div class="go"><div><small style="color:var(--mute)">${T('الإجمالي','Total')}</small><div class="tot">${kd(coTotal())}</div></div>${X10Auth.REAL?`<button type="button" class="btn red" id="ordBtn" onclick="sendOrder()">${T('ادفع الآن','Pay now')}</button>`:`<a class="btn red" href="${mail}">${T('أرسل الطلب بالبريد','Send the order by email')}</a>`}</div>
  <p class="note">${T('منتجات رقمية تُفتح فور الدفع، لذلك المبيعات نهائية. بإتمام الطلب توافق على','Digital products that open right after payment, so sales are final. By ordering you agree to the')} <a href="legal.html#refund" target="_blank" rel="noopener">${T('الشروط وسياسة الاسترداد','terms and refund policy')}</a>.</p>
  <div id="ordMsg" role="status"></div>
  <p class="note">${X10Auth.REAL?T('اضغط «اطلب الآن» ونرسل لك رابط الدفع على بريدك. تُفتح الدورة في حسابك بعد تأكيد الدفع.','Press "Request it now" and we will email you the payment link. The course opens in your account once payment is confirmed.'):T(`أرسل طلبك إلى ${X10_MAIL} ونرسل لك رابط الدفع.`,`Send your order to ${X10_MAIL} and we will send you the payment link.`)}</p></div>`}
-async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const r=await X10Auth.order([coItem()]);
+async function sendOrder(){const b=document.getElementById('ordBtn'),m=document.getElementById('ordMsg');b.disabled=true;const pp=await X10Auth.pay([coItem()],coItem(),'juniors.html');if(pp.link){location.href=pp.link;return}if(!pp.off){b.disabled=false;m.innerHTML=`<p>${T('تعذّر فتح صفحة الدفع. حاول مرة ثانية أو راسلنا على','We could not open the payment page. Try again or write to us at')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;return}const r=await X10Auth.order([coItem()]);
  if(r.error){b.disabled=false;m.innerHTML=`<p class="note">${T('تعذّر تسجيل الطلب. راسلنا على','We could not record the request. Write to us at')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;return}
  b.hidden=true;m.innerHTML=`<div class="okmsg"><b>${T('وصلنا طلبك.','We have your request.')}</b> ${T('سنرسل رابط الدفع إلى بريدك','We will send the payment link to')} <span dir="ltr">${X10Auth.user.email}</span>${T('، وتُفتح الدورة في حسابك بعد تأكيد الدفع.','. The course opens in your account once payment is confirmed.')}</div>`}
 function hashBuy(){const h=location.hash.slice(1);if(/^buy-(kids7|kids10|kids13|juniors)$/.test(h))buy(h.slice(4))}

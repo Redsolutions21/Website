@@ -1,4 +1,6 @@
-https://d8j0ntlcm91z4.cloudfront.net/user_3M2Biw2Di0aAZtSXmQNtXDlalth/hf_20261115_013444_18257e6e-3f63-4b2b-aec1-1fc0ed80d651.mp4 rs/social/reels-src/v1.mp4
-https://d8j0ntlcm91z4.cloudfront.net/user_3M2Biw2Di0aAZtSXmQNtXDlalth/hf_20261115_013445_fd1614dc-e643-4065-9e3b-15c9bd8c7900.mp4 rs/social/reels-src/v2.mp4
-https://d8j0ntlcm91z4.cloudfront.net/user_3M2Biw2Di0aAZtSXmQNtXDlalth/hf_20261115_013444_2c669adb-6f19-4bc8-95c4-9901318306c3.mp4 rs/social/reels-src/v3.mp4
-https://d8j0ntlcm91z4.cloudfront.net/user_3M2Biw2Di0aAZtSXmQNtXDlalth/hf_20261115_013445_25a32563-a40b-47c9-9bb6-01f3dd9d4953.mp4 rs/social/reels-src/v4.mp4
+https://raw.githubusercontent.com/google/fonts/main/ofl/anton/Anton-Regular.ttf rs/social/fonts-tmp/Anton.ttf
+https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/BricolageGrotesque%5Bopsz%2Cwdth%2Cwght%5D.ttf rs/social/fonts-tmp/Bricolage.ttf
+https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Black.ttf rs/social/fonts-tmp/Tajawal-Black.ttf
+https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-ExtraBold.ttf rs/social/fonts-tmp/Tajawal-ExtraBold.ttf
+https://raw.githubusercontent.com/google/fonts/main/ofl/lalezar/Lalezar-Regular.ttf rs/social/fonts-tmp/Lalezar.ttf
+https://raw.githubusercontent.com/google/fonts/main/ofl/permanentmarker/PermanentMarker-Regular.ttf rs/social/fonts-tmp/Marker.ttf

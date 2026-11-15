@@ -16,7 +16,7 @@ jobs:
           while read -r url path; do
             [ -z "$url" ] && continue
             case "$path" in rs/social/*) ;; *) echo "skip $path"; continue;; esac
-            case "$url" in https://ezgkqndfjjdifrvlpxcb.supabase.co/*|https://d8j0ntlcm91z4.cloudfront.net/*) ;; *) echo "skip $url"; continue;; esac
+            case "$url" in https://ezgkqndfjjdifrvlpxcb.supabase.co/*|https://d8j0ntlcm91z4.cloudfront.net/*|https://elevenlabsusercontent.com/*) ;; *) echo "skip $url"; continue;; esac
             mkdir -p "$(dirname "$path")"
             curl -sSfL --retry 3 "$url" -o "$path" || echo "failed $url"
           done < rs/social/fetch.txt

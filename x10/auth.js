@@ -20,7 +20,9 @@ const X10Auth=(()=>{
   const md=user.user_metadata||{};let pr=null;try{const {data:pp}=await c.rpc('my_profile');pr=pp&&pp[0]}catch(e){}
   cache={user:{email:user.email,name:(pr&&pr.full_name)||md.name||md.full_name||'',mobile:(pr&&pr.mobile)||md.mobile||'',emailOk:!!(pr&&pr.email_verified),mobileOk:!!(pr&&pr.mobile_verified),method:(pr&&pr.signup_method)||((user.app_metadata||{}).provider)||'email'},owned:(rows||[]).map(r=>r.item)};return cache}
  /* Accounts are created by the x10-signup function already confirmed: no email code. */
- async function makeAccount(body){try{const ac=new AbortController();const t=setTimeout(()=>ac.abort(),20000);
+ function utm(){try{const q=new URLSearchParams(location.search),o={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].forEach(k=>{const v=q.get(k);if(v)o[k]=v.slice(0,120)});if(Object.keys(o).length){o.landed_at=new Date().toISOString();localStorage.setItem('x10_utm',JSON.stringify(o))}return JSON.parse(localStorage.getItem('x10_utm')||'{}')}catch(e){return {}}}
+ utm();
+ async function makeAccount(body){body={...body,utm:utm()};try{const ac=new AbortController();const t=setTimeout(()=>ac.abort(),20000);
   const r=await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-signup',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON},body:JSON.stringify(body),signal:ac.signal});clearTimeout(t);
   const j=await r.json().catch(()=>({}));return r.ok?{}:{error:j.error||'failed'}}catch(e){return {error:'failed'}}}
  async function signUp({name,email,mobile,password}){email=email.trim().toLowerCase();

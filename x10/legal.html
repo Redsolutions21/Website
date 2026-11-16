@@ -1,5 +1,9 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="ar" dir="rtl"><head>
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MQVLMBJD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>X10 · الشروط والسياسات</title>
 <style>
 :root{--navy:#14264F;--red:#ED1C24;--ink:#14213D;--mute:#5A6478;--tile:#EEF1F6}
@@ -15,7 +19,7 @@ nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}nav.toc a{background
 <main id="v"></main>
 <script>
 /* Company details. build_store.py refuses to ship this page to the live site while any value below is empty. */
-const LEGAL={name_ar:"",name_en:"",licence:"",address_ar:"",address_en:"",refund_days:7,updated:"2026-11-12"};
+const LEGAL={name_ar:"",name_en:"",licence:"",address_ar:"",address_en:"",refund_days:7,updated:"2026-11-17"};
 /* DRAFT: set to false only after Ebrahim has edited and approved the text (planned before payments go live). */
 const DRAFT=false;
 /* 13 Nov (Ebrahim): company name, licence number and address are kept off the public page for now; they stay in LEGAL above. */
@@ -52,7 +56,7 @@ function render(){document.documentElement.lang=L;document.documentElement.dir=e
  <li><b>What we never do.</b> We do not sell your data and we do not share it with advertisers.</li>
  <li><b>How long we keep it.</b> For as long as your account is open, and afterwards only for as long as accounting and legal rules require for payment records.</li>
  <li><b>Your choices.</b> Write to ${mail} to see, correct or delete your data, or to close your account. We answer within 30 days.</li>
- <li><b>Cookies.</b> We do not use advertising or tracking cookies. The site only stores what it needs to keep you logged in and remember your language.</li>
+ <li><b>Cookies and analytics.</b> We use Google Analytics to count visits and see which pages are used, so we can improve the site. It uses cookies and does not receive your name, email or payment details. We do not use advertising cookies. The site also stores what it needs to keep you logged in and remember your language.</li>
  <li><b>Age.</b> The courses are for adults. Anyone under 18 needs a parent or guardian to buy and to agree to these terms.</li>
  <li><b>Security.</b> Access to the database is protected so that each account can read only its own data. No online service can promise perfect security; if a breach ever affects your data, we will tell you.</li></ul>`]]
  :[
@@ -80,7 +84,7 @@ function render(){document.documentElement.lang=L;document.documentElement.dir=e
  <li><b>ما لا نفعله أبداً.</b> لا نبيع بياناتك ولا نشاركها مع المعلنين.</li>
  <li><b>مدة الاحتفاظ.</b> ما دام حسابك مفتوحاً، وبعده فقط للمدة التي تفرضها الأنظمة المحاسبية والقانونية لسجلات الدفع.</li>
  <li><b>خياراتك.</b> راسلنا على ${mail} للاطلاع على بياناتك أو تصحيحها أو حذفها، أو لإغلاق حسابك. نرد خلال 30 يوماً.</li>
- <li><b>ملفات الارتباط.</b> لا نستخدم ملفات ارتباط إعلانية أو تتبعية. الموقع يحفظ فقط ما يلزم لإبقائك مسجّلاً ولتذكّر لغتك.</li>
+ <li><b>ملفات الارتباط والتحليلات.</b> نستخدم Google Analytics لعدّ الزيارات ومعرفة الصفحات الأكثر استخداماً حتى نحسّن الموقع. ويستخدم ملفات ارتباط، ولا يصله اسمك ولا بريدك ولا بيانات الدفع. ولا نستخدم ملفات ارتباط إعلانية. ويحفظ الموقع أيضاً ما يلزم لإبقائك مسجّلاً ولتذكّر لغتك.</li>
  <li><b>العمر.</b> الدورات للبالغين. من هو دون 18 سنة يحتاج إلى ولي أمر ليشتري ويوافق على هذه الشروط.</li>
  <li><b>الأمان.</b> الوصول إلى قاعدة البيانات محمي بحيث لا يقرأ كل حساب إلا بياناته. ولا تستطيع أي خدمة على الإنترنت أن تعد بأمان كامل، وإذا مسّ اختراق بياناتك يوماً فسنبلغك.</li></ul>`]];
  document.getElementById('v').innerHTML=`${DRAFT?`<div class="todo" style="padding:8px 14px;font-weight:700">${T('مسودة للمراجعة · غير منشورة','Draft for review · not published')}</div>`:''}<h1>${T('الشروط والسياسات','Terms and policies')}</h1><p class="m">${T('معهد X10 للتدريب الأهلي · الدورات الأونلاين','X10 Institute for Private Training · Online courses')}</p>

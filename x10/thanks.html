@@ -19,7 +19,7 @@ h1{font-size:clamp(28px,5vw,40px);line-height:1.3;margin:10px 0 6px}
 .lb{border:0;background:var(--card);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer;float:inline-end}
 p.m{color:var(--mute);font-size:14px}
 </style></head><body><div class="wrap"><button class="lb" id="lb" type="button"></button><div id="v"></div></div>
-<script src="auth.js?v=2e5f037d"></script>
+<script src="auth.js?v=972bbd5b"></script>
 <script src="catalog.js?v=43b48adb"></script>
 <script>
 /* The payment link's return URL says what was bought, as the hash:
@@ -27,7 +27,7 @@ p.m{color:var(--mute);font-size:14px}
 let L='ar';try{L=localStorage.getItem('x10_lang')||'ar'}catch(e){}
 const en=()=>L==='en',T=(a,e)=>en()?e:a,kd=n=>x10kd(n,en());
 function render(){document.documentElement.lang=en()?'en':'ar';document.documentElement.dir=en()?'ltr':'rtl';document.getElementById('lb').textContent=en()?'العربية':'English';
- const h=location.hash.replace('#',''),only=h==='lib',lib=/(^|-)lib$/.test(h),base=h.replace(/-?lib$/,''),all=base==='all',c=x10Course(base),known=PAID||only||all||!!(c&&c.live&&!c.review);
+ const h=(QS.get('t')||location.hash.replace('#','').split(/[?&]/)[0]),only=h==='lib',lib=/(^|-)lib$/.test(h),base=h.replace(/-?lib$/,''),all=base==='all',c=x10Course(base),known=PAID||only||all||!!(c&&c.live&&!c.review);
  const help=`<p class="m">${T('تحتاج مساعدة؟ راسلنا:','Need help? Write to us:')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p>`;
  if(!known){document.getElementById('v').innerHTML=`<div class="card"><h1>${T('معهد X10','X10 Institute')}</h1><p>${T('لم نجد طلباً مرتبطاً بهذه الصفحة. إذا أتممت الدفع ولم تفتح دورتك، راسلنا بالبريد.','We could not find an order for this page. If you paid and your course did not open, write to us by email.')}</p>${help}<p><a class="btn" href="account.html">${T('اذهب إلى حسابي','Go to my account')}</a></p></div>`;return}
  X10Auth.demoGrant([...(c&&!all?[c.id]:[]),...(all?['all']:[]),...(lib?['lib']:[])]);
@@ -40,10 +40,10 @@ function render(){document.documentElement.lang=en()?'en':'ar';document.document
  if(!all&&!only&&!X10Auth.owns('all'))up=`<div class="card up"><span class="tag">${T('عرض الترقية','Upgrade offer')}</span><h2 style="margin:10px 0 4px">${T('رقِّ طلبك إلى الوصول الكامل','Upgrade to All-Access')}</h2><p>${T(`كل دورات X10 بـ${kd(X10_ALL.p)}، ونخصم الـ${kd(paid)} التي دفعتها: تدفع ${kd(upg)} فقط.`,`Every X10 course for ${kd(X10_ALL.p)}, minus the ${kd(paid)} you have paid: only ${kd(upg)}.`)} ${allLive?T('وتفتح لك كلها فور الترقية.','All of them open for you as soon as you upgrade.'):T('كل دورة جديدة تفتح لك يوم إطلاقها.','Each new course unlocks for you the day it launches.')}</p><a class="btn red" href="./#offer-all">${T('نعم، رقِّ طلبي','Yes, upgrade my order')} · <bdi dir="ltr">${kd(upg)}</bdi></a></div>`;
  else if(!lib&&!only&&!X10Auth.owns('lib'))up=`<div class="card up"><span class="tag">${T('إضافة سريعة','Quick add')}</span><h2 style="margin:10px 0 4px">${T('أضف مكتبة الطلبات','Add the Prompt Library')}</h2><p>${T('50 طلباً جاهزاً للعمل بالعربي والإنجليزي.','50 ready work prompts in Arabic and English.')}</p><a class="btn red" href="./#buy-lib">${T('أضفها','Add it')} · <bdi dir="ltr">${kd(X10_LIB.p)}</bdi></a></div>`;
  document.getElementById('v').innerHTML=`<div class="card"><span class="tag">${T('تم الدفع','Payment received')}</span><h1>${only?T('شكراً لك! مكتبتك جاهزة.','Thank you! Your library is ready.'):all?T('شكراً لك! دوراتك جاهزة.','Thank you! Your courses are ready.'):T('شكراً لك! دورتك جاهزة.','Thank you! Your course is ready.')}</h1><p>${T('دوراتك محفوظة في حسابك، وترجع لها أي وقت.','Your courses are saved in your account; come back any time.')}</p>${items}<p><a class="btn" href="account.html">${T('اذهب إلى حسابي','Go to my account')}</a></p>${help}</div>${up}`}
-let PAID=false,WAIT='';const QS=new URLSearchParams(location.search),OID=QS.get('o'),TRK=QS.get('track_id');
+let PAID=false,WAIT='';const QS=new URLSearchParams(location.search),HQ=new URLSearchParams((location.hash.split(/[?&]/).slice(1).join('&'))),OID=QS.get('o')||HQ.get('o'),TRK=QS.get('track_id')||HQ.get('track_id');
 function msg(h){document.getElementById('v').innerHTML=`<div class="card">${h}<p class="m">${T('تحتاج مساعدة؟ راسلنا:','Need help? Write to us:')} <a href="mailto:${X10_MAIL}" dir="ltr">${X10_MAIL}</a></p></div>`}
 async function start(){if(OID&&X10Auth.REAL){msg(`<h1>${T('نتأكد من الدفع…','Confirming your payment…')}</h1><p>${T('ثواني بس، لا تسكّر الصفحة.','Just a few seconds; please keep this page open.')}</p>`);
- let st='unknown';for(let i=0;i<15;i++){st=await X10Auth.payStatus(OID,i%4===0?TRK:null);if(st==='paid'||st==='failed')break;await new Promise(r=>setTimeout(r,2000))}
+ let st='unknown';for(let i=0;i<15;i++){st=await X10Auth.payStatus(OID,TRK);if(st==='paid'||st==='failed')break;await new Promise(r=>setTimeout(r,2000))}
  if(st==='failed'){msg(`<h1>${T('ما تم الدفع','The payment did not go through')}</h1><p>${T('ما انخصم منك شي. تقدر تحاول مرة ثانية من صفحة الدورة.','You were not charged. You can try again from the course page.')}</p><p><a class="btn" href="./">${T('ارجع للدورات','Back to the courses')}</a></p>`);return}
  if(st!=='paid'){msg(`<h1>${T('وصلنا الدفع وقاعدين نأكده','We are confirming your payment')}</h1><p>${T('أحياناً ياخذ دقيقة. دوراتك بتطلع في حسابك أول ما يتأكد الدفع.','Sometimes it takes a minute. Your courses will appear in your account as soon as the payment is confirmed.')}</p><p><a class="btn" href="account.html">${T('اذهب إلى حسابي','Go to my account')}</a></p>`);return}
  PAID=true}

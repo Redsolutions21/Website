@@ -65,8 +65,10 @@ const X10Auth=(()=>{
   const r=await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-pay',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON,Authorization:'Bearer '+session.access_token},body:JSON.stringify({items,tag,back,lang:(localStorage.getItem('x10_lang')||'ar')})});
   const j=await r.json().catch(()=>({}));if(r.status===503)return {off:true};return j.link?{link:j.link}:{error:j.error||'error'}}catch(e){return {error:String(e)}}}
  /* after returning from UPayments: ask the server to check the payment, then read the order status */
- async function payStatus(order,track){if(!REAL)return 'paid';try{if(track)await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-pay-confirm',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON},body:JSON.stringify({track_id:track})});
+ async function payStatus(order,track){if(!REAL)return 'paid';try{await fetch(X10_CFG.SUPABASE_URL+'/functions/v1/x10-pay-confirm',{method:'POST',headers:{'Content-Type':'application/json',apikey:X10_CFG.SUPABASE_ANON},body:JSON.stringify(track?{track_id:track,order}:{order})}).catch(()=>{});
   const c=await client();const {data}=await c.rpc('my_order_status',{p_order:order});return data||'unknown'}catch(e){return 'unknown'}}
+ /* account page: any of my online orders still pending gets checked again with UPayments, so a paid order opens even if the customer never came back to the thanks page */
+ async function recheck(){if(!REAL||!cache.user)return false;try{const c=await client();const {data}=await c.rpc('my_pending_orders');if(!data||!data.length)return false;let n=0;for(const o of data){const id=typeof o==='string'?o:(o.my_pending_orders||o.id);if(id&&await payStatus(id,null)==='paid')n++}if(n)await load();return n>0}catch(e){return false}}
  async function order(items){if(!REAL)return {ref:'demo'};const c=await client();const {data,error}=await c.rpc('request_order',{p_slugs:items});return error?{error:error.message}:{ref:data}}
  /* progress follows the account: the browser copy and the account copy are merged, never overwritten */
  function merge(l,r){if(!l)return r;if(!r)return l;const o=Object.assign({},r,l);o.done=Object.assign({},r.done||{},l.done||{});o.notes=Object.assign({},r.notes||{},l.notes||{});o.quiz=Object.assign({},r.quiz||{});for(const k in (l.quiz||{}))o.quiz[k]=Math.max(o.quiz[k]||0,l.quiz[k]||0);return o}
@@ -90,5 +92,5 @@ const X10Auth=(()=>{
  /* Apple / Google: the browser goes to Apple or Google and comes back here signed in */
  async function oauth(provider){if(!REAL)return {error:'demo'};const c=await client();
   const {error}=await c.auth.signInWithOAuth({provider,options:{redirectTo:location.origin+location.pathname}});return error?{error:error.message}:{}}
- return {REAL,load,channels,sendCode,checkCode,oauth,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,updateProfile,claimFree,order,pay,payStatus,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
+ return {REAL,load,channels,sendCode,checkCode,oauth,signUp,signIn,signOut,demoGrant,owns,course,resetPassword,verifyCode,confirmCode,resendSignup,setPassword,updateProfile,claimFree,order,pay,payStatus,recheck,pullProgress,pushProgress,get user(){return cache.user},get owned(){return cache.owned}}
 })();

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ماما فايزه</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF1E6;--card:#FFFFFF;--ink:#3A2218;--soft:#6B4A3A;--accent:#C2410C;--accent2:#9A3412;--due:#FFD9C2;--ok:#1F7A4D;--okbg:#DDF3E4;--late:#B91C1C;--latebg:#FFE1DC;--line:#F0DCCB}
+body.night{--bg:#141B2D;--card:#1E2740;--ink:#F3E9DD;--soft:#B9AFC9;--accent:#F4A261;--accent2:#F4A261;--due:#3A2F4F;--ok:#7ED6A0;--okbg:#20402F;--late:#FF8A80;--latebg:#4A2330;--line:#2C3756}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Baloo Bhaijaan 2',system-ui,sans-serif;font-weight:500;overflow:hidden;transition:background .8s;-webkit-user-select:none;user-select:none}
+button{font-family:inherit;cursor:pointer;border:0}
+#ipad{height:100vh;display:flex;flex-direction:column;gap:1.4vh;padding:2.6vh 2.6vw}
+.top{display:flex;justify-content:space-between;align-items:flex-end}
+.hello{font-size:5.2vh;font-weight:800;line-height:1.1}
+.date{font-size:2.6vh;color:var(--soft)}
+.clock{font-size:8vh;font-weight:800;line-height:1;direction:ltr;letter-spacing:.02em}
+.clock small{font-size:3.2vh;margin-inline-start:.5vw;color:var(--soft)}
+.main{flex:1;display:flex;gap:1.4vw;min-height:0}
+.dose{flex:1.75;background:var(--card);border-radius:3.4vh;padding:2.4vh 2vw;display:flex;flex-direction:column;min-height:0;position:relative;overflow:hidden;transition:background .5s}
+.dose.due{background:var(--due);outline:.5vh dashed var(--accent2);outline-offset:-1.2vh}
+.dose.late{background:var(--latebg);outline:.5vh solid var(--late);outline-offset:-1.2vh}
+.dose.done{background:var(--okbg)}
+.dlabel{font-size:2.6vh;color:var(--soft);font-weight:700}
+.dtitle{font-size:5vh;font-weight:800;line-height:1.15}
+.dsub{font-size:2.8vh;font-weight:700}
+.pills{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vh 1vw;margin:1.6vh 0;min-height:0;align-content:start}
+.pill{background:var(--card);border-radius:2vh;padding:.8vh;display:flex;flex-direction:column;align-items:center;gap:.4vh;min-height:0;box-shadow:0 .3vh 0 var(--line)}
+.pill img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:1.4vh;max-height:13vh}
+.pill .pn{font-size:2vh;font-weight:800;text-align:center;line-height:1.1}
+.pill .pq{font-size:1.7vh;color:var(--soft);text-align:center;line-height:1.1}
+.pill.extra{outline:.4vh solid #F2B705}
+.take{font-size:4.4vh;font-weight:800;color:#fff;background:var(--ok);border-radius:2.6vh;padding:2vh;width:100%;box-shadow:0 .8vh 0 rgba(0,0,0,.18)}
+.take:active{transform:translateY(.4vh);box-shadow:0 .4vh 0 rgba(0,0,0,.18)}
+.undo{background:none;color:var(--soft);font-size:2vh;text-decoration:underline;margin-top:.6vh}
+.side{flex:1;display:flex;flex-direction:column;gap:1.4vh;min-width:0}
+.card{background:var(--card);border-radius:3vh;padding:1.8vh 1.6vw}
+.stars{display:flex;justify-content:space-around;align-items:center}
+.star{display:flex;flex-direction:column;align-items:center;font-size:2.2vh;font-weight:700}
+.star svg{width:7vh;height:7vh}
+.prayers{display:flex;flex-direction:column;gap:.5vh;flex:1;justify-content:center}
+.pr{display:flex;justify-content:space-between;font-size:2.6vh;padding:.3vh 1vw;border-radius:1.4vh}
+.pr b{font-weight:800}
+.pr.next{background:var(--due);font-weight:800}
+.pr .t{unicode-bidi:isolate}
+.ptitle{font-size:2.2vh;color:var(--soft);font-weight:700;margin-bottom:.4vh}
+.video{font-size:2.6vh;font-weight:800;background:var(--accent);color:#fff;border-radius:2.4vh;padding:1.6vh;width:100%}
+.family{background:var(--card);border-radius:3vh;padding:1vh 1.6vw;display:flex;justify-content:space-between;gap:1.4vw}
+.fgroup{display:flex;flex-direction:column;gap:.3vh}
+.flab{font-size:1.8vh;font-weight:700;color:var(--soft)}
+.frow{display:flex;gap:.8vw}
+.fm{display:flex;flex-direction:column;align-items:center}
+.fc{width:6.6vh;height:6.6vh;border-radius:50%;overflow:hidden;border:.35vh solid var(--accent2)}
+.fm.g .fc{width:5.6vh;height:5.6vh;border-color:#B37400}
+.fn{font-size:1.6vh;font-weight:700}
+.fm.pulse .fc{animation:pulse 1.2s ease 3}
+@keyframes pulse{50%{transform:scale(1.25)}}
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.heart{position:absolute;bottom:-12vh;display:flex;flex-direction:column;align-items:center;animation:rise 6s ease-in forwards}
+.heart svg{width:10vh;height:10vh;filter:drop-shadow(0 .5vh .6vh rgba(0,0,0,.2))}
+.heart span{background:#fff;color:#B4235E;font-weight:800;font-size:2.4vh;border-radius:2vh;padding:0 1.2vh}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateY(-110vh) scale(1.1);opacity:0}}
+#banner{position:fixed;top:2vh;left:50%;transform:translateX(-50%) translateY(-20vh);background:var(--card);color:var(--ink);border-radius:3vh;padding:1.6vh 3vw;font-size:3.6vh;font-weight:800;box-shadow:0 1vh 3vh rgba(0,0,0,.25);transition:transform .6s;z-index:6;text-align:center}
+#banner.show{transform:translateX(-50%) translateY(0)}
+#start{position:fixed;inset:0;background:rgba(20,10,5,.75);display:flex;align-items:center;justify-content:center;z-index:10}
+#start button{font-size:5vh;font-weight:800;background:#FFF1E6;color:#3A2218;border-radius:4vh;padding:4vh 6vw}
+#sheet{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:8}
+#sheet.show{display:flex}
+#sheet .box{background:var(--card);border-radius:3vh;padding:3vh 3vw;max-width:70vw;font-size:3vh;text-align:center}
+#sheet .box button{margin-top:2vh;font-size:3vh;font-weight:800;background:var(--accent);color:#fff;border-radius:2vh;padding:1.2vh 3vw}
+.note{font-size:1.6vh;color:var(--soft)}
+/* family phone view */
+#family{display:none;height:100vh;overflow:auto;padding:4vw 5vw 10vw;max-width:560px;margin:0 auto}
+body.fam{overflow:auto}
+body.fam #ipad{display:none}
+body.fam #family{display:block}
+.fh{font-size:7vw;font-weight:800;margin:2vw 0}
+@media(min-width:560px){.fh{font-size:38px}}
+.fcard{background:var(--card);border-radius:20px;padding:16px 18px;margin-bottom:14px}
+.frowd{display:flex;justify-content:space-between;align-items:center;font-size:19px;font-weight:700;padding:6px 0}
+.tag{border-radius:30px;padding:2px 14px;font-size:16px;font-weight:800}
+.tag.ok{background:var(--okbg);color:var(--ok)}.tag.wait{background:var(--due);color:var(--accent2)}.tag.late{background:var(--latebg);color:var(--late)}
+.who{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.who button{background:var(--bg);color:var(--ink);border-radius:30px;padding:6px 16px;font-size:17px;font-weight:700}
+.who button.on{background:var(--accent);color:#fff}
+.send{width:100%;font-size:24px;font-weight:800;color:#fff;background:#D6457E;border-radius:18px;padding:16px}
+.mlist{font-size:17px;line-height:1.7;margin:0;padding-inline-start:20px}
+.sent{font-size:16px;color:var(--ok);font-weight:700;text-align:center;min-height:24px;margin-top:6px}
+
+#login{position:fixed;inset:0;background:#FFF1E6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:20;padding:20px}
+#login .lt{font-size:30px;font-weight:800;color:#3A2218;text-align:center}
+#login input{font-family:inherit;font-size:24px;padding:12px 18px;border-radius:16px;border:2px solid #E8C9B3;text-align:center;width:min(320px,80vw);direction:ltr}
+#login button{font-size:24px;font-weight:800;background:#C2410C;color:#fff;border-radius:16px;padding:12px 40px}
+#login .err{color:#B91C1C;font-weight:700;min-height:28px}
+#call{position:fixed;inset:0;background:#0E1424;z-index:12;display:none;flex-direction:column}
+#call.show{display:flex}
+#callTop{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;color:#fff;font-weight:800;font-size:22px}
+#jitsi{flex:1;min-height:0}
+#jitsi iframe{width:100%;height:100%;border:0}
+#hang{background:#DC2626;color:#fff;font-size:24px;font-weight:800;border-radius:40px;padding:10px 30px}
+#ring{position:fixed;inset:0;background:rgba(14,20,36,.92);z-index:13;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;text-align:center}
+#ring.show{display:flex}
+#ring .rf{width:24vh;height:24vh;max-width:200px;max-height:200px;border-radius:50%;overflow:hidden;border:6px solid #F4A261;animation:pulse 1.2s ease infinite}
+#ring .rt{font-size:5vh;font-weight:800}
+#ring .rb{display:flex;gap:20px}
+#ring button{font-size:4vh;font-weight:800;border-radius:50px;padding:14px 40px;color:#fff}
+#ring .yes{background:#16A34A}#ring .no{background:#DC2626}
+#picker{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:11;display:none;align-items:center;justify-content:center}
+#picker.show{display:flex}
+#picker .box{background:var(--card);border-radius:3vh;padding:3vh 3vw;text-align:center;max-width:90vw}
+#picker .pt{font-size:4vh;font-weight:800;margin-bottom:2vh}
+#picker .grid{display:flex;flex-wrap:wrap;gap:2vh 2vw;justify-content:center}
+#picker .grid button{background:none;display:flex;flex-direction:column;align-items:center;color:var(--ink);font-size:2.6vh;font-weight:800}
+#picker .grid .fc{width:12vh;height:12vh}
+#picker .all{margin-top:2.4vh;font-size:3.4vh;font-weight:800;background:var(--accent);color:#fff;border-radius:2.4vh;padding:1.4vh 4vw}
+#picker .x{margin-top:1.4vh;background:none;color:var(--soft);font-size:2.6vh;text-decoration:underline}
+.joinbtn{width:100%;font-size:22px;font-weight:800;color:#fff;background:#16A34A;border-radius:18px;padding:14px;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="login">
+  <div class="lt">ماما فايزه 💛</div>
+  <input id="pw" type="password" placeholder="كلمة السر" autocomplete="current-password">
+  <button id="pwBtn">دخول</button>
+  <div class="err" id="pwErr"></div>
+</div>
+
+<div id="ipad">
+  <div class="top">
+    <div><div class="hello" id="hello">هلا ماما</div><div class="date" id="date"></div></div>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="main">
+    <div class="dose" id="dose"></div>
+    <div class="side">
+      <div class="card stars" id="stars"></div>
+      <div class="card prayers" id="prayers"></div>
+      <button class="video" id="videoBtn">📹 كلمي العيال بالفيديو</button>
+    </div>
+  </div>
+  <div class="family" id="familyStrip"></div>
+</div>
+
+<div id="family">
+  <div class="fh">ماما فايزه 💛</div>
+  <div class="fcard" id="fStatus"></div>
+  <div class="fcard">
+    <div style="font-size:20px;font-weight:800">أنا</div>
+    <div class="who" id="who"></div>
+  </div>
+  <div class="fcard">
+    <button class="send" id="sendHeart">أرسل قلب لماما ❤️</button>
+    <div class="sent" id="sent"></div>
+    <button class="joinbtn" id="famCall">📹 كلّم ماما فيديو</button>
+  </div>
+  <div class="fcard" id="fMeds"></div>
+  <div class="note" style="text-align:center" id="fNote"></div>
+</div>
+
+<div id="call"><div id="callTop"><span id="callWho">مكالمة العايلة</span><button id="hang">إنهاء</button></div><div id="jitsi"></div></div>
+<div id="ring"><div class="rf" id="ringFace"></div><div class="rt" id="ringText"></div><div class="rb"><button class="yes" id="ringYes">رد ✓</button><button class="no" id="ringNo">لا</button></div></div>
+<div id="picker"><div class="box"><div class="pt">تبين تكلمين منو؟</div><div class="grid" id="pickGrid"></div><button class="all" id="pickAll">كل العايلة</button><br><button class="x" id="pickX">رجوع</button></div></div>
+<div id="hearts"></div>
+<div id="banner"></div>
+<div id="sheet"><div class="box"><div id="sheetText"></div><button id="sheetOk">تمام</button></div></div>
+<div id="start" style="display:none"><button id="startBtn">اضغطي هني 💛</button></div>
+<script>const FACES={"غازي": "<svg role=\"img\" aria-label=\"غازي\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"22\" ry=\"16\" fill=\"#FFFFFF\"></ellipse><path d=\"M13 26 Q13 7 28 7 Q43 7 43 26 L46 46 L38 42 L38 26 Q38 16 28 16 Q18 16 18 26 L18 42 L10 46 Z\" fill=\"#FFFFFF\" stroke=\"#D9CFC7\" stroke-width=\"1\"></path><circle cx=\"28\" cy=\"27\" r=\"10.5\" fill=\"#E0AC7E\"></circle><path d=\"M18.5 30 Q28 44 37.5 30 Q28 35 18.5 30 Z\" fill=\"#2A1A12\"></path><path d=\"M17 15 Q28 8 39 15\" fill=\"none\" stroke=\"#1E1E1E\" stroke-width=\"3\" stroke-linecap=\"round\"></path><circle cx=\"24\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle></svg>", "أحمد": "<svg role=\"img\" aria-label=\"أحمد\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"22\" ry=\"16\" fill=\"#FFFFFF\"></ellipse><path d=\"M13 26 Q13 7 28 7 Q43 7 43 26 L46 46 L38 42 L38 26 Q38 16 28 16 Q18 16 18 26 L18 42 L10 46 Z\" fill=\"#FFFFFF\" stroke=\"#D9CFC7\" stroke-width=\"1\"></path><circle cx=\"28\" cy=\"27\" r=\"10.5\" fill=\"#D9A273\"></circle><path d=\"M23 30.5 Q28 28.5 33 30.5\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"2.2\" stroke-linecap=\"round\"></path><path d=\"M25 33.5 Q28 35.5 31 33.5\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.4\" stroke-linecap=\"round\"></path><path d=\"M17 15 Q28 8 39 15\" fill=\"none\" stroke=\"#1E1E1E\" stroke-width=\"3\" stroke-linecap=\"round\"></path><circle cx=\"24\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle></svg>", "سارة": "<svg role=\"img\" aria-label=\"سارة\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"23\" ry=\"18\" fill=\"#8E3B6E\"></ellipse><circle cx=\"28\" cy=\"26\" r=\"16\" fill=\"#8E3B6E\"></circle><ellipse cx=\"28\" cy=\"28\" rx=\"9.5\" ry=\"11\" fill=\"#E0AC7E\"></ellipse><circle cx=\"24\" cy=\"27\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"27\" r=\"1.4\" fill=\"#2A1A12\"></circle><path d=\"M24 32 Q28 35.5 32 32\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "إبراهيم": "<svg role=\"img\" aria-label=\"إبراهيم\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"22\" ry=\"16\" fill=\"#FFFFFF\"></ellipse><path d=\"M13 26 Q13 7 28 7 Q43 7 43 26 L46 46 L38 42 L38 26 Q38 16 28 16 Q18 16 18 26 L18 42 L10 46 Z\" fill=\"#FFFFFF\" stroke=\"#D9CFC7\" stroke-width=\"1\"></path><circle cx=\"28\" cy=\"27\" r=\"10.5\" fill=\"#E0AC7E\"></circle><path d=\"M19 31 Q28 41 37 31 Q28 34.5 19 31 Z\" fill=\"#4A3426\"></path><path d=\"M17 15 Q28 8 39 15\" fill=\"none\" stroke=\"#1E1E1E\" stroke-width=\"3\" stroke-linecap=\"round\"></path><circle cx=\"24\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle></svg>", "زياد": "<svg role=\"img\" aria-label=\"زياد\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"22\" ry=\"16\" fill=\"#FFFFFF\"></ellipse><path d=\"M13 26 Q13 7 28 7 Q43 7 43 26 L46 46 L38 42 L38 26 Q38 16 28 16 Q18 16 18 26 L18 42 L10 46 Z\" fill=\"#FFFFFF\" stroke=\"#D9CFC7\" stroke-width=\"1\"></path><circle cx=\"28\" cy=\"27\" r=\"10.5\" fill=\"#D9A273\"></circle><path d=\"M24 31 Q28 34.5 32 31\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path><path d=\"M17 15 Q28 8 39 15\" fill=\"none\" stroke=\"#1E1E1E\" stroke-width=\"3\" stroke-linecap=\"round\"></path><circle cx=\"24\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle></svg>", "بابا": "<svg role=\"img\" aria-label=\"بابا\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#E8E1D9\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"22\" ry=\"16\" fill=\"#FFFFFF\"></ellipse><path d=\"M13 26 Q13 7 28 7 Q43 7 43 26 L46 46 L38 42 L38 26 Q38 16 28 16 Q18 16 18 26 L18 42 L10 46 Z\" fill=\"#FFFFFF\" stroke=\"#D9CFC7\" stroke-width=\"1\"></path><circle cx=\"28\" cy=\"27\" r=\"10.5\" fill=\"#E0AC7E\"></circle><path d=\"M18.5 30 Q28 44 37.5 30 Q28 35 18.5 30 Z\" fill=\"#D9D4CE\"></path><path d=\"M17 15 Q28 8 39 15\" fill=\"none\" stroke=\"#1E1E1E\" stroke-width=\"3\" stroke-linecap=\"round\"></path><circle cx=\"24\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"26\" r=\"1.4\" fill=\"#2A1A12\"></circle></svg>", "ماما": "<svg role=\"img\" aria-label=\"ماما\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFD9C2\"></rect><ellipse cx=\"28\" cy=\"58\" rx=\"23\" ry=\"18\" fill=\"#3A2A4F\"></ellipse><circle cx=\"28\" cy=\"26\" r=\"16\" fill=\"#3A2A4F\"></circle><ellipse cx=\"28\" cy=\"28\" rx=\"9.5\" ry=\"11\" fill=\"#E0AC7E\"></ellipse><circle cx=\"24\" cy=\"27\" r=\"1.4\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"27\" r=\"1.4\" fill=\"#2A1A12\"></circle><path d=\"M24 32 Q28 35.5 32 32\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "فيصل": "<svg role=\"img\" aria-label=\"فيصل\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#2F6FB5\"></ellipse><circle cx=\"28\" cy=\"31\" r=\"12\" fill=\"#E0AC7E\"></circle><path d=\"M16 29 Q16 16 28 16 Q40 16 40 29 Q34 21 28 22 Q22 21 16 29 Z\" fill=\"#2A1A12\"></path><circle cx=\"24\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 36 Q28 39.5 32 36\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "فايزة": "<svg role=\"img\" aria-label=\"فايزة\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><circle cx=\"13\" cy=\"37\" r=\"5.5\" fill=\"#2A1A12\"></circle><circle cx=\"43\" cy=\"37\" r=\"5.5\" fill=\"#2A1A12\"></circle><circle cx=\"28\" cy=\"29\" r=\"14\" fill=\"#2A1A12\"></circle><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#D6457E\"></ellipse><circle cx=\"28\" cy=\"32\" r=\"11.5\" fill=\"#E0AC7E\"></circle><path d=\"M17 29 Q22 20 28 21 Q34 20 39 29 Q33 24 28 25 Q23 24 17 29 Z\" fill=\"#2A1A12\"></path><circle cx=\"24\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 37 Q28 40.5 32 37\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "عطوفة": "<svg role=\"img\" aria-label=\"عطوفة\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><circle cx=\"13\" cy=\"37\" r=\"5.5\" fill=\"#4A3426\"></circle><circle cx=\"43\" cy=\"37\" r=\"5.5\" fill=\"#4A3426\"></circle><circle cx=\"28\" cy=\"29\" r=\"14\" fill=\"#4A3426\"></circle><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#0E7C86\"></ellipse><circle cx=\"28\" cy=\"32\" r=\"11.5\" fill=\"#D9A273\"></circle><path d=\"M17 29 Q22 20 28 21 Q34 20 39 29 Q33 24 28 25 Q23 24 17 29 Z\" fill=\"#4A3426\"></path><circle cx=\"24\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 37 Q28 40.5 32 37\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "لطوفة": "<svg role=\"img\" aria-label=\"لطوفة\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><circle cx=\"13\" cy=\"37\" r=\"5.5\" fill=\"#4A3426\"></circle><circle cx=\"43\" cy=\"37\" r=\"5.5\" fill=\"#4A3426\"></circle><circle cx=\"28\" cy=\"29\" r=\"14\" fill=\"#4A3426\"></circle><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#7A4FB5\"></ellipse><circle cx=\"28\" cy=\"32\" r=\"11.5\" fill=\"#E0AC7E\"></circle><path d=\"M17 29 Q22 20 28 21 Q34 20 39 29 Q33 24 28 25 Q23 24 17 29 Z\" fill=\"#4A3426\"></path><circle cx=\"24\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 37 Q28 40.5 32 37\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "حامد": "<svg role=\"img\" aria-label=\"حامد\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#1F7A4D\"></ellipse><circle cx=\"28\" cy=\"31\" r=\"12\" fill=\"#D9A273\"></circle><path d=\"M16 29 Q16 16 28 16 Q40 16 40 29 Q34 21 28 22 Q22 21 16 29 Z\" fill=\"#4A3426\"></path><circle cx=\"24\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 36 Q28 39.5 32 36\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "لولو": "<svg role=\"img\" aria-label=\"لولو\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><circle cx=\"13\" cy=\"37\" r=\"5.5\" fill=\"#2A1A12\"></circle><circle cx=\"43\" cy=\"37\" r=\"5.5\" fill=\"#2A1A12\"></circle><circle cx=\"28\" cy=\"29\" r=\"14\" fill=\"#2A1A12\"></circle><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#B4235E\"></ellipse><circle cx=\"28\" cy=\"32\" r=\"11.5\" fill=\"#E0AC7E\"></circle><path d=\"M17 29 Q22 20 28 21 Q34 20 39 29 Q33 24 28 25 Q23 24 17 29 Z\" fill=\"#2A1A12\"></path><circle cx=\"24\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"32\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 37 Q28 40.5 32 37\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>", "حمد": "<svg role=\"img\" aria-label=\"حمد\" viewBox=\"0 0 56 56\" style=\"width: 100%; height: 100%; display: block\"><rect width=\"56\" height=\"56\" fill=\"#FFF0C2\"></rect><ellipse cx=\"28\" cy=\"60\" rx=\"18\" ry=\"14\" fill=\"#C2410C\"></ellipse><circle cx=\"28\" cy=\"31\" r=\"12\" fill=\"#E0AC7E\"></circle><path d=\"M16 29 Q16 16 28 16 Q40 16 40 29 Q34 21 28 22 Q22 21 16 29 Z\" fill=\"#2A1A12\"></path><circle cx=\"24\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><circle cx=\"32\" cy=\"31\" r=\"1.5\" fill=\"#2A1A12\"></circle><path d=\"M24 36 Q28 39.5 32 36\" fill=\"none\" stroke=\"#2A1A12\" stroke-width=\"1.5\" stroke-linecap=\"round\"></path></svg>"};</script>
+<script>// Prayer times for Kuwait City (Fajr 18°, Isha 17.5°, Asr standard). Times in Kuwait local time (UTC+3).
+function prayerTimes(date) {
+  const lat = 29.3759, lng = 47.9774, tz = 3;
+  const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+  const y = date.getFullYear(), m = date.getMonth() + 1, d = date.getDate();
+  const A = Math.floor((14 - m) / 12), Y = y + 4800 - A, M = m + 12 * A - 3;
+  const jd = d + Math.floor((153 * M + 2) / 5) + 365 * Y + Math.floor(Y / 4) - Math.floor(Y / 100) + Math.floor(Y / 400) - 32045 - 0.5 - lng / 360;
+  function sun(j) {
+    const D = j - 2451545.0;
+    const g = (357.529 + 0.98560028 * D) % 360, q = (280.459 + 0.98564736 * D) % 360;
+    const L = (q + 1.915 * Math.sin(rad(g)) + 0.020 * Math.sin(rad(2 * g))) % 360;
+    const e = 23.439 - 0.00000036 * D;
+    const RA = deg(Math.atan2(Math.cos(rad(e)) * Math.sin(rad(L)), Math.cos(rad(L)))) / 15;
+    const decl = deg(Math.asin(Math.sin(rad(e)) * Math.sin(rad(L))));
+    let eqt = q / 15 - ((RA % 24) + 24) % 24;
+    eqt = ((eqt + 12) % 24 + 24) % 24 - 12;
+    return { decl, eqt };
+  }
+  const noonAt = t => 12 - sun(jd + t / 24).eqt;
+  function angleTime(angle, t, ccw) {
+    const s = sun(jd + t / 24), noon = 12 - s.eqt;
+    const v = deg(Math.acos((-Math.sin(rad(angle)) - Math.sin(rad(s.decl)) * Math.sin(rad(lat))) /
+      (Math.cos(rad(s.decl)) * Math.cos(rad(lat))))) / 15;
+    return noon + (ccw ? -v : v);
+  }
+  function asrTime(t) {
+    const s = sun(jd + t / 24);
+    const a = -deg(Math.atan(1 / (1 + Math.tan(rad(Math.abs(lat - s.decl))))));
+    return angleTime(a, t, false);
+  }
+  // two passes for accuracy
+  let t = { fajr: 5, sunrise: 6, dhuhr: 12, asr: 13, maghrib: 18, isha: 18 };
+  for (let i = 0; i < 2; i++) {
+    t = {
+      fajr: angleTime(18, t.fajr, true),
+      sunrise: angleTime(0.833, t.sunrise, true),
+      dhuhr: noonAt(t.dhuhr),
+      asr: asrTime(t.asr),
+      maghrib: angleTime(0.833, t.maghrib, false),
+      isha: angleTime(17.5, t.isha, false),
+    };
+  }
+  const out = {};
+  const adj = { fajr: 0, sunrise: 0, dhuhr: 0, asr: 0, maghrib: 0, isha: 0 };
+  for (const k in t) {
+    let h = t[k] + tz - lng / 15 + adj[k] / 60;
+    const mins = Math.round(h * 60);
+    const dt = new Date(y, m - 1, d, 0, 0, 0);
+    out[k] = mins; // minutes after local midnight (Kuwait)
+  }
+  return out;
+}
+if (typeof module !== 'undefined') module.exports = prayerTimes;
+</script>
+<script>// ===== config =====
+const APP_ID = 'vpaas-magic-cookie-5b30b736d3f44696b4caae29e368a8c7';
+const DOSE = {am: 10*60, pm: 22*60};
+const LATE_AFTER = 30, DUE_WINDOW = 6*60;
+const KIDS = ['غازي','أحمد','سارة','إبراهيم','زياد','بابا'];
+const GRAND = ['فيصل','فايزة','عطوفة','لطوفة','حامد','لولو','حمد'];
+const PRAYER_AR = {fajr:'الفجر', dhuhr:'الظهر', asr:'العصر', maghrib:'المغرب', isha:'العشاء'};
+const DAYS = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const $ = id => document.getElementById(id);
+const LS = { get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
+
+let D = null, KEY = null, mode = 'ipad', unlocked = false, undoUntil = 0, lastBanner = '';
+const taken = Object.assign({}, LS.get('taken') || {});
+
+// ===== crypto (password → AES key) =====
+const b64 = { enc: u => btoa(String.fromCharCode(...new Uint8Array(u))), dec: s => Uint8Array.from(atob(s), c => c.charCodeAt(0)) };
+async function deriveKey(pw, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:210000, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, true, ['encrypt','decrypt']);
+}
+async function decryptData(key, blob){
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv: b64.dec(blob.i)}, key, b64.dec(blob.c));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function seal(obj){ const iv = crypto.getRandomValues(new Uint8Array(12)); const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, KEY, new TextEncoder().encode(JSON.stringify(obj))); return b64.enc(iv)+'.'+b64.enc(ct); }
+async function unseal(s){ const [iv, ct] = s.split('.'); const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv: b64.dec(iv)}, KEY, b64.dec(ct)); return JSON.parse(new TextDecoder().decode(pt)); }
+
+// ===== time (always Kuwait) =====
+function kw(){ const d=new Date(Date.now()+3*3600e3); return {y:d.getUTCFullYear(),m:d.getUTCMonth(),d:d.getUTCDate(),wd:d.getUTCDay(),h:d.getUTCHours(),mi:d.getUTCMinutes(),min:d.getUTCHours()*60+d.getUTCMinutes()}; }
+function dayKey(t){ return t.y+'-'+String(t.m+1).padStart(2,'0')+'-'+String(t.d).padStart(2,'0'); }
+function shift(t,days){ const d=new Date(Date.UTC(t.y,t.m,t.d)+days*864e5); return {y:d.getUTCFullYear(),m:d.getUTCMonth(),d:d.getUTCDate(),wd:d.getUTCDay()}; }
+function fmt(min){ min=((min%1440)+1440)%1440; let h=Math.floor(min/60), m=min%60; const ap=h<12?'ص':'م'; h=h%12||12; return h+':'+String(m).padStart(2,'0')+' '+ap; }
+function dur(min){ const h=Math.floor(min/60), m=min%60; if(h&&m) return h+' ساعة و '+m+' دقيقة'; if(h) return h===1?'ساعة':h===2?'ساعتين':h+' ساعات'; return m+' دقيقة'; }
+
+// ===== live messages between the iPad and family phones (ntfy, end-to-end encrypted) =====
+const seen = new Set();
+async function send(obj){ try{ await fetch('https://ntfy.sh/'+D.topic, {method:'POST', body: await seal({...obj, at: Date.now(), id: Math.random().toString(36).slice(2)})}); }catch(e){ console.warn(e); } }
+function listen(){
+  let es, retry = 2000;
+  const open = () => {
+    es = new EventSource('https://ntfy.sh/'+D.topic+'/sse?since=24h');
+    es.onmessage = async ev => { retry = 2000; try{ const m = JSON.parse(ev.data); if(!m.message) return; const msg = await unseal(m.message); if(seen.has(msg.id)) return; seen.add(msg.id); onMsg(msg); }catch(e){} };
+    es.onerror = () => { es.close(); setTimeout(open, retry); retry = Math.min(retry*2, 60000); };
+  };
+  open();
+}
+const bootAt = Date.now();
+function onMsg(m){
+  const fresh = Date.now() - m.at < 90e3;
+  if(m.t === 'dose'){ taken[m.k] = {at:m.at, min:m.min, by:m.by}; LS.set('taken', taken); render(); }
+  else if(m.t === 'undo'){ delete taken[m.k]; LS.set('taken', taken); render(); }
+  else if(m.t === 'state'){ Object.assign(taken, m.taken||{}); LS.set('taken', taken); render(); }
+  else if(m.t === 'heart' && fresh && mode === 'ipad'){ showHeart(m.from); }
+  else if(m.t === 'call' && fresh){ incomingCall(m); }
+}
+
+// ===== doses =====
+function current(){
+  const t=kw(), today=dayKey(t), yest=dayKey(shift(t,-1));
+  const slots=[{k:yest+'-pm',start:DOSE.pm-1440,which:'pm',day:shift(t,-1)},{k:today+'-am',start:DOSE.am,which:'am',day:t},{k:today+'-pm',start:DOSE.pm,which:'pm',day:t}];
+  for(const s of slots){ const since=t.min-s.start; if(since>=0 && since<DUE_WINDOW && !taken[s.k]) return {...s, state: since>=LATE_AFTER?'late':'due'}; }
+  const next = t.min<DOSE.am ? {which:'am',start:DOSE.am,day:t} : t.min<DOSE.pm ? {which:'pm',start:DOSE.pm,day:t} : {which:'am',start:DOSE.am+1440,day:shift(t,1)};
+  const recent = [...slots].reverse().find(s=>taken[s.k] && t.min-s.start>=0 && t.min-s.start<90);
+  return {...next, state: recent?'done':'idle', doneKey: recent&&recent.k, wait: next.start-t.min};
+}
+function pillsFor(which, day){ const l = which==='am' ? [...D.am] : [...D.pm]; if(which==='am' && day.wd===2) l.push(D.vitd); return l; }
+function pillHTML(p){ return `<div class="pill${p.extra?' extra':''}"><img src="${D.img[p.img]}" alt=""><div class="pn">${p.n}</div><div class="pq">${p.q}</div></div>`; }
+async function markTaken(key){
+  const t=kw(); taken[key]={at:Date.now(),min:t.min,by:'ماما'}; LS.set('taken',taken);
+  undoUntil=Date.now()+120e3; render(); cheer();
+  await send({t:'dose', k:key, min:t.min, by:'ماما'});
+}
+async function undoTaken(key){ delete taken[key]; LS.set('taken',taken); undoUntil=0; render(); await send({t:'undo', k:key}); }
+
+// ===== iPad render =====
+const STAR = on => on?'<svg viewBox="0 0 24 24" fill="#FFC531" stroke="#B37400" stroke-width="1.2" stroke-linejoin="round"><path d="M12 3l2.8 5.7l6.2 .9l-4.5 4.4l1.1 6.2l-5.6 -2.9l-5.6 2.9l1.1 -6.2l-4.5 -4.4l6.2 -.9z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3l2.8 5.7l6.2 .9l-4.5 4.4l1.1 6.2l-5.6 -2.9l-5.6 2.9l1.1 -6.2l-4.5 -4.4l6.2 -.9z"/></svg>';
+function renderDose(){
+  const c=current(), el=$('dose'); el.className='dose '+c.state;
+  const name = c.which==='am'?'دوا الصبح':'دوا الليل';
+  if(c.state==='due'||c.state==='late'){
+    const list=pillsFor(c.which,c.day);
+    el.innerHTML=`<div class="dlabel">${c.state==='late'?'ماما، تأخرنا شوي 💛':'حان الوقت'}</div><div class="dtitle">${name} · ${list.length} حبات</div><div class="pills">${list.map(pillHTML).join('')}</div><button class="take" id="takeBtn">✓ أخذت الدوا</button>`;
+    $('takeBtn').onclick=()=>markTaken(c.k);
+    if(unlocked) chime(c.state);
+  } else if(c.state==='done'){
+    el.innerHTML=`<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1vh"><div style="width:16vh;height:16vh">${STAR(true)}</div><div class="dtitle">عافية عليج يا ماما 💛</div><div class="dsub">العيال وصلهم إنج أخذتي الدوا</div>${Date.now()<undoUntil?'<button class="undo" id="undoBtn">غلطت؟ رجّعي</button>':''}</div>`;
+    const u=$('undoBtn'); if(u) u.onclick=()=>undoTaken(c.doneKey);
+  } else {
+    const list=pillsFor(c.which,c.day);
+    el.innerHTML=`<div class="dlabel">الدوا الياي</div><div class="dtitle">${name}</div><div class="dsub">الساعة ${fmt(c.start)} · بعد ${dur(c.wait)}</div><div class="pills">${list.map(pillHTML).join('')}</div>`;
+  }
+}
+function renderStars(){ const k=dayKey(kw()); $('stars').innerHTML=`<div class="star">${STAR(taken[k+'-am'])}<span>الصبح</span></div><div class="star">${STAR(taken[k+'-pm'])}<span>الليل</span></div>`; }
+let ptCache={};
+function prayersToday(){ const t=kw(), k=dayKey(t); if(!ptCache[k]) ptCache={[k]:prayerTimes(new Date(t.y,t.m,t.d,12))}; return ptCache[k]; }
+function renderPrayers(){
+  const t=kw(), p=prayersToday(), order=['fajr','dhuhr','asr','maghrib','isha'];
+  const next=order.find(k=>p[k]>t.min)||'fajr';
+  $('prayers').innerHTML='<div class="ptitle">أوقات الصلاة · تقويم العجيري</div>'+order.map(k=>`<div class="pr${k===next?' next':''}"><b>${PRAYER_AR[k]}</b><span class="t">${fmt(p[k])}</span></div>`).join('');
+  for(const k of order){ const since=t.min-p[k], key=dayKey(t)+k; if(since>=0&&since<15&&lastBanner!==key){ lastBanner=key; banner('🕌 حان وقت صلاة '+PRAYER_AR[k], 15*60e3); if(unlocked && !inCall) adhanTone(); } }
+}
+function renderTop(){
+  const t=kw(); const h=t.h%12||12;
+  $('clock').innerHTML=h+':'+String(t.mi).padStart(2,'0')+'<small>'+(t.h<12?'ص':'م')+'</small>';
+  let hij=''; try{ hij=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura-nu-latn',{day:'numeric',month:'long',timeZone:'Asia/Kuwait'}).format(new Date()); }catch(e){}
+  $('date').textContent=DAYS[t.wd]+' '+t.d+' '+MONTHS[t.m]+(hij?' · '+hij:'');
+  const p=prayersToday(), night = t.min>=p.maghrib || t.min<p.sunrise;
+  document.body.classList.toggle('night', night);
+  $('hello').textContent = t.min>=p.fajr && t.min<p.dhuhr ? 'صباح الخير ماما ☀️' : night ? 'مساء الخير ماما 🌙' : 'هلا ماما';
+}
+function faceCell(n, cls){ return `<div class="fm ${cls}" data-n="${n}"><div class="fc">${FACES[n]||''}</div><div class="fn">${n}</div></div>`; }
+function renderStrip(){
+  $('familyStrip').innerHTML = `<div class="fgroup"><div class="flab">عيالج</div><div class="frow">${KIDS.map(n=>faceCell(n,'k')).join('')}</div></div><div class="fgroup"><div class="flab">أحفادج</div><div class="frow">${GRAND.map(n=>faceCell(n,'g')).join('')}</div></div>`;
+  document.querySelectorAll('#familyStrip .fm').forEach(f => f.onclick = () => startCall(f.dataset.n));
+}
+function banner(text,ms){ const b=$('banner'); b.textContent=text; b.classList.add('show'); clearTimeout(banner.t); banner.t=setTimeout(()=>b.classList.remove('show'),ms||8000); }
+
+// ===== family phone render =====
+function renderFamily(){
+  const t=kw(), k=dayKey(t);
+  const row=(label,key,start)=>{ const v=taken[key]; let tag;
+    if(v) tag=`<span class="tag ok">✓ أخذته ${fmt(v.min)}</span>`;
+    else if(t.min>=start+LATE_AFTER) tag='<span class="tag late">لسا ما أخذته!</span>';
+    else if(t.min>=start) tag='<span class="tag wait">وقته الحين</span>';
+    else tag=`<span class="tag wait">الساعة ${fmt(start)}</span>`;
+    return `<div class="frowd"><span>${label}</span>${tag}</div>`; };
+  $('fStatus').innerHTML='<div style="font-size:15px;color:var(--soft)">اليوم · '+DAYS[t.wd]+' '+t.d+' '+MONTHS[t.m]+'</div>'+row('دوا الصبح',k+'-am',DOSE.am)+row('دوا الليل',k+'-pm',DOSE.pm);
+  const li=l=>l.map(p=>`<li>${p.n} – ${p.q}</li>`).join('');
+  $('fMeds').innerHTML=`<div style="font-weight:800;font-size:19px">الصبح · ${fmt(DOSE.am)}</div><ul class="mlist">${li(D.am)}<li>${D.vitd.n} – ${D.vitd.q}</li></ul><div style="font-weight:800;font-size:19px;margin-top:8px">الليل · ${fmt(DOSE.pm)}</div><ul class="mlist">${li(D.pm)}</ul>`;
+  const me=LS.get('me');
+  $('who').innerHTML=[...KIDS,...GRAND].map(n=>`<button class="${n===me?'on':''}" data-n="${n}">${n}</button>`).join('');
+  document.querySelectorAll('#who button').forEach(b=>b.onclick=()=>{LS.set('me',b.dataset.n);renderFamily();});
+}
+async function sendHeart(){
+  const me=LS.get('me'), s=$('sent');
+  if(!me){ s.textContent='اختر اسمك أول 👆'; return; }
+  await send({t:'heart', from:me}); s.textContent='وصل القلب لماما ❤️'; setTimeout(()=>s.textContent='',4000);
+}
+
+// ===== hearts =====
+function showHeart(from){
+  from = String(from||'العيال').replace(/[<>&"]/g,'');
+  const h=document.createElement('div'); h.className='heart'; h.style.left=(10+Math.random()*75)+'vw';
+  h.innerHTML='<svg viewBox="0 0 24 24"><path fill="#E0457B" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>'+from+'</span>';
+  $('hearts').appendChild(h); setTimeout(()=>h.remove(),6500);
+  document.querySelectorAll('#familyStrip .fm').forEach(f=>{ if(f.dataset.n===from){ f.classList.remove('pulse'); void f.offsetWidth; f.classList.add('pulse'); }});
+  if(unlocked) tone([880,1175],0.12,.08);
+}
+function cheer(){ KIDS.forEach((n,i)=>setTimeout(()=>showHeart(n),i*350)); }
+
+// ===== video calls (Jitsi, inside the page) =====
+let api=null, inCall=false, aloneTimer=null, ringTimer=null, ringLoop=null;
+function loadJitsi(){ return new Promise((res,rej)=>{ if(window.JitsiMeetExternalAPI) return res(); const s=document.createElement('script'); s.src='https://8x8.vc/'+APP_ID+'/external_api.js'; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+async function joinCall(label){
+  if(inCall) return; inCall=true; stopRing();
+  $('callWho').textContent = label || 'مكالمة العايلة'; $('call').classList.add('show');
+  try{ await loadJitsi(); }catch(e){ inCall=false; $('call').classList.remove('show'); banner('ما قدرنا نفتح المكالمة، تأكدوا من الإنترنت'); return; }
+  const isMama = mode==='ipad';
+  api = new JitsiMeetExternalAPI('8x8.vc', {
+    roomName: APP_ID+'/'+D.room, parentNode: $('jitsi'), width:'100%', height:'100%',
+    userInfo: {displayName: isMama ? 'ماما' : (LS.get('me')||'العايلة')},
+    lang: 'ar',
+    configOverwrite: { prejoinConfig:{enabled:false}, prejoinPageEnabled:false, disableDeepLinking:true, startWithAudioMuted:false, startWithVideoMuted:false,
+      toolbarButtons: isMama ? ['microphone','camera'] : ['microphone','camera','toggle-camera','tileview'],
+      disableInviteFunctions:true, hideConferenceSubject:true, hideConferenceTimer:false, enableWelcomePage:false, enableClosePage:false,
+      notifications:[], disableReactions:true, disablePolls:true, readOnlyName:true, defaultLanguage:'ar' },
+    interfaceConfigOverwrite: { SHOW_JITSI_WATERMARK:false, SHOW_WATERMARK_FOR_GUESTS:false, MOBILE_APP_PROMO:false, TILE_VIEW_MAX_COLUMNS:3, DISABLE_JOIN_LEAVE_NOTIFICATIONS:true }
+  });
+  const check = () => { const n = api ? api.getNumberOfParticipants() : 0; clearTimeout(aloneTimer); if(n<=1) aloneTimer=setTimeout(()=>{ if(api && api.getNumberOfParticipants()<=1) endCall(); }, isMama?90e3:120e3); if(n>2) api.executeCommand('setTileView', true); };
+  api.addListener('videoConferenceJoined', check); api.addListener('participantJoined', check); api.addListener('participantLeft', check);
+  api.addListener('readyToClose', endCall);
+}
+function endCall(){ clearTimeout(aloneTimer); try{ api && api.dispose(); }catch(e){} api=null; inCall=false; $('jitsi').innerHTML=''; $('call').classList.remove('show'); render(); }
+async function startCall(to){
+  $('picker').classList.remove('show');
+  const me = mode==='ipad' ? 'ماما' : (LS.get('me')||'العايلة');
+  await send({t:'call', from: me, to: to||'الكل'});
+  joinCall(mode==='ipad' ? (to && to!=='الكل' ? 'نتصل بـ '+to+'…' : 'نتصل بالعايلة…') : 'مع ماما 💛');
+}
+function incomingCall(m){
+  const me = LS.get('me');
+  if(inCall) return;
+  if(mode==='ipad'){ if(m.from==='ماما') return; }
+  else { if(m.from===me) return; if(m.from!=='ماما' ) return; if(m.to && m.to!=='الكل' && m.to!==me) return; }
+  $('ringFace').innerHTML = FACES[m.from] || FACES['ماما'];
+  $('ringText').textContent = (mode==='ipad' ? m.from+' يتصل فيج 💛' : 'ماما تتصل فيك 💛');
+  $('ring').classList.add('show');
+  ringLoop = setInterval(()=>tone([784,988,784,988],.25,.22), 2200); tone([784,988,784,988],.25,.22);
+  try{ navigator.vibrate && navigator.vibrate([400,200,400,200,400]); }catch(e){}
+  clearTimeout(ringTimer);
+  // Mama's screen answers by itself after 6 seconds; family phones ring for 45 seconds
+  ringTimer = setTimeout(()=>{ if(mode==='ipad') joinCall('مع '+m.from+' 💛'); else stopRing(); }, mode==='ipad'?6000:45000);
+}
+function stopRing(){ clearInterval(ringLoop); clearTimeout(ringTimer); $('ring').classList.remove('show'); }
+
+// ===== sound =====
+let ac=null;
+function tone(freqs,len,vol){ if(!ac) return; const t0=ac.currentTime; freqs.forEach((f,i)=>{ const o=ac.createOscillator(), g=ac.createGain(); o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(0,t0+i*len); g.gain.linearRampToValueAtTime(vol,t0+i*len+.03); g.gain.exponentialRampToValueAtTime(.0001,t0+i*len+len*2.5); o.connect(g).connect(ac.destination); o.start(t0+i*len); o.stop(t0+i*len+len*3); }); }
+let lastChime=0;
+function chime(state){ if(inCall) return; const gap = state==='late'?3*60e3:5*60e3; if(Date.now()-lastChime<gap) return; lastChime=Date.now(); tone([659,784,988,1319],.35,.25); setTimeout(()=>tone([659,784,988,1319],.35,.25),2600); }
+function adhanTone(){ tone([440,523,587,523,440],.6,.18); }
+async function unlockAudio(){ try{ if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)(); await ac.resume(); }catch(e){} try{ navigator.wakeLock && await navigator.wakeLock.request('screen'); }catch(e){} }
+
+// ===== boot =====
+function render(){ if(!D) return; if(mode==='family'){ renderFamily(); return; } renderTop(); renderDose(); renderStars(); renderPrayers(); }
+function route(){ mode = location.hash==='#family' ? 'family' : 'ipad'; document.body.classList.toggle('fam', mode==='family'); $('start').style.display = (mode==='ipad' && !unlocked && D) ? 'flex' : 'none'; render(); }
+async function start(){
+  $('login').style.display='none';
+  renderStrip(); route(); listen();
+  setInterval(render, 15e3);
+  setInterval(()=>{ if(mode==='ipad' && D) renderTop(); }, 1e3);
+  // the iPad re-shares today's status every 6 hours so family phones always see it
+  if(mode==='ipad'){ const share=()=>{ const t=kw(), k=dayKey(t), y=dayKey(shift(t,-1)); const s={}; for(const x of [k+'-am',k+'-pm',y+'-pm']) if(taken[x]) s[x]=taken[x]; send({t:'state', taken:s}); }; setTimeout(share, 20e3); setInterval(share, 6*3600e3); }
+}
+async function login(pw){
+  const blob = await (await fetch('data.enc', {cache:'no-cache'})).json();
+  const key = await deriveKey(pw, b64.dec(blob.s));
+  D = await decryptData(key, blob); KEY = key;
+  LS.set('k', b64.enc(await crypto.subtle.exportKey('raw', key)));
+}
+$('pwBtn').onclick = async () => { $('pwErr').textContent=''; try{ await login($('pw').value.trim()); start(); }catch(e){ $('pwErr').textContent='كلمة السر غلط'; } };
+$('pw').addEventListener('keydown', e => { if(e.key==='Enter') $('pwBtn').click(); });
+$('startBtn').onclick = async () => { unlocked=true; $('start').style.display='none'; await unlockAudio(); tone([523,659,784],.2,.15); lastChime=0; render(); };
+document.addEventListener('click', ()=>{ if(!ac || ac.state!=='running') unlockAudio(); }, {capture:true});
+$('videoBtn').onclick = () => { $('pickGrid').innerHTML = KIDS.map(n=>`<button data-n="${n}"><div class="fc">${FACES[n]}</div>${n}</button>`).join(''); document.querySelectorAll('#pickGrid button').forEach(b=>b.onclick=()=>startCall(b.dataset.n)); $('picker').classList.add('show'); };
+$('pickAll').onclick = () => startCall('الكل');
+$('pickX').onclick = () => $('picker').classList.remove('show');
+$('famCall').onclick = () => { if(!LS.get('me')){ $('sent').textContent='اختر اسمك أول 👆'; return; } startCall('ماما'); };
+$('hang').onclick = endCall;
+$('ringYes').onclick = () => joinCall(mode==='ipad' ? 'مكالمة العايلة 💛' : 'مع ماما 💛');
+$('ringNo').onclick = stopRing;
+$('sendHeart').onclick = sendHeart;
+$('sheetOk').onclick = () => $('sheet').classList.remove('show');
+window.addEventListener('hashchange', route);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden){ unlockAudio(); render(); } });
+// stay signed in on this device
+(async()=>{ const raw = LS.get('k'); if(!raw) return; try{ const key = await crypto.subtle.importKey('raw', b64.dec(raw), {name:'AES-GCM'}, true, ['encrypt','decrypt']); const blob = await (await fetch('data.enc', {cache:'no-cache'})).json(); D = await decryptData(key, blob); KEY = key; start(); }catch(e){ LS.set('k', null); } })();
+</script>
+</body>
+</html>

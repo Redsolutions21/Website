@@ -57,7 +57,7 @@ let L='ar';try{L=localStorage.getItem('x10_lang')||'ar'}catch(e){}
 let TAB='up';
 const en=()=>L==='en',T=(a,e)=>en()?e:a,kd=n=>x10kd(n,en());
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const CAT=X10_CATALOG,SALE=CAT.filter(c=>!c.review),ALLLIVE=SALE.every(c=>c.live);
+const CAT=X10_CATALOG,SALE=CAT.filter(c=>!c.review).map((c,i)=>[c,i]).sort((x,y)=>(x[0].p-y[0].p)||(x[1]-y[1])).map(x=>x[0]),/* free first, then cheapest to dearest */ALLLIVE=SALE.every(c=>c.live);
 const paid=()=>Math.min(X10_ALL.p,SALE.filter(c=>c.live&&X10Auth.owned.includes(c.id)).reduce((a,c)=>a+c.p,0));
 let RECOVERY=/type=recovery/.test(location.hash);
 /* Instagram, Facebook, TikTok and Snapchat open links in their own browser, where Google refuses to sign people in */

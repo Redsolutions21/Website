@@ -129,7 +129,7 @@ body.phone .vou{grid-template-columns:1fr}
         <div class="small" id="vBiz"></div>
         <div class="code" id="vCode"></div>
         <div style="font:800 clamp(22px,2.6vw,40px)/1.3 var(--ar)" id="vHead">خصم 20% حق مشروعك</div>
-        <p class="small" id="vTerms">صوّر الـ QR وخذ القسيمة على موبايلك. الخصم على رسوم التجهيز وأول فترة اشتراك، لحد 31 ديسمبر 2026.</p>
+        <p class="small" id="vTerms">صوّر الـ QR وإخذ القسيمة على موبايلك. الخصم على رسوم التجهيز وأول فترة اشتراك، لحد 31 ديسمبر 2026.</p>
         <button class="btn2" id="again" type="button">الزائر اللي بعده</button>
       </div>
     </div>
@@ -272,7 +272,7 @@ function showVoucher(p){const code=(p.code||'').trim(),biz=(p.business||(lastCar
  const q=qrcode(0,'M');q.addData(url);q.make();$('qr').innerHTML=q.createSvgTag({cellSize:8,margin:2,scalable:true});
  $('vBiz').textContent=biz;$('vCode').textContent=code||'';$('vCode').hidden=!code;
  $('vHead').textContent=code?'خصم 20% حق مشروعك':'شوف باقاتنا وأسعارنا';
- $('vTerms').textContent=code?'صوّر الـ QR وخذ القسيمة على موبايلك. خصم 20% على أول فاتورة (رسوم التجهيز وأول فترة اشتراك)، حق الاشتراكات المدفوعة لحد 31 ديسمبر 2026. قسيمة وحدة حق كل مشروع.':'صوّر الـ QR وشوف كل الباقات على موبايلك.';
+ $('vTerms').textContent=code?'صوّر الـ QR وإخذ القسيمة على موبايلك. خصم 20% على أول فاتورة (رسوم التجهيز وأول فترة اشتراك)، حق الاشتراكات المدفوعة لحد 31 ديسمبر 2026. قسيمة وحدة حق كل مشروع.':'صوّر الـ QR وشوف كل الباقات على موبايلك.';
  setTimeout(()=>{show('voucher');$('card').hidden=true},1200);ev('booth_voucher',{has_code:!!code})}
 
 async function start(){if(conv)return;$('err').hidden=true;$('chat').innerHTML='';$('card').hidden=true;lastCard=null;
@@ -299,11 +299,11 @@ if(PHONE){$('startTxt').textContent='بلّش المحادثة';document.querySe
 
 /* demo mode (?demo=1): plays the flow without a microphone, for previews */
 if(new URLSearchParams(location.search).get('demo')==='1'){
- const steps=[[600,()=>{show('live');}],[900,()=>bubble('ai','هلا والله! أنا ريم، المساعدة الذكية من رد سولوشنز. قول لي، شنو اسم مشروعك وشنو تبيع؟')],
+ const steps=[[600,()=>{show('live');}],[900,()=>bubble('ai','هلا والله! أنا ريم، مساعدة ذكية. شنو اسم مشروعك؟')],
  [2600,()=>bubble('user','اسمه مخبز نورة، نسوي كيك وحلويات حق المناسبات')],
- [1800,()=>{showCard({business:'مخبز نورة',greeting:'هلا ومرحبا في مخبز نورة! تبي تحجز كيكة حق مناسبتك؟',jobs:'ياخذ طلبات الكيك والحلويات|يحجز مواعيد الاستلام والتوصيل|يرسل الفاتورة على WhatsApp'});bubble('ai','هلا ومرحبا في مخبز نورة! تبي أحجز لك كيكة حق باچر؟')}],
+ [1800,()=>{showCard({business:'مخبز نورة',greeting:'هلا ومرحبا في مخبز نورة! تبي تحجز كيكة حق مناسبتك؟',jobs:'ياخذ طلبات الكيك والحلويات|يحجز مواعيد الاستلام والتوصيل|يرسل الفاتورة على WhatsApp'});bubble('ai','زين، الحين أنا مساعدة مخبز نورة. هلا ومرحبا! تبي أحجز لك كيكة حق باچر؟')}],
  [3000,()=>bubble('user','إي، كيكة شوكولاتة حق عشرين شخص')],
- [2200,()=>bubble('ai','أبشر! سجلت لك كيكة شوكولاتة حق 20 شخص باچر، والفريق يأكد لك السعر. هذا بالضبط اللي يسويه مساعدك على WhatsApp، 24 ساعة.')],
+ [2200,()=>bubble('ai','أبشر! سجلت لك كيكة شوكولاتة حق 20 شخص باچر، والفريق يأكّد لك السعر. هذا مثال على شكل مساعدك، على WhatsApp يرد على عملائك 24 ساعة.')],
  [3200,()=>showVoucher({code:'COD-····',business:'مخبز نورة',url:location.origin+'/booth/?m=1&src=tv-demo'})]];
  const loop=new URLSearchParams(location.search).get('loop')==='1';
  function run(){let t=0;$('chat').innerHTML='';$('card').hidden=true;show('idle');steps.forEach(([d,f])=>{t+=d;setTimeout(f,t+4000)});if(loop)setTimeout(run,t+4000+9000)}

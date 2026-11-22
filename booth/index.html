@@ -185,7 +185,7 @@ function showCard(p){lastCard=p;$('cBiz').textContent=p.business||'';$('cGreet')
 
 function voucherUrl(code,biz){return location.origin+'/booth/v/?c='+encodeURIComponent(code||'')+'&b='+encodeURIComponent(biz||'')}
 function showVoucher(p){const code=(p.code||'').trim(),biz=(p.business||(lastCard&&lastCard.business)||'').trim();
- const url=code?voucherUrl(code,biz):location.origin+'/pricing/?src=booth';
+ const url=p.url||(code?voucherUrl(code,biz):location.origin+'/pricing/?src=booth');
  const q=qrcode(0,'M');q.addData(url);q.make();$('qr').innerHTML=q.createSvgTag({cellSize:8,margin:2,scalable:true});
  $('vBiz').textContent=biz;$('vCode').textContent=code||'';$('vCode').hidden=!code;
  $('vHead').textContent=code?'خصم 20% حق مشروعك':'شوف باقاتنا وأسعارنا';
@@ -221,8 +221,10 @@ if(new URLSearchParams(location.search).get('demo')==='1'){
  [1800,()=>{showCard({business:'مخبز نورة',greeting:'هلا ومرحبا في مخبز نورة! تبي تحجز كيكة حق مناسبتك؟',jobs:'ياخذ طلبات الكيك والحلويات|يحجز مواعيد الاستلام والتوصيل|يرسل الفاتورة على WhatsApp'});bubble('ai','هلا ومرحبا في مخبز نورة! تبي أحجز لك كيكة حق باچر؟')}],
  [3000,()=>bubble('user','إي، كيكة شوكولاتة حق عشرين شخص')],
  [2200,()=>bubble('ai','أبشر! سجلت لك كيكة شوكولاتة حق 20 شخص باچر، والفريق يأكد لك السعر. هذا بالضبط اللي يسويه مساعدك على WhatsApp، 24 ساعة.')],
- [3200,()=>showVoucher({code:'COD-4821',business:'مخبز نورة'})]];
- let t=0;steps.forEach(([d,f])=>{t+=d;setTimeout(f,t)});
+ [3200,()=>showVoucher({code:'COD-····',business:'مخبز نورة',url:location.origin+'/booth/?m=1&src=tv-demo'})]];
+ const loop=new URLSearchParams(location.search).get('loop')==='1';
+ function run(){let t=0;$('chat').innerHTML='';$('card').hidden=true;show('idle');steps.forEach(([d,f])=>{t+=d;setTimeout(f,t+4000)});if(loop)setTimeout(run,t+4000+9000)}
+ run();
 }
 /* keep screen awake on the iPad */
 (async()=>{try{if('wakeLock' in navigator){let wl=await navigator.wakeLock.request('screen');document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible')try{wl=await navigator.wakeLock.request('screen')}catch(e){}})}}catch(e){}})();
